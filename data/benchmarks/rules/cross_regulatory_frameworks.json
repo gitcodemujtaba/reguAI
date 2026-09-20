@@ -1,0 +1,237 @@
+{
+  "schema_version": "2.0.0",
+  "description": "Bidirectional cross-regulatory ontology mapping between EU AI Act (Regulation EU 2024/1689), NIST AI RMF 1.0, ISO/IEC 42001:2023, and GDPR (Regulation EU 2016/679).",
+  "last_updated": "2026-09-20",
+  "mappings": [
+    {
+      "mapping_id": "XREG-AIA-NIST-001",
+      "eu_ai_act_article": "Article 9",
+      "target_framework": "NIST AI RMF 1.0",
+      "target_control_id": "GOVERN-1.1",
+      "target_control_name": "Legal and regulatory requirements are understood and managed",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "Article 9 mandates a continuous, documented risk management system across the AI lifecycle; NIST GOVERN-1.1 provides the organizational governance baseline for legal and regulatory compliance.",
+      "audit_guidance": "Verify that risk identification, assessment, and residual risk acceptance matrices are updated across iterative deployment phases."
+    },
+    {
+      "mapping_id": "XREG-AIA-NIST-002",
+      "eu_ai_act_article": "Article 9(2)",
+      "target_framework": "NIST AI RMF 1.0",
+      "target_control_id": "MANAGE-1.3",
+      "target_control_name": "Risk response plans are developed and executed",
+      "relationship_type": "SUBSET_OF",
+      "semantic_rationale": "Article 9(2) requires targeted mitigation measures to judge residual risks acceptable, directly matching NIST MANAGE-1.3 response planning.",
+      "audit_guidance": "Review residual risk logs and mitigation effectiveness metrics."
+    },
+    {
+      "mapping_id": "XREG-AIA-ISO-001",
+      "eu_ai_act_article": "Article 9",
+      "target_framework": "ISO/IEC 42001:2023",
+      "target_control_id": "Clause 6.1.2",
+      "target_control_name": "AI risk assessment",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "Clause 6.1.2 establishes standard criteria for identifying and assessing AI-specific risks, providing the ISO management system implementation of Article 9.",
+      "audit_guidance": "Inspect documented AI risk assessment procedure and risk treatment plan."
+    },
+    {
+      "mapping_id": "XREG-AIA-NIST-003",
+      "eu_ai_act_article": "Article 10",
+      "target_framework": "NIST AI RMF 1.0",
+      "target_control_id": "MAP-1.5",
+      "target_control_name": "Data quality, representativeness, and provenance are characterized",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "Article 10 requires rigorous data governance covering design choices, collection, curation, provenance, and data sheet documentation.",
+      "audit_guidance": "Examine data sheets for datasets, data lineage logs, and demographic distribution analyses."
+    },
+    {
+      "mapping_id": "XREG-AIA-NIST-004",
+      "eu_ai_act_article": "Article 10(2)(f)",
+      "target_framework": "NIST AI RMF 1.0",
+      "target_control_id": "MEASURE-2.11",
+      "target_control_name": "Fairness and bias are evaluated across protected groups",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "Article 10(2)(f) requires active examination and mitigation of biases that may impact fundamental rights or lead to unlawful discrimination.",
+      "audit_guidance": "Verify disparate impact ratios, statistical parity difference, and equalized odds metrics across demographic slices."
+    },
+    {
+      "mapping_id": "XREG-AIA-ISO-002",
+      "eu_ai_act_article": "Article 10",
+      "target_framework": "ISO/IEC 42001:2023",
+      "target_control_id": "Control A.8.2",
+      "target_control_name": "Data for AI systems",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "ISO 42001 Annex A.8.2 specifies controls for dataset quality, data acquisition, and preprocessing controls corresponding directly to Article 10.",
+      "audit_guidance": "Review data management SOPs, data sanitization pipelines, and validation split protocols."
+    },
+    {
+      "mapping_id": "XREG-AIA-GDPR-001",
+      "eu_ai_act_article": "Article 10",
+      "target_framework": "GDPR (EU 2016/679)",
+      "target_control_id": "Article 25",
+      "target_control_name": "Data protection by design and by default",
+      "relationship_type": "OVERLAPPING",
+      "semantic_rationale": "Article 10 data minimization and quality practices align with GDPR Article 25 requirements to integrate data privacy safeguards into system architecture.",
+      "audit_guidance": "Check pseudonymization, synthetic data generation safeguards, and retention enforcement in feature stores."
+    },
+    {
+      "mapping_id": "XREG-AIA-GDPR-002",
+      "eu_ai_act_article": "Article 10(5)",
+      "target_framework": "GDPR (EU 2016/679)",
+      "target_control_id": "Article 9(2)(g)",
+      "target_control_name": "Processing of special categories of personal data for substantial public interest",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "AI Act Art 10(5) provides a statutory derogation allowing the strictly necessary processing of special categories of data solely for the purpose of bias detection and correction.",
+      "audit_guidance": "Verify strict access control, synthetic tokenization, and immediate deletion of sensitive attributes upon completion of bias correction."
+    },
+    {
+      "mapping_id": "XREG-AIA-NIST-005",
+      "eu_ai_act_article": "Article 11",
+      "target_framework": "NIST AI RMF 1.0",
+      "target_control_id": "GOVERN-1.4",
+      "target_control_name": "Documentation of AI system inventory, design, and architecture",
+      "relationship_type": "SUBSET_OF",
+      "semantic_rationale": "Article 11 mandates exhaustive Annex IV technical documentation prior to placing on market, which operationalizes NIST GOVERN-1.4.",
+      "audit_guidance": "Audit the Annex IV conformity technical file, model architecture cards, and hyperparameter logs."
+    },
+    {
+      "mapping_id": "XREG-AIA-ISO-003",
+      "eu_ai_act_article": "Article 11",
+      "target_framework": "ISO/IEC 42001:2023",
+      "target_control_id": "Control A.6.2",
+      "target_control_name": "System documentation and record retention",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "ISO Control A.6.2 governs technical specification retention and lifecycle documentation in parallel with Article 11.",
+      "audit_guidance": "Confirm that technical documentation is retained for at least 10 years after system decommissioning."
+    },
+    {
+      "mapping_id": "XREG-AIA-NIST-006",
+      "eu_ai_act_article": "Article 12",
+      "target_framework": "NIST AI RMF 1.0",
+      "target_control_id": "GOVERN-1.5",
+      "target_control_name": "Mechanisms are in place to track, log, and audit AI decisions",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "Article 12 requires automated recording of events (logging) to guarantee traceability of system functioning and human operator interventions.",
+      "audit_guidance": "Verify immutable WORM logging, prompt-completion ledger, and operator override capture."
+    },
+    {
+      "mapping_id": "XREG-AIA-ISO-004",
+      "eu_ai_act_article": "Article 12",
+      "target_framework": "ISO/IEC 42001:2023",
+      "target_control_id": "Control A.9.3",
+      "target_control_name": "Logging of AI system operations",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "ISO Control A.9.3 provides standardized operational specs for event logging, error tracking, and input/output hashing.",
+      "audit_guidance": "Inspect automated log retention policies, cryptographic tamper-evidence, and alert monitoring."
+    },
+    {
+      "mapping_id": "XREG-AIA-NIST-007",
+      "eu_ai_act_article": "Article 13",
+      "target_framework": "NIST AI RMF 1.0",
+      "target_control_id": "MAP-1.2",
+      "target_control_name": "Intended purpose, capabilities, limitations, and operational bounds are documented",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "Article 13 requires transparent instructions for use enabling deployers to interpret outputs and operate within defined boundaries.",
+      "audit_guidance": "Review deployer user manuals, known error condition declarations, and intended use specifications."
+    },
+    {
+      "mapping_id": "XREG-AIA-GDPR-003",
+      "eu_ai_act_article": "Article 13",
+      "target_framework": "GDPR (EU 2016/679)",
+      "target_control_id": "Article 13/14",
+      "target_control_name": "Information to be provided where personal data are collected",
+      "relationship_type": "OVERLAPPING",
+      "semantic_rationale": "Transparency obligations under AI Act Art 13 ensure deployers can provide meaningful information about automated decision logic to data subjects under GDPR Arts 13/14.",
+      "audit_guidance": "Check deployer transparency notices, explainability interfaces, and algorithmic disclosure text."
+    },
+    {
+      "mapping_id": "XREG-AIA-NIST-008",
+      "eu_ai_act_article": "Article 14",
+      "target_framework": "NIST AI RMF 1.0",
+      "target_control_id": "MANAGE-2.2",
+      "target_control_name": "Human-in-the-loop, on-the-loop, and in-command controls are operationalized",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "Article 14 establishes mandatory human oversight capabilities to prevent automation bias and enable intervention or shutdown.",
+      "audit_guidance": "Inspect operator qualification records, dual-custody authorization gates, and UI override mechanisms."
+    },
+    {
+      "mapping_id": "XREG-AIA-NIST-009",
+      "eu_ai_act_article": "Article 14(4)(e)",
+      "target_framework": "NIST AI RMF 1.0",
+      "target_control_id": "MANAGE-2.4",
+      "target_control_name": "System fail-safes and fallback mechanisms",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "Article 14(4)(e) mandates a physical or software emergency stop button / kill switch to interrupt operations instantaneously.",
+      "audit_guidance": "Conduct red-team test of the emergency kill switch and verify maximum interruption latency."
+    },
+    {
+      "mapping_id": "XREG-AIA-GDPR-004",
+      "eu_ai_act_article": "Article 14",
+      "target_framework": "GDPR (EU 2016/679)",
+      "target_control_id": "Article 22(3)",
+      "target_control_name": "Right to obtain human intervention and contest decision",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "AI Act Art 14 human oversight satisfies the substantive requirement of GDPR Art 22(3) guaranteeing human intervention in automated individual decisions.",
+      "audit_guidance": "Confirm presence of documented dispute escalation workflows leading to human re-adjudication."
+    },
+    {
+      "mapping_id": "XREG-AIA-NIST-010",
+      "eu_ai_act_article": "Article 15",
+      "target_framework": "NIST AI RMF 1.0",
+      "target_control_id": "MEASURE-2.6",
+      "target_control_name": "Accuracy, robustness, and reliability metrics are measured and monitored",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "Article 15 requires high-risk AI to demonstrate resilient accuracy, operational robustness, and cybersecurity defense.",
+      "audit_guidance": "Examine confusion matrices, out-of-distribution drift monitors, and performance confidence bounds."
+    },
+    {
+      "mapping_id": "XREG-AIA-NIST-011",
+      "eu_ai_act_article": "Article 15(4)",
+      "target_framework": "NIST AI RMF 1.0",
+      "target_control_id": "GOVERN-1.6",
+      "target_control_name": "Cybersecurity and adversarial vulnerability management",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "Article 15(4) mandates specific defenses against prompt injection, model evasion, data poisoning, and model theft.",
+      "audit_guidance": "Inspect adversarial penetration test reports, input guardrails, and model extraction rate-limits."
+    },
+    {
+      "mapping_id": "XREG-AIA-GDPR-005",
+      "eu_ai_act_article": "Article 15(4)",
+      "target_framework": "GDPR (EU 2016/679)",
+      "target_control_id": "Article 32",
+      "target_control_name": "Security of processing",
+      "relationship_type": "OVERLAPPING",
+      "semantic_rationale": "Article 15(4) AI cybersecurity requirements integrate with GDPR Article 32 technical and organizational security measures.",
+      "audit_guidance": "Review threat models covering both personal data exfiltration and model parameter corruption."
+    },
+    {
+      "mapping_id": "XREG-AIA-GDPR-006",
+      "eu_ai_act_article": "Article 27",
+      "target_framework": "GDPR (EU 2016/679)",
+      "target_control_id": "Article 35",
+      "target_control_name": "Data Protection Impact Assessment (DPIA)",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "AI Act Article 27 Fundamental Rights Impact Assessment (FRIA) directly complements and cross-references GDPR Article 35 DPIA obligations.",
+      "audit_guidance": "Verify integrated FRIA/DPIA documentation covering impact on non-discrimination, human dignity, and privacy."
+    },
+    {
+      "mapping_id": "XREG-AIA-NIST-012",
+      "eu_ai_act_article": "Article 51",
+      "target_framework": "NIST AI RMF 1.0",
+      "target_control_id": "MEASURE-1.1",
+      "target_control_name": "Systemic capability and compute threshold evaluation",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "Article 51 sets the 10^25 FLOPs compute threshold for classifying General-Purpose AI models with systemic risk.",
+      "audit_guidance": "Verify training run hardware cluster logs, compute calculation sheets, and FLOP estimation methodology."
+    },
+    {
+      "mapping_id": "XREG-AIA-NIST-013",
+      "eu_ai_act_article": "Article 55",
+      "target_framework": "NIST AI RMF 1.0",
+      "target_control_id": "MEASURE-2.8",
+      "target_control_name": "Adversarial red-teaming and safety evaluations",
+      "relationship_type": "EXACT_EQUIVALENT",
+      "semantic_rationale": "Article 55 mandates standardized red-teaming and adversarial stress testing for systemic GPAI models prior to release.",
+      "audit_guidance": "Review independent red-teaming audit reports, CBRN threat mitigation proofs, and cyber offense containment."
+    }
+  ]
+}

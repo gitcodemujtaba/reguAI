@@ -1,0 +1,39 @@
+{
+  "statutory_basis": "Regulation (EU) 2024/1689 Article 99 (Penalties and Administrative Fines)",
+  "currency": "EUR",
+  "tiers": [
+    {
+      "tier": "TIER_1_PROHIBITED_AI",
+      "legal_basis": "Article 99(3)",
+      "scope": "Infringement of the prohibition of the AI practices referred to in Article 5",
+      "maximum_fine_eur": 35000000,
+      "maximum_turnover_pct": 7.0,
+      "turnover_basis": "Total worldwide annual turnover of the preceding financial year",
+      "applicable_articles": ["Article 5(1)(a)", "Article 5(1)(b)", "Article 5(1)(c)", "Article 5(1)(d)", "Article 5(1)(e)", "Article 5(1)(f)", "Article 5(1)(g)", "Article 5(1)(h)"]
+    },
+    {
+      "tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "legal_basis": "Article 99(4)",
+      "scope": "Non-compliance of the AI system with any requirement of Chapter III or obligations on providers/deployers",
+      "maximum_fine_eur": 15000000,
+      "maximum_turnover_pct": 3.0,
+      "turnover_basis": "Total worldwide annual turnover of the preceding financial year",
+      "applicable_articles": ["Article 9", "Article 10", "Article 11", "Article 12", "Article 13", "Article 14", "Article 15", "Article 16", "Article 26"]
+    },
+    {
+      "tier": "TIER_3_MISINFORMATION_NOTIFICATION",
+      "legal_basis": "Article 99(5)",
+      "scope": "Supply of incorrect, incomplete or misleading information to notified bodies and national competent authorities",
+      "maximum_fine_eur": 7500000,
+      "maximum_turnover_pct": 1.5,
+      "turnover_basis": "Total worldwide annual turnover of the preceding financial year",
+      "applicable_articles": ["Article 21", "Article 22", "Article 74"]
+    },
+    {
+      "tier": "TIER_SME_SPECIAL_CAP",
+      "legal_basis": "Article 99(6)",
+      "scope": "Fines on SMEs including startups shall be subject to the lower of the two amounts specified in Tiers 1-3",
+      "rule": "min(fixed_amount, turnover_percentage)"
+    }
+  ]
+}

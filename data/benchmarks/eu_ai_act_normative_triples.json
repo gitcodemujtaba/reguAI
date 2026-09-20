@@ -1,0 +1,627 @@
+{
+  "schema_version": "2.0.0",
+  "dataset_name": "EU AI Act Normative Deontic Triples",
+  "legal_source": "EUR-Lex CELEX:32024R1689",
+  "total_triples": 36,
+  "deontic_distribution": {
+    "PROHIBITION": 8,
+    "OBLIGATION": 27,
+    "PERMISSION": 1,
+    "EXEMPTION": 0
+  },
+  "triples": [
+    {
+      "id": "EU_AIA_TRIPLE_001",
+      "article_number": 5,
+      "paragraph_number": "1(a)",
+      "subject": "Provider_or_Deployer",
+      "modality": "PROHIBITION",
+      "predicate": "shallNotPlaceOnMarketOrPutIntoService",
+      "object": "Subliminal_Manipulative_AI_System",
+      "source_text": "The placing on the market, the putting into service or the use of an AI system that deploys subliminal techniques beyond a person’s consciousness or purposeful manipulative or deceptive techniques, with the objective, or the effect of materially distorting the behaviour of a person or a group of persons by appreciably impairing their ability to make an informed decision, thereby causing or being reasonably likely to cause that person, another person or a group of persons significant harm, shall be prohibited.",
+      "cross_references": [
+        "NIST:GOVERN-1.1",
+        "ISO:A.6.1"
+      ],
+      "enforcement_tier": "TIER_1_PROHIBITED_AI",
+      "shacl_shape_ref": "regu:ProhibitedAISystemShape",
+      "sha256_hash": "fee25236f365bc8d92179bd037d47fcad5aa15b0ec892804b5cd640839e9fa0b"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_002",
+      "article_number": 5,
+      "paragraph_number": "1(b)",
+      "subject": "Provider_or_Deployer",
+      "modality": "PROHIBITION",
+      "predicate": "shallNotPlaceOnMarketOrPutIntoService",
+      "object": "Vulnerability_Exploiting_AI_System",
+      "source_text": "The placing on the market, the putting into service or the use of an AI system that exploits any of the vulnerabilities of a natural person or a specific group of persons due to their age, disability or a specific social or economic situation, with the objective, or the effect, of materially distorting the behaviour of that person or a person belonging to that group in a manner that causes or is reasonably likely to cause that person or another person significant harm, shall be prohibited.",
+      "cross_references": [
+        "NIST:GOVERN-1.1",
+        "ISO:A.6.1"
+      ],
+      "enforcement_tier": "TIER_1_PROHIBITED_AI",
+      "shacl_shape_ref": "regu:ProhibitedAISystemShape",
+      "sha256_hash": "fcb53e7823c7bcb13a72bafad943aefd20b3820231e4e3733b3565089f6fcfe1"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_003",
+      "article_number": 5,
+      "paragraph_number": "1(c)",
+      "subject": "Provider_or_Deployer",
+      "modality": "PROHIBITION",
+      "predicate": "shallNotPlaceOnMarketOrPutIntoService",
+      "object": "Social_Scoring_AI_System",
+      "source_text": "The placing on the market, the putting into service or the use of AI systems for the evaluation or classification of natural persons or groups thereof over a certain period of time based on their social behaviour or known, inferred or predicted personal or personality characteristics, with the social score leading to detrimental or unfavourable treatment of certain natural persons or groups thereof in social contexts that are unrelated to the contexts in which the data was originally generated, or treatment that is unjustified or disproportionate to their social behaviour or its gravity, shall be prohibited.",
+      "cross_references": [
+        "NIST:GOVERN-1.1",
+        "GDPR:Article_22"
+      ],
+      "enforcement_tier": "TIER_1_PROHIBITED_AI",
+      "shacl_shape_ref": "regu:ProhibitedAISystemShape",
+      "sha256_hash": "464f90e01c4f82ce05602597795bb5125de1c285c997785d8db4ec1a14845790"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_004",
+      "article_number": 5,
+      "paragraph_number": "1(d)",
+      "subject": "Provider_or_Deployer",
+      "modality": "PROHIBITION",
+      "predicate": "shallNotPlaceOnMarketOrPutIntoService",
+      "object": "Individual_Predictive_Policing_System",
+      "source_text": "The placing on the market, the putting into service for this specific purpose, or the use of an AI system for making risk assessments of natural persons in order to assess or predict the likelihood of a natural person committing a criminal offence, based solely on the profiling of a natural person or on assessing their personality traits and characteristics, shall be prohibited.",
+      "cross_references": [
+        "NIST:GOVERN-1.1",
+        "GDPR:Article_22"
+      ],
+      "enforcement_tier": "TIER_1_PROHIBITED_AI",
+      "shacl_shape_ref": "regu:ProhibitedAISystemShape",
+      "sha256_hash": "cd3f922705dc54bbbc8047b5b4d528914dea068eba4a86d6d4c603536799c46d"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_005",
+      "article_number": 5,
+      "paragraph_number": "1(e)",
+      "subject": "Provider_or_Deployer",
+      "modality": "PROHIBITION",
+      "predicate": "shallNotPlaceOnMarketOrPutIntoService",
+      "object": "Facial_Recognition_Scraping_Database",
+      "source_text": "The placing on the market, the putting into service for this specific purpose, or the use of AI systems that create or expand facial recognition databases through the untargeted scraping of facial images from the internet or CCTV footage, shall be prohibited.",
+      "cross_references": [
+        "NIST:MAP-1.5",
+        "GDPR:Article_9"
+      ],
+      "enforcement_tier": "TIER_1_PROHIBITED_AI",
+      "shacl_shape_ref": "regu:ProhibitedAISystemShape",
+      "sha256_hash": "51ed69815cdedb7ba7b60eeb7eeadbace6e18bb9fe5efbbd354db8ac8adbaac8"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_006",
+      "article_number": 5,
+      "paragraph_number": "1(f)",
+      "subject": "Provider_or_Deployer",
+      "modality": "PROHIBITION",
+      "predicate": "shallNotPlaceOnMarketOrPutIntoService",
+      "object": "Workplace_Education_Emotion_Recognition_System",
+      "source_text": "The placing on the market, the putting into service for this specific purpose, or the use of AI systems to infer emotions of a natural person in the areas of workplace and educational institutions, except where the use of the AI system is intended to be put in place or into the market for medical or safety reasons, shall be prohibited.",
+      "cross_references": [
+        "NIST:MAP-1.1",
+        "ISO:A.6.1"
+      ],
+      "enforcement_tier": "TIER_1_PROHIBITED_AI",
+      "shacl_shape_ref": "regu:ProhibitedAISystemShape",
+      "sha256_hash": "8f6300ce2411386a6f3d2b4fd2256c517c3c4ab8e6f8587edbd6967d9883e058"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_007",
+      "article_number": 5,
+      "paragraph_number": "1(g)",
+      "subject": "Provider_or_Deployer",
+      "modality": "PROHIBITION",
+      "predicate": "shallNotPlaceOnMarketOrPutIntoService",
+      "object": "Sensitive_Biometric_Categorization_System",
+      "source_text": "The placing on the market, the putting into service for this specific purpose, or the use of biometric categorisation systems that categorise individually natural persons based on their biometric data to deduce or infer their race, political opinions, trade union membership, religious or philosophical beliefs, sex life or sexual orientation, shall be prohibited.",
+      "cross_references": [
+        "GDPR:Article_9",
+        "NIST:GOVERN-1.1"
+      ],
+      "enforcement_tier": "TIER_1_PROHIBITED_AI",
+      "shacl_shape_ref": "regu:ProhibitedAISystemShape",
+      "sha256_hash": "5d1755bd5ac353cd78bb180afae8d189c960cd9d0dfb576f7afce03f53c1b6eb"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_008",
+      "article_number": 5,
+      "paragraph_number": "1(h)",
+      "subject": "Law_Enforcement_Authority",
+      "modality": "PROHIBITION",
+      "predicate": "shallNotUseInPublicSpaces",
+      "object": "Real_Time_Remote_Biometric_Identification",
+      "source_text": "The use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement shall be prohibited, unless and in so far as such use is strictly necessary for one of the specific objectives exhaustively listed in Article 5(1)(h).",
+      "cross_references": [
+        "GDPR:Article_9",
+        "NIST:GOVERN-1.1"
+      ],
+      "enforcement_tier": "TIER_1_PROHIBITED_AI",
+      "shacl_shape_ref": "regu:ProhibitedAISystemShape",
+      "sha256_hash": "f0b006b3119b4dcc9f98b1507ec6a3c6f29f735df9f64230d49630869d3dae07"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_009",
+      "article_number": 9,
+      "paragraph_number": "1",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallEstablishAndMaintain",
+      "object": "Continuous_Risk_Management_System",
+      "source_text": "A risk management system shall be established, implemented, documented and maintained in relation to high-risk AI systems. The risk management system shall be understood as a continuous iterative process planned and run throughout the entire lifecycle of a high-risk AI system, requiring regular systematic review and updating.",
+      "cross_references": [
+        "NIST:GOVERN-1.1",
+        "ISO:Clause_6_1_2"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "6030a2a0f8ae41995d6afc4efb4a9d99a3c84ad84131e6e4d43e7b2a04f1b6b6"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_010",
+      "article_number": 9,
+      "paragraph_number": "2",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallMitigateAndJudgeAcceptable",
+      "object": "Residual_Risks",
+      "source_text": "The risk management system shall comprise the identification and analysis of the known and foreseeable risks most likely to occur to health, safety or fundamental rights, the estimation and evaluation of the risks, and the adoption of targeted risk management measures to ensure residual risks are judged acceptable.",
+      "cross_references": [
+        "NIST:MANAGE-1.3",
+        "ISO:Clause_6_1_2"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "48d18b62d422cf073dd6adb210b30b96fe77fb983418a59b5771d23bc3d4926d"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_011",
+      "article_number": 9,
+      "paragraph_number": "4",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallTestAndValidateAgainstRisks",
+      "object": "High_Risk_AI_System",
+      "source_text": "The risk management measures referred to in paragraph 2 shall be such that relevant residual risk associated with each hazard as well as the overall residual risk of the high-risk AI systems is judged acceptable. High-risk AI systems shall be tested for the purpose of identifying the most appropriate risk management measures.",
+      "cross_references": [
+        "NIST:MEASURE-2.6",
+        "ISO:Clause_6_1_2"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "a7b4273782cdd2aa130b47f7bdc76df6d53745464fdbb791fd4dbf334cd565e3"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_012",
+      "article_number": 10,
+      "paragraph_number": "1",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallSubjectToAppropriateGovernance",
+      "object": "Training_Validation_Test_Datasets",
+      "source_text": "High-risk AI systems which make use of techniques involving the training of AI models with data shall be developed on the basis of training, validation and testing datasets that meet the quality criteria referred to in paragraphs 2 to 5.",
+      "cross_references": [
+        "NIST:MAP-1.5",
+        "ISO:Control_A_8_2",
+        "GDPR:Article_25"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "32e00984e70971d4c997a1b72edeb2d781ffb1706b13560f3b2497d96135a2fe"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_013",
+      "article_number": 10,
+      "paragraph_number": "2(f)",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallExamineAndMitigate",
+      "object": "Dataset_Biases",
+      "source_text": "Training, validation and testing datasets shall be subject to appropriate data governance and management practices. Those practices shall concern in particular the examination in view of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations.",
+      "cross_references": [
+        "NIST:MEASURE-2.11",
+        "ISO:Control_A_8_4"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "dacbd17a6a0845abb511e4fe0547592c8f6a299d7d46a0886d7ab6f6a876b4eb"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_014",
+      "article_number": 10,
+      "paragraph_number": "3",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallEnsureRepresentativeAndComplete",
+      "object": "Training_Validation_Test_Datasets",
+      "source_text": "Training, validation and testing datasets shall be relevant, sufficiently representative, and to the best extent possible, free of errors and complete in view of the intended purpose. They shall have the appropriate statistical properties, including, where applicable, as regards the persons or groups of persons on which the high-risk AI system is intended to be used.",
+      "cross_references": [
+        "NIST:MEASURE-1.2",
+        "ISO:Control_A_8_3"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "ed8458007908d2762d05f342f7b9adaf3b24dad1ed7fdeb6daa2772b2d6fd7c8"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_015",
+      "article_number": 10,
+      "paragraph_number": "5",
+      "subject": "Provider",
+      "modality": "PERMISSION",
+      "predicate": "mayProcessSpecialCategoriesOfPersonalData",
+      "object": "Bias_Detection_And_Correction",
+      "source_text": "To the extent that it is strictly necessary for the purposes of ensuring bias detection and correction in relation to the high-risk AI systems, providers may exceptionally process special categories of personal data referred to in Article 9(1) of Regulation (EU) 2016/679, subject to appropriate safeguards for the fundamental rights and freedoms of natural persons.",
+      "cross_references": [
+        "GDPR:Article_9_2_g",
+        "ISO:Control_A_8_4"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "16d0445d30838af3036a77f1e964cc56d79ed3a5b5c71a50287e9f85bcf0dbca"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_016",
+      "article_number": 11,
+      "paragraph_number": "1",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallDrawUpAndKeepUpdated",
+      "object": "Annex_IV_Technical_Documentation",
+      "source_text": "The technical documentation of a high-risk AI system shall be drawn up before that system is placed on the market or put into service and shall be kept up-to-date. The technical documentation shall be drawn up in such a way as to demonstrate that the high-risk AI system complies with the requirements set out in this Chapter and to provide competent authorities and notified bodies with all the necessary information in a clear and comprehensive manner.",
+      "cross_references": [
+        "NIST:GOVERN-1.4",
+        "ISO:Control_A_6_2"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "e3835023902a13cef550695d6e9148ca98d9559b940d420221b4270ef38efb74"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_017",
+      "article_number": 12,
+      "paragraph_number": "1",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallEnableAutomaticLogging",
+      "object": "Lifecycle_Events_And_Traceability",
+      "source_text": "High-risk AI systems shall technically allow for the automatic recording of events (logging) over their lifetime. The logging capabilities shall ensure a level of traceability of the AI system’s functioning throughout its lifecycle that is appropriate to the intended purpose of the system.",
+      "cross_references": [
+        "NIST:GOVERN-1.5",
+        "ISO:Control_A_9_3"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "9738482aeea7d75b0d068fec7bf89cd48b644f4730012c12986ac53565ac8444"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_018",
+      "article_number": 12,
+      "paragraph_number": "2",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallCaptureInLogs",
+      "object": "Operator_Input_And_Post_Market_Monitoring",
+      "source_text": "In particular, logging capabilities shall enable the monitoring of the operation of the high-risk AI system with respect to the occurrence of situations that may result in the AI system presenting a risk within the meaning of Article 79(1) or lead to a substantial modification, and facilitate the post-market monitoring referred to in Article 72.",
+      "cross_references": [
+        "NIST:GOVERN-1.5",
+        "ISO:Control_A_9_3"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "b09f1c882ceba8c5e713bb0dad2546f1b7b933c56f0c8e3df2bf6948c7cfa0ac"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_019",
+      "article_number": 13,
+      "paragraph_number": "1",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallEnsureSufficientTransparency",
+      "object": "High_Risk_AI_System",
+      "source_text": "High-risk AI systems shall be designed and developed in such a way to ensure that their operation is sufficiently transparent to enable deployers to interpret a system’s output and use it appropriately. An appropriate type and degree of transparency shall be ensured with a view to achieving compliance with the relevant obligations of the provider and deployer.",
+      "cross_references": [
+        "NIST:MAP-1.2",
+        "ISO:Control_A_7_2",
+        "GDPR:Article_13"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "815a276d7d2aba467f1683c9bd20ddcc6e64335c934eece73c5ef67cc34af6f4"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_020",
+      "article_number": 13,
+      "paragraph_number": "2",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallAccompanyWith",
+      "object": "Instructions_For_Use",
+      "source_text": "High-risk AI systems shall be accompanied by instructions for use in an appropriate digital format or otherwise that include concise, complete, correct and clear information that is relevant, accessible and comprehensible to deployers.",
+      "cross_references": [
+        "NIST:MAP-1.2",
+        "ISO:Control_A_7_2"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "f5d0cf2be9379a99f6ad1bbababa0e7b419736071dd1780f892f505a9b94203d"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_021",
+      "article_number": 14,
+      "paragraph_number": "1",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallEnableEffectiveOversightBy",
+      "object": "Natural_Persons",
+      "source_text": "High-risk AI systems shall be designed and developed in such a way, including with appropriate human-machine interface tools, that they can be effectively overseen by natural persons during the period in which they are in use.",
+      "cross_references": [
+        "NIST:MANAGE-2.2",
+        "ISO:Control_A_8_5",
+        "GDPR:Article_22_3"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "0f58d9de45d9d2e06806d0dc0c58053c37bf2a2d4bdd4157a992b6870f8b6831"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_022",
+      "article_number": 14,
+      "paragraph_number": "4(e)",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallProvideOverrideMechanism",
+      "object": "Emergency_Stop_Kill_Switch",
+      "source_text": "For the purpose of implementing paragraphs 1, 2 and 3, human oversight shall enable the individuals to whom human oversight is assigned to be able to intervene on the operation of the high-risk AI system or interrupt the system through a ‘stop’ button or a similar procedure that enables the system to come to a halt in a safe condition.",
+      "cross_references": [
+        "NIST:MANAGE-2.4",
+        "ISO:Control_A_8_5"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "a32b162cc56875d59179803f41d21087254512138c3a679a9035148149314a94"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_023",
+      "article_number": 15,
+      "paragraph_number": "1",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallAchieveAppropriateLevelOf",
+      "object": "Accuracy_Robustness_And_Cybersecurity",
+      "source_text": "High-risk AI systems shall be designed and developed in such a way that they achieve an appropriate level of accuracy, robustness, and cybersecurity, and that they perform consistently in those respects throughout their lifecycle.",
+      "cross_references": [
+        "NIST:MEASURE-2.6",
+        "ISO:Control_A_9_2"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "82e34276ca8fcc7e5b78957ef0d0a871289b066df7a17a9eee03fa66dbcd3aaa"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_024",
+      "article_number": 15,
+      "paragraph_number": "4",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallImplementDefensesAgainst",
+      "object": "Adversarial_Attacks_And_Data_Poisoning",
+      "source_text": "High-risk AI systems shall be resilient as regards attempts by unauthorised third parties to alter their use, outputs or performance by exploiting system vulnerabilities. The technical solutions to address AI specific vulnerabilities shall include, where appropriate, measures to prevent, detect, respond to, resolve and control attacks trying to manipulate the training dataset (data poisoning), or pre-trained components used in training (model poisoning), inputs designed to cause the model to make a mistake (adversarial examples or model evasion), confidentiality attacks or model flaws.",
+      "cross_references": [
+        "NIST:GOVERN-1.6",
+        "ISO:Control_A_9_2",
+        "GDPR:Article_32"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:HighRiskSystemShape",
+      "sha256_hash": "c4cfd2fb04164c77804d5cbbe3ea5693cff2cf2150c2fc9d74a3db210ac18628"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_025",
+      "article_number": 26,
+      "paragraph_number": "1",
+      "subject": "Deployer",
+      "modality": "OBLIGATION",
+      "predicate": "shallTakeAppropriateTechnicalMeasuresToUseInAccordanceWith",
+      "object": "Provider_Instructions_For_Use",
+      "source_text": "Deployers of high-risk AI systems shall take appropriate technical and organisational measures to ensure they use such systems in accordance with the instructions for use accompanying the systems.",
+      "cross_references": [
+        "NIST:GOVERN-1.1",
+        "ISO:Control_A_7_2"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:DeployerObligationShape",
+      "sha256_hash": "c549d984e95d217e707fe01f699acafb32cdd47036961e07d16f7bd6d6de2d89"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_026",
+      "article_number": 26,
+      "paragraph_number": "5",
+      "subject": "Deployer",
+      "modality": "OBLIGATION",
+      "predicate": "shallMonitorOperationAndInformProviderOf",
+      "object": "Serious_Incidents_Or_Malfunctioning",
+      "source_text": "Deployers of high-risk AI systems shall monitor the operation of the high-risk AI system on the basis of the instructions for use and, when relevant, inform providers in accordance with Article 73. When deployers have reason to consider that the use in accordance with the instructions for use may result in the AI system presenting a risk within the meaning of Article 79(1), they shall immediately suspend its use and inform the provider.",
+      "cross_references": [
+        "NIST:MANAGE-4.1",
+        "ISO:Control_A_9_3"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:DeployerObligationShape",
+      "sha256_hash": "8c6eaf2f972e2b1e67640d5375893facbdfcf361f7b0ee992ddb3e39cf1d068b"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_027",
+      "article_number": 27,
+      "paragraph_number": "1",
+      "subject": "Deployer_Governed_By_Public_Law_Or_Essential_Service",
+      "modality": "OBLIGATION",
+      "predicate": "shallPerformPriorToDeployment",
+      "object": "Fundamental_Rights_Impact_Assessment",
+      "source_text": "Prior to putting a high-risk AI system referred to in Article 6(2) into service, deployers that are bodies governed by public law, or private entities providing public services, and deployers of high-risk AI systems referred to in points 5(b) and (c) of Annex III, shall perform an assessment of the impact on fundamental rights that the use of the system may produce.",
+      "cross_references": [
+        "GDPR:Article_35",
+        "NIST:GOVERN-1.1"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:DeployerObligationShape",
+      "sha256_hash": "56a5676d035ce9be189463b9b5c91afc7f242db29bc554ad0cd353a40c5582e8"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_028",
+      "article_number": 50,
+      "paragraph_number": "1",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallInformNaturalPersonsThatTheyAreInteractingWith",
+      "object": "AI_System",
+      "source_text": "Providers shall ensure that AI systems intended to directly interact with natural persons are designed and developed in such a way that the natural persons concerned are informed that they are interacting with an AI system, unless this is obvious from the points of view of a natural person who is reasonably well-informed, observant and circumspect.",
+      "cross_references": [
+        "NIST:MAP-1.2",
+        "GDPR:Article_13"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:TransparencyObligationShape",
+      "sha256_hash": "4554be7f9bf19e2ff3ef5d3ee6ca5f4fc7645319f91a8ebd564e3a19530f8856"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_029",
+      "article_number": 50,
+      "paragraph_number": "2",
+      "subject": "Provider",
+      "modality": "OBLIGATION",
+      "predicate": "shallMarkInMachineReadableFormat",
+      "object": "Synthetic_Audio_Image_Video_Or_Text",
+      "source_text": "Providers of AI systems, including general-purpose AI systems, generating synthetic audio, image, video or text content, shall ensure that the outputs of the AI system are marked in a machine-readable format and detectable as artificially generated or manipulated.",
+      "cross_references": [
+        "NIST:GOVERN-1.5",
+        "ISO:Control_A_6_1"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:TransparencyObligationShape",
+      "sha256_hash": "5585c03c0216e01441bd5a20e3caaeffca2a919755a4a55425d2f74737a604c6"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_030",
+      "article_number": 50,
+      "paragraph_number": "4",
+      "subject": "Deployer",
+      "modality": "OBLIGATION",
+      "predicate": "shallDiscloseArtificiallyGeneratedDeepfakeContentOf",
+      "object": "Image_Audio_Or_Video",
+      "source_text": "Deployers of an AI system that generates or manipulates image, audio or video content constituting a deep fake, shall disclose that the content has been artificially generated or manipulated.",
+      "cross_references": [
+        "NIST:MAP-1.2",
+        "GDPR:Article_13"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:TransparencyObligationShape",
+      "sha256_hash": "a15d222ef65c0da8f5dcb81f7d65c37e3ba48a6312bb3aca3650032a0d71f143"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_031",
+      "article_number": 51,
+      "paragraph_number": "1(a)",
+      "subject": "AI_Office_And_Commission",
+      "modality": "OBLIGATION",
+      "predicate": "shallClassifyAsSystemicRiskWhen",
+      "object": "Training_Compute_Exceeds_10_Pow_25_FLOPs",
+      "source_text": "A general-purpose AI model shall be classified as a general-purpose AI model with systemic risk if it has high capabilities evaluated on the basis of appropriate technical tools and methodologies, or when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.",
+      "cross_references": [
+        "NIST:MEASURE-1.1",
+        "ISO:Control_A_6_1"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:GPAIModelShape",
+      "sha256_hash": "81f5dca0c019752743fd99d204770a2a12d98519ac452e4d9ad34cce65682420"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_032",
+      "article_number": 53,
+      "paragraph_number": "1(a)",
+      "subject": "Provider_Of_GPAI_Model",
+      "modality": "OBLIGATION",
+      "predicate": "shallDrawUpAndKeepUpdated",
+      "object": "GPAI_Technical_Documentation_And_Architecture",
+      "source_text": "Providers of general-purpose AI models shall draw up and keep up-to-date the technical documentation of the model, including its training and testing process and the results of its evaluation, containing at least the information set out in Annex XI for the purpose of providing it, upon request, to the AI Office and national competent authorities.",
+      "cross_references": [
+        "NIST:GOVERN-1.4",
+        "ISO:Control_A_6_2"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:GPAIModelShape",
+      "sha256_hash": "2a2fc8b02f56aa7524c5c977f218c971382eefe5dbda748df191d00689870f8d"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_033",
+      "article_number": 55,
+      "paragraph_number": "1(a)",
+      "subject": "Provider_Of_GPAI_With_Systemic_Risk",
+      "modality": "OBLIGATION",
+      "predicate": "shallConductModelEvaluationAndAdversarialRedTeaming",
+      "object": "Systemic_Risk_Mitigation",
+      "source_text": "In addition to the obligations listed in Article 53, providers of general-purpose AI models with systemic risk shall perform model evaluation in accordance with standardised protocols and tools in the light of state of the art, including conducting and documenting adversarial testing of the model with a view to identifying and mitigating systemic risks.",
+      "cross_references": [
+        "NIST:MEASURE-2.8",
+        "ISO:Control_A_9_4"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:GPAIModelShape",
+      "sha256_hash": "5ea7706b852d0290eb350ae9d842a1bac653d0a6a597d5f5abd06d12eac44719"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_034",
+      "article_number": 99,
+      "paragraph_number": "3",
+      "subject": "National_Competent_Authority_Or_Court",
+      "modality": "OBLIGATION",
+      "predicate": "shallImposeAdministrativeFineUpTo",
+      "object": "35M_EUR_Or_7_Percent_Worldwide_Turnover",
+      "source_text": "Non-compliance with the prohibition of the AI practices referred to in Article 5 shall be subject to administrative fines of up to 35 000 000 EUR or, if the offender is an undertaking, up to 7 % of its total worldwide annual turnover for the preceding financial year, whichever is higher.",
+      "cross_references": [
+        "GDPR:Article_83_5"
+      ],
+      "enforcement_tier": "TIER_1_PROHIBITED_AI",
+      "shacl_shape_ref": "regu:PenaltyEnforcementShape",
+      "sha256_hash": "2b192a7f274c17cf41f3b1a14e91f134a834276dc2ac38655151ff730782dc84"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_035",
+      "article_number": 99,
+      "paragraph_number": "4",
+      "subject": "National_Competent_Authority_Or_Court",
+      "modality": "OBLIGATION",
+      "predicate": "shallImposeAdministrativeFineUpTo",
+      "object": "15M_EUR_Or_3_Percent_Worldwide_Turnover",
+      "source_text": "Non-compliance of the AI system with any of the requirements or obligations under this Regulation, other than those laid down in Articles 5, shall be subject to administrative fines of up to 15 000 000 EUR or, if the offender is an undertaking, up to 3 % of its total worldwide annual turnover for the preceding financial year, whichever is higher.",
+      "cross_references": [
+        "GDPR:Article_83_4"
+      ],
+      "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS",
+      "shacl_shape_ref": "regu:PenaltyEnforcementShape",
+      "sha256_hash": "c8273528ac13257a057e00cdcec5519f393c8364dfe25dd3866eb9a6d9b95ce2"
+    },
+    {
+      "id": "EU_AIA_TRIPLE_036",
+      "article_number": 99,
+      "paragraph_number": "5",
+      "subject": "National_Competent_Authority_Or_Court",
+      "modality": "OBLIGATION",
+      "predicate": "shallImposeAdministrativeFineUpTo",
+      "object": "7.5M_EUR_Or_1.5_Percent_Worldwide_Turnover",
+      "source_text": "The supply of incorrect, incomplete or misleading information to notified bodies or national competent authorities in reply to a request shall be subject to administrative fines of up to 7 500 000 EUR or, if the offender is an undertaking, up to 1.5 % of its total worldwide annual turnover for the preceding financial year, whichever is higher.",
+      "cross_references": [
+        "GDPR:Article_83_4"
+      ],
+      "enforcement_tier": "TIER_3_MISINFORMATION_NOTIFICATION",
+      "shacl_shape_ref": "regu:PenaltyEnforcementShape",
+      "sha256_hash": "268042e372b7021f5b05e282e26934e0381bf9c62272946c5f9311053c99240f"
+    }
+  ]
+}

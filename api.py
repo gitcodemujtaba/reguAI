@@ -114,6 +114,8 @@ def list_benchmark_samples():
         {"id": "compliant_clinical_samd", "title": "OncoScan AI Diagnostic Assistant (SaMD - Compliant)"},
         {"id": "non_compliant_hr_recruitment", "title": "TalentSift Automated Candidate Evaluator (HR - Violations)"},
         {"id": "borderline_credit_scoring", "title": "CrediScore Neural Underwriter (FinTech - Planned Roadmap)"},
+        {"id": "prohibited_emotion_recognition_workplace", "title": "MindGaze Emotion Tracker (EdTech/HR - Article 5 Prohibited)"},
+        {"id": "gpai_foundation_llm", "title": "Nexus-70B Frontier Foundation Model (GPAI - Systemic Risk)"},
     ]
 
 

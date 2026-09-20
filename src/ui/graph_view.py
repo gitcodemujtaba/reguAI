@@ -177,6 +177,22 @@ class RegulatoryGraphView:
                     display: flex;
                     gap: 12px;
                     z-index: 10;
+                    color: #1e293b;
+                }}
+                @media (prefers-color-scheme: dark) {
+                    body, html {{
+                        background: #0f172a;
+                        color: #f8fafc;
+                    }}
+                    #network {{
+                        background: #1e293b;
+                        border-color: #334155;
+                    }}
+                    .legend {{
+                        background: rgba(30, 41, 59, 0.95);
+                        border-color: #475569;
+                        color: #f1f5f9;
+                    }}
                 }}
                 .legend-item {{
                     display: flex;

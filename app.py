@@ -27,6 +27,8 @@ SAMPLE_PATHS = {
     "Healthcare / Medical AI (Compliant SaMD - Articles 9-15 Passed)": SYNTHETIC_DIR / "compliant_clinical_samd.json",
     "HR / Recruitment AI (High-Risk - Human Oversight & Bias Non-Conformities)": SYNTHETIC_DIR / "non_compliant_hr_recruitment.json",
     "FinTech / Credit Underwriting (Borderline - Planned Roadmap & Auditor Review)": SYNTHETIC_DIR / "borderline_credit_scoring.json",
+    "EdTech / Surveillance AI (Prohibited - Article 5(1)(f) Emotion Recognition)": SYNTHETIC_DIR / "prohibited_emotion_recognition_workplace.json",
+    "GPAI Foundation LLM (Systemic Risk - Articles 51-55 Compute > 10^25 FLOPs)": SYNTHETIC_DIR / "gpai_foundation_llm.json",
 }
 
 def load_sample_content(sample_name: str) -> str:
@@ -59,27 +61,27 @@ def run_assessment(doc_text: str, auditor_id: str):
     status_text = "CONFORMS (PASSED)" if report.overall_conforms else "NON-CONFORMANT (FAILED)"
     
     exec_html = f"""
-    <div style="border: 2px solid {status_color}; border-radius: 10px; padding: 18px; margin-bottom: 15px; background: rgba(16, 185, 129, 0.04);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-            <h2 style="margin: 0; color: #1e293b; font-size: 20px;">System: {report.system_metadata.name} (v{report.system_metadata.version})</h2>
-            <span style="background: {status_color}; color: white; padding: 6px 14px; border-radius: 9999px; font-weight: bold; font-size: 13px;">
+    <div class="summary-card" style="border-left: 6px solid {status_color};">
+        <div class="summary-header">
+            <h2 class="summary-title">System: {report.system_metadata.name} (v{report.system_metadata.version})</h2>
+            <span class="status-pill" style="background: {status_color};">
                 {status_text}
             </span>
         </div>
-        <p style="margin: 4px 0; color: #475569; font-size: 14px;"><strong>Domain:</strong> {report.system_metadata.domain} | <strong>Risk Class:</strong> {report.system_metadata.eu_risk_classification}</p>
-        <p style="margin: 8px 0; color: #334155; font-size: 14px; line-height: 1.5;">{report.executive_summary}</p>
-        <div style="display: flex; gap: 20px; margin-top: 14px;">
-            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 16px; flex: 1;">
-                <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 600;">Conformity Index</div>
-                <div style="font-size: 22px; font-weight: 700; color: {status_color};">{report.conformity_score:.1f}%</div>
+        <p class="summary-meta"><strong>Domain:</strong> {report.system_metadata.domain} &nbsp;|&nbsp; <strong>Risk Class:</strong> {report.system_metadata.eu_risk_classification}</p>
+        <p class="summary-desc">{report.executive_summary}</p>
+        <div class="metrics-grid">
+            <div class="metric-box">
+                <div class="metric-label">Conformity Index</div>
+                <div class="metric-val" style="color: {status_color};">{report.conformity_score:.1f}%</div>
             </div>
-            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 16px; flex: 1;">
-                <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 600;">Requirements Evaluated</div>
-                <div style="font-size: 22px; font-weight: 700; color: #0f172a;">{report.passed_requirements_count} / {report.total_requirements_evaluated} Passed</div>
+            <div class="metric-box">
+                <div class="metric-label">Requirements Evaluated</div>
+                <div class="metric-val metric-val-main">{report.passed_requirements_count} / {report.total_requirements_evaluated} Passed</div>
             </div>
-            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 16px; flex: 1;">
-                <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 600;">Deterministic Violations</div>
-                <div style="font-size: 22px; font-weight: 700; color: {'#ef4444' if report.violations else '#10b981'};">{len(report.violations)}</div>
+            <div class="metric-box">
+                <div class="metric-label">Deterministic Violations</div>
+                <div class="metric-val" style="color: {'#ef4444' if report.violations else '#10b981'};">{len(report.violations)}</div>
             </div>
         </div>
     </div>
@@ -191,20 +193,245 @@ def record_triage(claim_id: str, new_status: str, new_category: str, notes: str,
     return f"✅ Triplet sample created and recorded into active learning repository! Anchor: '{record['anchor_text'][:50]}...' -> Label: {record['positive_label']}"
 
 
-# Custom Theme and CSS
+# Custom Theme and CSS for Dark & Light Mode Contrast
 CUSTOM_CSS = """
+/* Container */
 .gradio-container {
     max-width: 1380px !important;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
+
+/* -------------------------------------------------------------
+   TABS STYLING (Dark & Light Mode High-Contrast)
+------------------------------------------------------------- */
+.tabs > .tab-nav button,
+div[role="tablist"] button,
+button[role="tab"],
+.tab-nav button {
+    color: #334155 !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 10px 16px !important;
+    border-radius: 6px 6px 0 0 !important;
+    transition: all 0.15s ease-in-out !important;
+}
+
+.dark .tabs > .tab-nav button,
+.dark div[role="tablist"] button,
+.dark button[role="tab"],
+.dark .tab-nav button {
+    color: #cbd5e1 !important;
+    background: transparent !important;
+}
+
+.tabs > .tab-nav button:hover,
+div[role="tablist"] button:hover,
+button[role="tab"]:hover {
+    color: #0f172a !important;
+    background: rgba(0, 0, 0, 0.04) !important;
+}
+
+.dark .tabs > .tab-nav button:hover,
+.dark div[role="tablist"] button:hover,
+.dark button[role="tab"]:hover {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.tabs > .tab-nav button.selected,
+div[role="tablist"] button.selected,
+button[role="tab"][aria-selected="true"],
+button[role="tab"].selected {
+    color: #2563eb !important;
+    border-bottom: 3px solid #2563eb !important;
+    font-weight: 700 !important;
+}
+
+.dark .tabs > .tab-nav button.selected,
+.dark div[role="tablist"] button.selected,
+.dark button[role="tab"][aria-selected="true"],
+.dark button[role="tab"].selected {
+    color: #60a5fa !important;
+    border-bottom: 3px solid #60a5fa !important;
+    background: rgba(96, 165, 250, 0.1) !important;
+}
+
+/* -------------------------------------------------------------
+   BUTTONS STYLING (Dark & Light Mode High-Contrast)
+------------------------------------------------------------- */
+button.primary,
+button[variant="primary"],
+.gr-button-primary,
+button.lg {
+    background: #2563eb !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    border: none !important;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3) !important;
+}
+
+button.primary:hover,
+button[variant="primary"]:hover,
+button.lg:hover {
+    background: #1d4ed8 !important;
+    color: #ffffff !important;
+}
+
+.dark button.primary,
+.dark button[variant="primary"],
+.dark .gr-button-primary {
+    background: #2563eb !important;
+    color: #ffffff !important;
+}
+
+button:not(.primary):not([variant="primary"]) {
+    color: #1e293b !important;
+}
+
+.dark button:not(.primary):not([variant="primary"]) {
+    color: #f8fafc !important;
+    background: #334155 !important;
+    border-color: #475569 !important;
+}
+
+.dark button:not(.primary):not([variant="primary"]):hover {
+    background: #475569 !important;
+    color: #ffffff !important;
+}
+
+/* -------------------------------------------------------------
+   SUMMARY CARD (Dark & Light Mode Dynamic Classes)
+------------------------------------------------------------- */
+.summary-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.dark .summary-card {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.summary-title {
+    margin: 0;
+    color: #0f172a;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.dark .summary-title {
+    color: #f8fafc !important;
+}
+
+.status-pill {
+    color: #ffffff !important;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
+.summary-meta {
+    margin: 4px 0;
+    color: #475569;
+    font-size: 14px;
+}
+
+.dark .summary-meta {
+    color: #94a3b8 !important;
+}
+
+.dark .summary-meta strong {
+    color: #e2e8f0 !important;
+}
+
+.summary-desc {
+    margin: 10px 0;
+    color: #334155;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.dark .summary-desc {
+    color: #cbd5e1 !important;
+}
+
+.metrics-grid {
+    display: flex;
+    gap: 16px;
+    margin-top: 14px;
+}
+
+.metric-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    flex: 1;
+}
+
+.dark .metric-box {
+    background: #0f172a !important;
+    border-color: #334155 !important;
+}
+
+.metric-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.dark .metric-label {
+    color: #94a3b8 !important;
+}
+
+.metric-val {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+.metric-val-main {
+    color: #0f172a;
+}
+
+.dark .metric-val-main {
+    color: #f8fafc !important;
+}
+
+/* -------------------------------------------------------------
+   HEADER BADGES
+------------------------------------------------------------- */
 .header-badge {
     background: #f1f5f9;
     border: 1px solid #cbd5e1;
     color: #334155;
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 6px;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
+}
+
+.dark .header-badge {
+    background: #1e293b !important;
+    border-color: #475569 !important;
+    color: #e2e8f0 !important;
 }
 """
 

@@ -80,7 +80,7 @@ def run_benchmark():
     print(f"{'Sample ID':<12} | {'Gold Category':<22} | {'Pred Category':<22} | {'Status Match':<12}")
     print("--------------------------------------------------------------------------------")
     for r in results_table[:10]:
-        sm_badge = "✓ MATCH" if r["status_match"] and r["cat_match"] else "✗ MISMATCH"
+        sm_badge = "[MATCH]" if r["status_match"] and r["cat_match"] else "[MISMATCH]"
         print(f"{r['id']:<12} | {r['gold_cat']:<22} | {r['pred_cat']:<22} | {sm_badge:<12}")
     if len(results_table) > 10:
         print(f"... and {len(results_table) - 10} more benchmark cases.")

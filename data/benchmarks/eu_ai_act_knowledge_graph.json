@@ -1,0 +1,3381 @@
+{
+  "format_version": "1.0.0",
+  "dataset_name": "EU AI Act Knowledge Graph (Regulation EU 2024/1689)",
+  "graph_engine": "Cytoscape / NetworkX / Neo4j Compatible",
+  "generated_at": "2026-09-20T19:25:02.314727+00:00",
+  "metrics": {
+    "node_count": 105,
+    "edge_count": 222
+  },
+  "elements": {
+    "nodes": [
+      {
+        "data": {
+          "id": "EU_AI_ACT",
+          "label": "Regulation (EU) 2024/1689",
+          "category": "statute",
+          "type": "Regulation",
+          "properties": {
+            "celex": "32024R1689",
+            "effective_date": "2024-08-01",
+            "full_enforcement": "2026-08-02"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "ROLE_Provider",
+          "label": "Provider",
+          "category": "actor",
+          "type": "StatutoryRole",
+          "properties": {
+            "article": "Article 3(3)"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "ROLE_Deployer",
+          "label": "Deployer",
+          "category": "actor",
+          "type": "StatutoryRole",
+          "properties": {
+            "article": "Article 3(4)"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "ROLE_NotifiedBody",
+          "label": "Notified Body",
+          "category": "actor",
+          "type": "ConformityBody",
+          "properties": {
+            "article": "Article 3(22)"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "ROLE_AIOffice",
+          "label": "EU AI Office",
+          "category": "actor",
+          "type": "SupervisoryAuthority",
+          "properties": {
+            "article": "Article 3(47)"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "ROLE_CompetentAuthority",
+          "label": "National Competent Authority",
+          "category": "actor",
+          "type": "SupervisoryAuthority",
+          "properties": {
+            "article": "Article 3(26)"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "TIER_1_FINE",
+          "label": "Tier 1 Fine (35M€ / 7%)",
+          "category": "penalty",
+          "type": "FineTier",
+          "properties": {
+            "article": "Article 99(3)",
+            "max_eur": 35000000,
+            "turnover_pct": 7.0
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "TIER_2_FINE",
+          "label": "Tier 2 Fine (15M€ / 3%)",
+          "category": "penalty",
+          "type": "FineTier",
+          "properties": {
+            "article": "Article 99(4)",
+            "max_eur": 15000000,
+            "turnover_pct": 3.0
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "TIER_3_FINE",
+          "label": "Tier 3 Fine (7.5M€ / 1.5%)",
+          "category": "penalty",
+          "type": "FineTier",
+          "properties": {
+            "article": "Article 99(5)",
+            "max_eur": 7500000,
+            "turnover_pct": 1.5
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "ART_5",
+          "label": "Article 5",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 5
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "SUBJ_Provider_or_Deployer",
+          "label": "Provider or Deployer",
+          "category": "actor_subject",
+          "type": "SubjectEntity",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Subliminal_Manipulative_AI_System",
+          "label": "Subliminal Manipulative AI System",
+          "category": "prohibited_practice",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_GOVERN_1_1",
+          "label": "NIST:GOVERN-1.1",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_ISO_A_6_1",
+          "label": "ISO:A.6.1",
+          "category": "external_framework",
+          "type": "ISO",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Vulnerability_Exploiting_AI_System",
+          "label": "Vulnerability Exploiting AI System",
+          "category": "prohibited_practice",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Social_Scoring_AI_System",
+          "label": "Social Scoring AI System",
+          "category": "prohibited_practice",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_GDPR_Article_22",
+          "label": "GDPR:Article_22",
+          "category": "external_framework",
+          "type": "GDPR",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Individual_Predictive_Policing_System",
+          "label": "Individual Predictive Policing System",
+          "category": "prohibited_practice",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Facial_Recognition_Scraping_Database",
+          "label": "Facial Recognition Scraping Database",
+          "category": "prohibited_practice",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_MAP_1_5",
+          "label": "NIST:MAP-1.5",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_GDPR_Article_9",
+          "label": "GDPR:Article_9",
+          "category": "external_framework",
+          "type": "GDPR",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Workplace_Education_Emotion_Recognition_System",
+          "label": "Workplace Education Emotion Recognition System",
+          "category": "prohibited_practice",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_MAP_1_1",
+          "label": "NIST:MAP-1.1",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Sensitive_Biometric_Categorization_System",
+          "label": "Sensitive Biometric Categorization System",
+          "category": "prohibited_practice",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "SUBJ_Law_Enforcement_Authority",
+          "label": "Law Enforcement Authority",
+          "category": "actor_subject",
+          "type": "SubjectEntity",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Real_Time_Remote_Biometric_Identification",
+          "label": "Real Time Remote Biometric Identification",
+          "category": "prohibited_practice",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "ART_9",
+          "label": "Article 9",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 9
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "SUBJ_Provider",
+          "label": "Provider",
+          "category": "actor_subject",
+          "type": "SubjectEntity",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Continuous_Risk_Management_System",
+          "label": "Continuous Risk Management System",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_ISO_Clause_6_1_2",
+          "label": "ISO:Clause_6_1_2",
+          "category": "external_framework",
+          "type": "ISO",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Residual_Risks",
+          "label": "Residual Risks",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_MANAGE_1_3",
+          "label": "NIST:MANAGE-1.3",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_High_Risk_AI_System",
+          "label": "High Risk AI System",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_MEASURE_2_6",
+          "label": "NIST:MEASURE-2.6",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "ART_10",
+          "label": "Article 10",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 10
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Training_Validation_Test_Datasets",
+          "label": "Training Validation Test Datasets",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_ISO_Control_A_8_2",
+          "label": "ISO:Control_A_8_2",
+          "category": "external_framework",
+          "type": "ISO",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_GDPR_Article_25",
+          "label": "GDPR:Article_25",
+          "category": "external_framework",
+          "type": "GDPR",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Dataset_Biases",
+          "label": "Dataset Biases",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_MEASURE_2_11",
+          "label": "NIST:MEASURE-2.11",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_ISO_Control_A_8_4",
+          "label": "ISO:Control_A_8_4",
+          "category": "external_framework",
+          "type": "ISO",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_MEASURE_1_2",
+          "label": "NIST:MEASURE-1.2",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_ISO_Control_A_8_3",
+          "label": "ISO:Control_A_8_3",
+          "category": "external_framework",
+          "type": "ISO",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Bias_Detection_And_Correction",
+          "label": "Bias Detection And Correction",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_GDPR_Article_9_2_g",
+          "label": "GDPR:Article_9_2_g",
+          "category": "external_framework",
+          "type": "GDPR",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "ART_11",
+          "label": "Article 11",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 11
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Annex_IV_Technical_Documentation",
+          "label": "Annex IV Technical Documentation",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_GOVERN_1_4",
+          "label": "NIST:GOVERN-1.4",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_ISO_Control_A_6_2",
+          "label": "ISO:Control_A_6_2",
+          "category": "external_framework",
+          "type": "ISO",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "ART_12",
+          "label": "Article 12",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 12
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Lifecycle_Events_And_Traceability",
+          "label": "Lifecycle Events And Traceability",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_GOVERN_1_5",
+          "label": "NIST:GOVERN-1.5",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_ISO_Control_A_9_3",
+          "label": "ISO:Control_A_9_3",
+          "category": "external_framework",
+          "type": "ISO",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Operator_Input_And_Post_Market_Monitoring",
+          "label": "Operator Input And Post Market Monitoring",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "ART_13",
+          "label": "Article 13",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 13
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_MAP_1_2",
+          "label": "NIST:MAP-1.2",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_ISO_Control_A_7_2",
+          "label": "ISO:Control_A_7_2",
+          "category": "external_framework",
+          "type": "ISO",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_GDPR_Article_13",
+          "label": "GDPR:Article_13",
+          "category": "external_framework",
+          "type": "GDPR",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Instructions_For_Use",
+          "label": "Instructions For Use",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "ART_14",
+          "label": "Article 14",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 14
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Natural_Persons",
+          "label": "Natural Persons",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_MANAGE_2_2",
+          "label": "NIST:MANAGE-2.2",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_ISO_Control_A_8_5",
+          "label": "ISO:Control_A_8_5",
+          "category": "external_framework",
+          "type": "ISO",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_GDPR_Article_22_3",
+          "label": "GDPR:Article_22_3",
+          "category": "external_framework",
+          "type": "GDPR",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Emergency_Stop_Kill_Switch",
+          "label": "Emergency Stop Kill Switch",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_MANAGE_2_4",
+          "label": "NIST:MANAGE-2.4",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "ART_15",
+          "label": "Article 15",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 15
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Accuracy_Robustness_And_Cybersecurity",
+          "label": "Accuracy Robustness And Cybersecurity",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_ISO_Control_A_9_2",
+          "label": "ISO:Control_A_9_2",
+          "category": "external_framework",
+          "type": "ISO",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Adversarial_Attacks_And_Data_Poisoning",
+          "label": "Adversarial Attacks And Data Poisoning",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_GOVERN_1_6",
+          "label": "NIST:GOVERN-1.6",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_GDPR_Article_32",
+          "label": "GDPR:Article_32",
+          "category": "external_framework",
+          "type": "GDPR",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "ART_26",
+          "label": "Article 26",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 26
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "SUBJ_Deployer",
+          "label": "Deployer",
+          "category": "actor_subject",
+          "type": "SubjectEntity",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Provider_Instructions_For_Use",
+          "label": "Provider Instructions For Use",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Serious_Incidents_Or_Malfunctioning",
+          "label": "Serious Incidents Or Malfunctioning",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_MANAGE_4_1",
+          "label": "NIST:MANAGE-4.1",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "ART_27",
+          "label": "Article 27",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 27
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "SUBJ_Deployer_Governed_By_Public_Law_Or_Essential_Service",
+          "label": "Deployer Governed By Public Law Or Essential Service",
+          "category": "actor_subject",
+          "type": "SubjectEntity",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Fundamental_Rights_Impact_Assessment",
+          "label": "Fundamental Rights Impact Assessment",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_GDPR_Article_35",
+          "label": "GDPR:Article_35",
+          "category": "external_framework",
+          "type": "GDPR",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "ART_50",
+          "label": "Article 50",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 50
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_AI_System",
+          "label": "AI System",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Synthetic_Audio_Image_Video_Or_Text",
+          "label": "Synthetic Audio Image Video Or Text",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_ISO_Control_A_6_1",
+          "label": "ISO:Control_A_6_1",
+          "category": "external_framework",
+          "type": "ISO",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Image_Audio_Or_Video",
+          "label": "Image Audio Or Video",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "ART_51",
+          "label": "Article 51",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 51
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "SUBJ_AI_Office_And_Commission",
+          "label": "AI Office And Commission",
+          "category": "actor_subject",
+          "type": "SubjectEntity",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Training_Compute_Exceeds_10_Pow_25_FLOPs",
+          "label": "Training Compute Exceeds 10 Pow 25 FLOPs",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_MEASURE_1_1",
+          "label": "NIST:MEASURE-1.1",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "ART_53",
+          "label": "Article 53",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 53
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "SUBJ_Provider_Of_GPAI_Model",
+          "label": "Provider Of GPAI Model",
+          "category": "actor_subject",
+          "type": "SubjectEntity",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_GPAI_Technical_Documentation_And_Architecture",
+          "label": "GPAI Technical Documentation And Architecture",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "ART_55",
+          "label": "Article 55",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 55
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "SUBJ_Provider_Of_GPAI_With_Systemic_Risk",
+          "label": "Provider Of GPAI With Systemic Risk",
+          "category": "actor_subject",
+          "type": "SubjectEntity",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_Systemic_Risk_Mitigation",
+          "label": "Systemic Risk Mitigation",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_NIST_MEASURE_2_8",
+          "label": "NIST:MEASURE-2.8",
+          "category": "external_framework",
+          "type": "NIST",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_ISO_Control_A_9_4",
+          "label": "ISO:Control_A_9_4",
+          "category": "external_framework",
+          "type": "ISO",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "ART_99",
+          "label": "Article 99",
+          "category": "article",
+          "type": "StatutoryArticle",
+          "properties": {
+            "article_number": 99
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "SUBJ_National_Competent_Authority_Or_Court",
+          "label": "National Competent Authority Or Court",
+          "category": "actor_subject",
+          "type": "SubjectEntity",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_35M_EUR_Or_7_Percent_Worldwide_Turnover",
+          "label": "35M EUR Or 7 Percent Worldwide Turnover",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_GDPR_Article_83_5",
+          "label": "GDPR:Article_83_5",
+          "category": "external_framework",
+          "type": "GDPR",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_15M_EUR_Or_3_Percent_Worldwide_Turnover",
+          "label": "15M EUR Or 3 Percent Worldwide Turnover",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "XREF_GDPR_Article_83_4",
+          "label": "GDPR:Article_83_4",
+          "category": "external_framework",
+          "type": "GDPR",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "OBJ_7.5M_EUR_Or_1.5_Percent_Worldwide_Turnover",
+          "label": "7.5M EUR Or 1.5 Percent Worldwide Turnover",
+          "category": "regulatory_requirement",
+          "type": "TargetConcept",
+          "properties": {}
+        }
+      }
+    ],
+    "edges": [
+      {
+        "data": {
+          "id": "edge_statute_provider",
+          "source": "EU_AI_ACT",
+          "target": "ROLE_Provider",
+          "label": "definesRole",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_deployer",
+          "source": "EU_AI_ACT",
+          "target": "ROLE_Deployer",
+          "label": "definesRole",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_tier1",
+          "source": "EU_AI_ACT",
+          "target": "TIER_1_FINE",
+          "label": "establishesPenalty",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_tier2",
+          "source": "EU_AI_ACT",
+          "target": "TIER_2_FINE",
+          "label": "establishesPenalty",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_tier3",
+          "source": "EU_AI_ACT",
+          "target": "TIER_3_FINE",
+          "label": "establishesPenalty",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_5",
+          "source": "EU_AI_ACT",
+          "target": "ART_5",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_001",
+          "source": "ART_5",
+          "target": "OBJ_Subliminal_Manipulative_AI_System",
+          "label": "shallNotPlaceOnMarketOrPutIntoService",
+          "modality": "PROHIBITION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_001",
+            "source_text_hash": "fee25236f365bc8d92179bd037d47fcad5aa15b0ec892804b5cd640839e9fa0b",
+            "enforcement_tier": "TIER_1_PROHIBITED_AI"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_001",
+          "source": "SUBJ_Provider_or_Deployer",
+          "target": "OBJ_Subliminal_Manipulative_AI_System",
+          "label": "shallNotPlaceOnMarketOrPutIntoService",
+          "modality": "PROHIBITION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_001",
+          "source": "OBJ_Subliminal_Manipulative_AI_System",
+          "target": "TIER_1_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_001_XREF_NIST_GOVERN_1_1",
+          "source": "OBJ_Subliminal_Manipulative_AI_System",
+          "target": "XREF_NIST_GOVERN_1_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_001_XREF_ISO_A_6_1",
+          "source": "OBJ_Subliminal_Manipulative_AI_System",
+          "target": "XREF_ISO_A_6_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_5",
+          "source": "EU_AI_ACT",
+          "target": "ART_5",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_002",
+          "source": "ART_5",
+          "target": "OBJ_Vulnerability_Exploiting_AI_System",
+          "label": "shallNotPlaceOnMarketOrPutIntoService",
+          "modality": "PROHIBITION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_002",
+            "source_text_hash": "fcb53e7823c7bcb13a72bafad943aefd20b3820231e4e3733b3565089f6fcfe1",
+            "enforcement_tier": "TIER_1_PROHIBITED_AI"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_002",
+          "source": "SUBJ_Provider_or_Deployer",
+          "target": "OBJ_Vulnerability_Exploiting_AI_System",
+          "label": "shallNotPlaceOnMarketOrPutIntoService",
+          "modality": "PROHIBITION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_002",
+          "source": "OBJ_Vulnerability_Exploiting_AI_System",
+          "target": "TIER_1_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_002_XREF_NIST_GOVERN_1_1",
+          "source": "OBJ_Vulnerability_Exploiting_AI_System",
+          "target": "XREF_NIST_GOVERN_1_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_002_XREF_ISO_A_6_1",
+          "source": "OBJ_Vulnerability_Exploiting_AI_System",
+          "target": "XREF_ISO_A_6_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_5",
+          "source": "EU_AI_ACT",
+          "target": "ART_5",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_003",
+          "source": "ART_5",
+          "target": "OBJ_Social_Scoring_AI_System",
+          "label": "shallNotPlaceOnMarketOrPutIntoService",
+          "modality": "PROHIBITION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_003",
+            "source_text_hash": "464f90e01c4f82ce05602597795bb5125de1c285c997785d8db4ec1a14845790",
+            "enforcement_tier": "TIER_1_PROHIBITED_AI"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_003",
+          "source": "SUBJ_Provider_or_Deployer",
+          "target": "OBJ_Social_Scoring_AI_System",
+          "label": "shallNotPlaceOnMarketOrPutIntoService",
+          "modality": "PROHIBITION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_003",
+          "source": "OBJ_Social_Scoring_AI_System",
+          "target": "TIER_1_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_003_XREF_NIST_GOVERN_1_1",
+          "source": "OBJ_Social_Scoring_AI_System",
+          "target": "XREF_NIST_GOVERN_1_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_003_XREF_GDPR_Article_22",
+          "source": "OBJ_Social_Scoring_AI_System",
+          "target": "XREF_GDPR_Article_22",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_5",
+          "source": "EU_AI_ACT",
+          "target": "ART_5",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_004",
+          "source": "ART_5",
+          "target": "OBJ_Individual_Predictive_Policing_System",
+          "label": "shallNotPlaceOnMarketOrPutIntoService",
+          "modality": "PROHIBITION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_004",
+            "source_text_hash": "cd3f922705dc54bbbc8047b5b4d528914dea068eba4a86d6d4c603536799c46d",
+            "enforcement_tier": "TIER_1_PROHIBITED_AI"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_004",
+          "source": "SUBJ_Provider_or_Deployer",
+          "target": "OBJ_Individual_Predictive_Policing_System",
+          "label": "shallNotPlaceOnMarketOrPutIntoService",
+          "modality": "PROHIBITION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_004",
+          "source": "OBJ_Individual_Predictive_Policing_System",
+          "target": "TIER_1_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_004_XREF_NIST_GOVERN_1_1",
+          "source": "OBJ_Individual_Predictive_Policing_System",
+          "target": "XREF_NIST_GOVERN_1_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_004_XREF_GDPR_Article_22",
+          "source": "OBJ_Individual_Predictive_Policing_System",
+          "target": "XREF_GDPR_Article_22",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_5",
+          "source": "EU_AI_ACT",
+          "target": "ART_5",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_005",
+          "source": "ART_5",
+          "target": "OBJ_Facial_Recognition_Scraping_Database",
+          "label": "shallNotPlaceOnMarketOrPutIntoService",
+          "modality": "PROHIBITION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_005",
+            "source_text_hash": "51ed69815cdedb7ba7b60eeb7eeadbace6e18bb9fe5efbbd354db8ac8adbaac8",
+            "enforcement_tier": "TIER_1_PROHIBITED_AI"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_005",
+          "source": "SUBJ_Provider_or_Deployer",
+          "target": "OBJ_Facial_Recognition_Scraping_Database",
+          "label": "shallNotPlaceOnMarketOrPutIntoService",
+          "modality": "PROHIBITION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_005",
+          "source": "OBJ_Facial_Recognition_Scraping_Database",
+          "target": "TIER_1_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_005_XREF_NIST_MAP_1_5",
+          "source": "OBJ_Facial_Recognition_Scraping_Database",
+          "target": "XREF_NIST_MAP_1_5",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_005_XREF_GDPR_Article_9",
+          "source": "OBJ_Facial_Recognition_Scraping_Database",
+          "target": "XREF_GDPR_Article_9",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_5",
+          "source": "EU_AI_ACT",
+          "target": "ART_5",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_006",
+          "source": "ART_5",
+          "target": "OBJ_Workplace_Education_Emotion_Recognition_System",
+          "label": "shallNotPlaceOnMarketOrPutIntoService",
+          "modality": "PROHIBITION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_006",
+            "source_text_hash": "8f6300ce2411386a6f3d2b4fd2256c517c3c4ab8e6f8587edbd6967d9883e058",
+            "enforcement_tier": "TIER_1_PROHIBITED_AI"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_006",
+          "source": "SUBJ_Provider_or_Deployer",
+          "target": "OBJ_Workplace_Education_Emotion_Recognition_System",
+          "label": "shallNotPlaceOnMarketOrPutIntoService",
+          "modality": "PROHIBITION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_006",
+          "source": "OBJ_Workplace_Education_Emotion_Recognition_System",
+          "target": "TIER_1_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_006_XREF_NIST_MAP_1_1",
+          "source": "OBJ_Workplace_Education_Emotion_Recognition_System",
+          "target": "XREF_NIST_MAP_1_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_006_XREF_ISO_A_6_1",
+          "source": "OBJ_Workplace_Education_Emotion_Recognition_System",
+          "target": "XREF_ISO_A_6_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_5",
+          "source": "EU_AI_ACT",
+          "target": "ART_5",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_007",
+          "source": "ART_5",
+          "target": "OBJ_Sensitive_Biometric_Categorization_System",
+          "label": "shallNotPlaceOnMarketOrPutIntoService",
+          "modality": "PROHIBITION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_007",
+            "source_text_hash": "5d1755bd5ac353cd78bb180afae8d189c960cd9d0dfb576f7afce03f53c1b6eb",
+            "enforcement_tier": "TIER_1_PROHIBITED_AI"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_007",
+          "source": "SUBJ_Provider_or_Deployer",
+          "target": "OBJ_Sensitive_Biometric_Categorization_System",
+          "label": "shallNotPlaceOnMarketOrPutIntoService",
+          "modality": "PROHIBITION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_007",
+          "source": "OBJ_Sensitive_Biometric_Categorization_System",
+          "target": "TIER_1_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_007_XREF_GDPR_Article_9",
+          "source": "OBJ_Sensitive_Biometric_Categorization_System",
+          "target": "XREF_GDPR_Article_9",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_007_XREF_NIST_GOVERN_1_1",
+          "source": "OBJ_Sensitive_Biometric_Categorization_System",
+          "target": "XREF_NIST_GOVERN_1_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_5",
+          "source": "EU_AI_ACT",
+          "target": "ART_5",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_008",
+          "source": "ART_5",
+          "target": "OBJ_Real_Time_Remote_Biometric_Identification",
+          "label": "shallNotUseInPublicSpaces",
+          "modality": "PROHIBITION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_008",
+            "source_text_hash": "f0b006b3119b4dcc9f98b1507ec6a3c6f29f735df9f64230d49630869d3dae07",
+            "enforcement_tier": "TIER_1_PROHIBITED_AI"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_008",
+          "source": "SUBJ_Law_Enforcement_Authority",
+          "target": "OBJ_Real_Time_Remote_Biometric_Identification",
+          "label": "shallNotUseInPublicSpaces",
+          "modality": "PROHIBITION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_008",
+          "source": "OBJ_Real_Time_Remote_Biometric_Identification",
+          "target": "TIER_1_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_008_XREF_GDPR_Article_9",
+          "source": "OBJ_Real_Time_Remote_Biometric_Identification",
+          "target": "XREF_GDPR_Article_9",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_008_XREF_NIST_GOVERN_1_1",
+          "source": "OBJ_Real_Time_Remote_Biometric_Identification",
+          "target": "XREF_NIST_GOVERN_1_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_9",
+          "source": "EU_AI_ACT",
+          "target": "ART_9",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_009",
+          "source": "ART_9",
+          "target": "OBJ_Continuous_Risk_Management_System",
+          "label": "shallEstablishAndMaintain",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_009",
+            "source_text_hash": "6030a2a0f8ae41995d6afc4efb4a9d99a3c84ad84131e6e4d43e7b2a04f1b6b6",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_009",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Continuous_Risk_Management_System",
+          "label": "shallEstablishAndMaintain",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_009",
+          "source": "OBJ_Continuous_Risk_Management_System",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_009_XREF_NIST_GOVERN_1_1",
+          "source": "OBJ_Continuous_Risk_Management_System",
+          "target": "XREF_NIST_GOVERN_1_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_009_XREF_ISO_Clause_6_1_2",
+          "source": "OBJ_Continuous_Risk_Management_System",
+          "target": "XREF_ISO_Clause_6_1_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_9",
+          "source": "EU_AI_ACT",
+          "target": "ART_9",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_010",
+          "source": "ART_9",
+          "target": "OBJ_Residual_Risks",
+          "label": "shallMitigateAndJudgeAcceptable",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_010",
+            "source_text_hash": "48d18b62d422cf073dd6adb210b30b96fe77fb983418a59b5771d23bc3d4926d",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_010",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Residual_Risks",
+          "label": "shallMitigateAndJudgeAcceptable",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_010",
+          "source": "OBJ_Residual_Risks",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_010_XREF_NIST_MANAGE_1_3",
+          "source": "OBJ_Residual_Risks",
+          "target": "XREF_NIST_MANAGE_1_3",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_010_XREF_ISO_Clause_6_1_2",
+          "source": "OBJ_Residual_Risks",
+          "target": "XREF_ISO_Clause_6_1_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_9",
+          "source": "EU_AI_ACT",
+          "target": "ART_9",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_011",
+          "source": "ART_9",
+          "target": "OBJ_High_Risk_AI_System",
+          "label": "shallTestAndValidateAgainstRisks",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_011",
+            "source_text_hash": "a7b4273782cdd2aa130b47f7bdc76df6d53745464fdbb791fd4dbf334cd565e3",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_011",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_High_Risk_AI_System",
+          "label": "shallTestAndValidateAgainstRisks",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_011",
+          "source": "OBJ_High_Risk_AI_System",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_011_XREF_NIST_MEASURE_2_6",
+          "source": "OBJ_High_Risk_AI_System",
+          "target": "XREF_NIST_MEASURE_2_6",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_011_XREF_ISO_Clause_6_1_2",
+          "source": "OBJ_High_Risk_AI_System",
+          "target": "XREF_ISO_Clause_6_1_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_10",
+          "source": "EU_AI_ACT",
+          "target": "ART_10",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_012",
+          "source": "ART_10",
+          "target": "OBJ_Training_Validation_Test_Datasets",
+          "label": "shallSubjectToAppropriateGovernance",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_012",
+            "source_text_hash": "32e00984e70971d4c997a1b72edeb2d781ffb1706b13560f3b2497d96135a2fe",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_012",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Training_Validation_Test_Datasets",
+          "label": "shallSubjectToAppropriateGovernance",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_012",
+          "source": "OBJ_Training_Validation_Test_Datasets",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_012_XREF_NIST_MAP_1_5",
+          "source": "OBJ_Training_Validation_Test_Datasets",
+          "target": "XREF_NIST_MAP_1_5",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_012_XREF_ISO_Control_A_8_2",
+          "source": "OBJ_Training_Validation_Test_Datasets",
+          "target": "XREF_ISO_Control_A_8_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_012_XREF_GDPR_Article_25",
+          "source": "OBJ_Training_Validation_Test_Datasets",
+          "target": "XREF_GDPR_Article_25",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_10",
+          "source": "EU_AI_ACT",
+          "target": "ART_10",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_013",
+          "source": "ART_10",
+          "target": "OBJ_Dataset_Biases",
+          "label": "shallExamineAndMitigate",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_013",
+            "source_text_hash": "dacbd17a6a0845abb511e4fe0547592c8f6a299d7d46a0886d7ab6f6a876b4eb",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_013",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Dataset_Biases",
+          "label": "shallExamineAndMitigate",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_013",
+          "source": "OBJ_Dataset_Biases",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_013_XREF_NIST_MEASURE_2_11",
+          "source": "OBJ_Dataset_Biases",
+          "target": "XREF_NIST_MEASURE_2_11",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_013_XREF_ISO_Control_A_8_4",
+          "source": "OBJ_Dataset_Biases",
+          "target": "XREF_ISO_Control_A_8_4",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_10",
+          "source": "EU_AI_ACT",
+          "target": "ART_10",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_014",
+          "source": "ART_10",
+          "target": "OBJ_Training_Validation_Test_Datasets",
+          "label": "shallEnsureRepresentativeAndComplete",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_014",
+            "source_text_hash": "ed8458007908d2762d05f342f7b9adaf3b24dad1ed7fdeb6daa2772b2d6fd7c8",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_014",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Training_Validation_Test_Datasets",
+          "label": "shallEnsureRepresentativeAndComplete",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_014",
+          "source": "OBJ_Training_Validation_Test_Datasets",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_014_XREF_NIST_MEASURE_1_2",
+          "source": "OBJ_Training_Validation_Test_Datasets",
+          "target": "XREF_NIST_MEASURE_1_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_014_XREF_ISO_Control_A_8_3",
+          "source": "OBJ_Training_Validation_Test_Datasets",
+          "target": "XREF_ISO_Control_A_8_3",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_10",
+          "source": "EU_AI_ACT",
+          "target": "ART_10",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_015",
+          "source": "ART_10",
+          "target": "OBJ_Bias_Detection_And_Correction",
+          "label": "mayProcessSpecialCategoriesOfPersonalData",
+          "modality": "PERMISSION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_015",
+            "source_text_hash": "16d0445d30838af3036a77f1e964cc56d79ed3a5b5c71a50287e9f85bcf0dbca",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_015",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Bias_Detection_And_Correction",
+          "label": "mayProcessSpecialCategoriesOfPersonalData",
+          "modality": "PERMISSION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_015",
+          "source": "OBJ_Bias_Detection_And_Correction",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_015_XREF_GDPR_Article_9_2_g",
+          "source": "OBJ_Bias_Detection_And_Correction",
+          "target": "XREF_GDPR_Article_9_2_g",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_015_XREF_ISO_Control_A_8_4",
+          "source": "OBJ_Bias_Detection_And_Correction",
+          "target": "XREF_ISO_Control_A_8_4",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_11",
+          "source": "EU_AI_ACT",
+          "target": "ART_11",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_016",
+          "source": "ART_11",
+          "target": "OBJ_Annex_IV_Technical_Documentation",
+          "label": "shallDrawUpAndKeepUpdated",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_016",
+            "source_text_hash": "e3835023902a13cef550695d6e9148ca98d9559b940d420221b4270ef38efb74",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_016",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Annex_IV_Technical_Documentation",
+          "label": "shallDrawUpAndKeepUpdated",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_016",
+          "source": "OBJ_Annex_IV_Technical_Documentation",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_016_XREF_NIST_GOVERN_1_4",
+          "source": "OBJ_Annex_IV_Technical_Documentation",
+          "target": "XREF_NIST_GOVERN_1_4",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_016_XREF_ISO_Control_A_6_2",
+          "source": "OBJ_Annex_IV_Technical_Documentation",
+          "target": "XREF_ISO_Control_A_6_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_12",
+          "source": "EU_AI_ACT",
+          "target": "ART_12",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_017",
+          "source": "ART_12",
+          "target": "OBJ_Lifecycle_Events_And_Traceability",
+          "label": "shallEnableAutomaticLogging",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_017",
+            "source_text_hash": "9738482aeea7d75b0d068fec7bf89cd48b644f4730012c12986ac53565ac8444",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_017",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Lifecycle_Events_And_Traceability",
+          "label": "shallEnableAutomaticLogging",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_017",
+          "source": "OBJ_Lifecycle_Events_And_Traceability",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_017_XREF_NIST_GOVERN_1_5",
+          "source": "OBJ_Lifecycle_Events_And_Traceability",
+          "target": "XREF_NIST_GOVERN_1_5",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_017_XREF_ISO_Control_A_9_3",
+          "source": "OBJ_Lifecycle_Events_And_Traceability",
+          "target": "XREF_ISO_Control_A_9_3",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_12",
+          "source": "EU_AI_ACT",
+          "target": "ART_12",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_018",
+          "source": "ART_12",
+          "target": "OBJ_Operator_Input_And_Post_Market_Monitoring",
+          "label": "shallCaptureInLogs",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_018",
+            "source_text_hash": "b09f1c882ceba8c5e713bb0dad2546f1b7b933c56f0c8e3df2bf6948c7cfa0ac",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_018",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Operator_Input_And_Post_Market_Monitoring",
+          "label": "shallCaptureInLogs",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_018",
+          "source": "OBJ_Operator_Input_And_Post_Market_Monitoring",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_018_XREF_NIST_GOVERN_1_5",
+          "source": "OBJ_Operator_Input_And_Post_Market_Monitoring",
+          "target": "XREF_NIST_GOVERN_1_5",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_018_XREF_ISO_Control_A_9_3",
+          "source": "OBJ_Operator_Input_And_Post_Market_Monitoring",
+          "target": "XREF_ISO_Control_A_9_3",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_13",
+          "source": "EU_AI_ACT",
+          "target": "ART_13",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_019",
+          "source": "ART_13",
+          "target": "OBJ_High_Risk_AI_System",
+          "label": "shallEnsureSufficientTransparency",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_019",
+            "source_text_hash": "815a276d7d2aba467f1683c9bd20ddcc6e64335c934eece73c5ef67cc34af6f4",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_019",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_High_Risk_AI_System",
+          "label": "shallEnsureSufficientTransparency",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_019",
+          "source": "OBJ_High_Risk_AI_System",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_019_XREF_NIST_MAP_1_2",
+          "source": "OBJ_High_Risk_AI_System",
+          "target": "XREF_NIST_MAP_1_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_019_XREF_ISO_Control_A_7_2",
+          "source": "OBJ_High_Risk_AI_System",
+          "target": "XREF_ISO_Control_A_7_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_019_XREF_GDPR_Article_13",
+          "source": "OBJ_High_Risk_AI_System",
+          "target": "XREF_GDPR_Article_13",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_13",
+          "source": "EU_AI_ACT",
+          "target": "ART_13",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_020",
+          "source": "ART_13",
+          "target": "OBJ_Instructions_For_Use",
+          "label": "shallAccompanyWith",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_020",
+            "source_text_hash": "f5d0cf2be9379a99f6ad1bbababa0e7b419736071dd1780f892f505a9b94203d",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_020",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Instructions_For_Use",
+          "label": "shallAccompanyWith",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_020",
+          "source": "OBJ_Instructions_For_Use",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_020_XREF_NIST_MAP_1_2",
+          "source": "OBJ_Instructions_For_Use",
+          "target": "XREF_NIST_MAP_1_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_020_XREF_ISO_Control_A_7_2",
+          "source": "OBJ_Instructions_For_Use",
+          "target": "XREF_ISO_Control_A_7_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_14",
+          "source": "EU_AI_ACT",
+          "target": "ART_14",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_021",
+          "source": "ART_14",
+          "target": "OBJ_Natural_Persons",
+          "label": "shallEnableEffectiveOversightBy",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_021",
+            "source_text_hash": "0f58d9de45d9d2e06806d0dc0c58053c37bf2a2d4bdd4157a992b6870f8b6831",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_021",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Natural_Persons",
+          "label": "shallEnableEffectiveOversightBy",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_021",
+          "source": "OBJ_Natural_Persons",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_021_XREF_NIST_MANAGE_2_2",
+          "source": "OBJ_Natural_Persons",
+          "target": "XREF_NIST_MANAGE_2_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_021_XREF_ISO_Control_A_8_5",
+          "source": "OBJ_Natural_Persons",
+          "target": "XREF_ISO_Control_A_8_5",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_021_XREF_GDPR_Article_22_3",
+          "source": "OBJ_Natural_Persons",
+          "target": "XREF_GDPR_Article_22_3",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_14",
+          "source": "EU_AI_ACT",
+          "target": "ART_14",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_022",
+          "source": "ART_14",
+          "target": "OBJ_Emergency_Stop_Kill_Switch",
+          "label": "shallProvideOverrideMechanism",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_022",
+            "source_text_hash": "a32b162cc56875d59179803f41d21087254512138c3a679a9035148149314a94",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_022",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Emergency_Stop_Kill_Switch",
+          "label": "shallProvideOverrideMechanism",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_022",
+          "source": "OBJ_Emergency_Stop_Kill_Switch",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_022_XREF_NIST_MANAGE_2_4",
+          "source": "OBJ_Emergency_Stop_Kill_Switch",
+          "target": "XREF_NIST_MANAGE_2_4",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_022_XREF_ISO_Control_A_8_5",
+          "source": "OBJ_Emergency_Stop_Kill_Switch",
+          "target": "XREF_ISO_Control_A_8_5",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_15",
+          "source": "EU_AI_ACT",
+          "target": "ART_15",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_023",
+          "source": "ART_15",
+          "target": "OBJ_Accuracy_Robustness_And_Cybersecurity",
+          "label": "shallAchieveAppropriateLevelOf",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_023",
+            "source_text_hash": "82e34276ca8fcc7e5b78957ef0d0a871289b066df7a17a9eee03fa66dbcd3aaa",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_023",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Accuracy_Robustness_And_Cybersecurity",
+          "label": "shallAchieveAppropriateLevelOf",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_023",
+          "source": "OBJ_Accuracy_Robustness_And_Cybersecurity",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_023_XREF_NIST_MEASURE_2_6",
+          "source": "OBJ_Accuracy_Robustness_And_Cybersecurity",
+          "target": "XREF_NIST_MEASURE_2_6",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_023_XREF_ISO_Control_A_9_2",
+          "source": "OBJ_Accuracy_Robustness_And_Cybersecurity",
+          "target": "XREF_ISO_Control_A_9_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_15",
+          "source": "EU_AI_ACT",
+          "target": "ART_15",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_024",
+          "source": "ART_15",
+          "target": "OBJ_Adversarial_Attacks_And_Data_Poisoning",
+          "label": "shallImplementDefensesAgainst",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_024",
+            "source_text_hash": "c4cfd2fb04164c77804d5cbbe3ea5693cff2cf2150c2fc9d74a3db210ac18628",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_024",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Adversarial_Attacks_And_Data_Poisoning",
+          "label": "shallImplementDefensesAgainst",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_024",
+          "source": "OBJ_Adversarial_Attacks_And_Data_Poisoning",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_024_XREF_NIST_GOVERN_1_6",
+          "source": "OBJ_Adversarial_Attacks_And_Data_Poisoning",
+          "target": "XREF_NIST_GOVERN_1_6",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_024_XREF_ISO_Control_A_9_2",
+          "source": "OBJ_Adversarial_Attacks_And_Data_Poisoning",
+          "target": "XREF_ISO_Control_A_9_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_024_XREF_GDPR_Article_32",
+          "source": "OBJ_Adversarial_Attacks_And_Data_Poisoning",
+          "target": "XREF_GDPR_Article_32",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_26",
+          "source": "EU_AI_ACT",
+          "target": "ART_26",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_025",
+          "source": "ART_26",
+          "target": "OBJ_Provider_Instructions_For_Use",
+          "label": "shallTakeAppropriateTechnicalMeasuresToUseInAccordanceWith",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_025",
+            "source_text_hash": "c549d984e95d217e707fe01f699acafb32cdd47036961e07d16f7bd6d6de2d89",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_025",
+          "source": "SUBJ_Deployer",
+          "target": "OBJ_Provider_Instructions_For_Use",
+          "label": "shallTakeAppropriateTechnicalMeasuresToUseInAccordanceWith",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_025",
+          "source": "OBJ_Provider_Instructions_For_Use",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_025_XREF_NIST_GOVERN_1_1",
+          "source": "OBJ_Provider_Instructions_For_Use",
+          "target": "XREF_NIST_GOVERN_1_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_025_XREF_ISO_Control_A_7_2",
+          "source": "OBJ_Provider_Instructions_For_Use",
+          "target": "XREF_ISO_Control_A_7_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_26",
+          "source": "EU_AI_ACT",
+          "target": "ART_26",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_026",
+          "source": "ART_26",
+          "target": "OBJ_Serious_Incidents_Or_Malfunctioning",
+          "label": "shallMonitorOperationAndInformProviderOf",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_026",
+            "source_text_hash": "8c6eaf2f972e2b1e67640d5375893facbdfcf361f7b0ee992ddb3e39cf1d068b",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_026",
+          "source": "SUBJ_Deployer",
+          "target": "OBJ_Serious_Incidents_Or_Malfunctioning",
+          "label": "shallMonitorOperationAndInformProviderOf",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_026",
+          "source": "OBJ_Serious_Incidents_Or_Malfunctioning",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_026_XREF_NIST_MANAGE_4_1",
+          "source": "OBJ_Serious_Incidents_Or_Malfunctioning",
+          "target": "XREF_NIST_MANAGE_4_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_026_XREF_ISO_Control_A_9_3",
+          "source": "OBJ_Serious_Incidents_Or_Malfunctioning",
+          "target": "XREF_ISO_Control_A_9_3",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_27",
+          "source": "EU_AI_ACT",
+          "target": "ART_27",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_027",
+          "source": "ART_27",
+          "target": "OBJ_Fundamental_Rights_Impact_Assessment",
+          "label": "shallPerformPriorToDeployment",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_027",
+            "source_text_hash": "56a5676d035ce9be189463b9b5c91afc7f242db29bc554ad0cd353a40c5582e8",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_027",
+          "source": "SUBJ_Deployer_Governed_By_Public_Law_Or_Essential_Service",
+          "target": "OBJ_Fundamental_Rights_Impact_Assessment",
+          "label": "shallPerformPriorToDeployment",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_027",
+          "source": "OBJ_Fundamental_Rights_Impact_Assessment",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_027_XREF_GDPR_Article_35",
+          "source": "OBJ_Fundamental_Rights_Impact_Assessment",
+          "target": "XREF_GDPR_Article_35",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_027_XREF_NIST_GOVERN_1_1",
+          "source": "OBJ_Fundamental_Rights_Impact_Assessment",
+          "target": "XREF_NIST_GOVERN_1_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_50",
+          "source": "EU_AI_ACT",
+          "target": "ART_50",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_028",
+          "source": "ART_50",
+          "target": "OBJ_AI_System",
+          "label": "shallInformNaturalPersonsThatTheyAreInteractingWith",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_028",
+            "source_text_hash": "4554be7f9bf19e2ff3ef5d3ee6ca5f4fc7645319f91a8ebd564e3a19530f8856",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_028",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_AI_System",
+          "label": "shallInformNaturalPersonsThatTheyAreInteractingWith",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_028",
+          "source": "OBJ_AI_System",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_028_XREF_NIST_MAP_1_2",
+          "source": "OBJ_AI_System",
+          "target": "XREF_NIST_MAP_1_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_028_XREF_GDPR_Article_13",
+          "source": "OBJ_AI_System",
+          "target": "XREF_GDPR_Article_13",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_50",
+          "source": "EU_AI_ACT",
+          "target": "ART_50",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_029",
+          "source": "ART_50",
+          "target": "OBJ_Synthetic_Audio_Image_Video_Or_Text",
+          "label": "shallMarkInMachineReadableFormat",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_029",
+            "source_text_hash": "5585c03c0216e01441bd5a20e3caaeffca2a919755a4a55425d2f74737a604c6",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_029",
+          "source": "SUBJ_Provider",
+          "target": "OBJ_Synthetic_Audio_Image_Video_Or_Text",
+          "label": "shallMarkInMachineReadableFormat",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_029",
+          "source": "OBJ_Synthetic_Audio_Image_Video_Or_Text",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_029_XREF_NIST_GOVERN_1_5",
+          "source": "OBJ_Synthetic_Audio_Image_Video_Or_Text",
+          "target": "XREF_NIST_GOVERN_1_5",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_029_XREF_ISO_Control_A_6_1",
+          "source": "OBJ_Synthetic_Audio_Image_Video_Or_Text",
+          "target": "XREF_ISO_Control_A_6_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_50",
+          "source": "EU_AI_ACT",
+          "target": "ART_50",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_030",
+          "source": "ART_50",
+          "target": "OBJ_Image_Audio_Or_Video",
+          "label": "shallDiscloseArtificiallyGeneratedDeepfakeContentOf",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_030",
+            "source_text_hash": "a15d222ef65c0da8f5dcb81f7d65c37e3ba48a6312bb3aca3650032a0d71f143",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_030",
+          "source": "SUBJ_Deployer",
+          "target": "OBJ_Image_Audio_Or_Video",
+          "label": "shallDiscloseArtificiallyGeneratedDeepfakeContentOf",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_030",
+          "source": "OBJ_Image_Audio_Or_Video",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_030_XREF_NIST_MAP_1_2",
+          "source": "OBJ_Image_Audio_Or_Video",
+          "target": "XREF_NIST_MAP_1_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_030_XREF_GDPR_Article_13",
+          "source": "OBJ_Image_Audio_Or_Video",
+          "target": "XREF_GDPR_Article_13",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_51",
+          "source": "EU_AI_ACT",
+          "target": "ART_51",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_031",
+          "source": "ART_51",
+          "target": "OBJ_Training_Compute_Exceeds_10_Pow_25_FLOPs",
+          "label": "shallClassifyAsSystemicRiskWhen",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_031",
+            "source_text_hash": "81f5dca0c019752743fd99d204770a2a12d98519ac452e4d9ad34cce65682420",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_031",
+          "source": "SUBJ_AI_Office_And_Commission",
+          "target": "OBJ_Training_Compute_Exceeds_10_Pow_25_FLOPs",
+          "label": "shallClassifyAsSystemicRiskWhen",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_031",
+          "source": "OBJ_Training_Compute_Exceeds_10_Pow_25_FLOPs",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_031_XREF_NIST_MEASURE_1_1",
+          "source": "OBJ_Training_Compute_Exceeds_10_Pow_25_FLOPs",
+          "target": "XREF_NIST_MEASURE_1_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_031_XREF_ISO_Control_A_6_1",
+          "source": "OBJ_Training_Compute_Exceeds_10_Pow_25_FLOPs",
+          "target": "XREF_ISO_Control_A_6_1",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_53",
+          "source": "EU_AI_ACT",
+          "target": "ART_53",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_032",
+          "source": "ART_53",
+          "target": "OBJ_GPAI_Technical_Documentation_And_Architecture",
+          "label": "shallDrawUpAndKeepUpdated",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_032",
+            "source_text_hash": "2a2fc8b02f56aa7524c5c977f218c971382eefe5dbda748df191d00689870f8d",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_032",
+          "source": "SUBJ_Provider_Of_GPAI_Model",
+          "target": "OBJ_GPAI_Technical_Documentation_And_Architecture",
+          "label": "shallDrawUpAndKeepUpdated",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_032",
+          "source": "OBJ_GPAI_Technical_Documentation_And_Architecture",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_032_XREF_NIST_GOVERN_1_4",
+          "source": "OBJ_GPAI_Technical_Documentation_And_Architecture",
+          "target": "XREF_NIST_GOVERN_1_4",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_032_XREF_ISO_Control_A_6_2",
+          "source": "OBJ_GPAI_Technical_Documentation_And_Architecture",
+          "target": "XREF_ISO_Control_A_6_2",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_55",
+          "source": "EU_AI_ACT",
+          "target": "ART_55",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_033",
+          "source": "ART_55",
+          "target": "OBJ_Systemic_Risk_Mitigation",
+          "label": "shallConductModelEvaluationAndAdversarialRedTeaming",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_033",
+            "source_text_hash": "5ea7706b852d0290eb350ae9d842a1bac653d0a6a597d5f5abd06d12eac44719",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_033",
+          "source": "SUBJ_Provider_Of_GPAI_With_Systemic_Risk",
+          "target": "OBJ_Systemic_Risk_Mitigation",
+          "label": "shallConductModelEvaluationAndAdversarialRedTeaming",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_033",
+          "source": "OBJ_Systemic_Risk_Mitigation",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_033_XREF_NIST_MEASURE_2_8",
+          "source": "OBJ_Systemic_Risk_Mitigation",
+          "target": "XREF_NIST_MEASURE_2_8",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_033_XREF_ISO_Control_A_9_4",
+          "source": "OBJ_Systemic_Risk_Mitigation",
+          "target": "XREF_ISO_Control_A_9_4",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_99",
+          "source": "EU_AI_ACT",
+          "target": "ART_99",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_034",
+          "source": "ART_99",
+          "target": "OBJ_35M_EUR_Or_7_Percent_Worldwide_Turnover",
+          "label": "shallImposeAdministrativeFineUpTo",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_034",
+            "source_text_hash": "2b192a7f274c17cf41f3b1a14e91f134a834276dc2ac38655151ff730782dc84",
+            "enforcement_tier": "TIER_1_PROHIBITED_AI"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_034",
+          "source": "SUBJ_National_Competent_Authority_Or_Court",
+          "target": "OBJ_35M_EUR_Or_7_Percent_Worldwide_Turnover",
+          "label": "shallImposeAdministrativeFineUpTo",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_034",
+          "source": "OBJ_35M_EUR_Or_7_Percent_Worldwide_Turnover",
+          "target": "TIER_1_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_034_XREF_GDPR_Article_83_5",
+          "source": "OBJ_35M_EUR_Or_7_Percent_Worldwide_Turnover",
+          "target": "XREF_GDPR_Article_83_5",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_99",
+          "source": "EU_AI_ACT",
+          "target": "ART_99",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_035",
+          "source": "ART_99",
+          "target": "OBJ_15M_EUR_Or_3_Percent_Worldwide_Turnover",
+          "label": "shallImposeAdministrativeFineUpTo",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_035",
+            "source_text_hash": "c8273528ac13257a057e00cdcec5519f393c8364dfe25dd3866eb9a6d9b95ce2",
+            "enforcement_tier": "TIER_2_HIGH_RISK_OBLIGATIONS"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_035",
+          "source": "SUBJ_National_Competent_Authority_Or_Court",
+          "target": "OBJ_15M_EUR_Or_3_Percent_Worldwide_Turnover",
+          "label": "shallImposeAdministrativeFineUpTo",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_035",
+          "source": "OBJ_15M_EUR_Or_3_Percent_Worldwide_Turnover",
+          "target": "TIER_2_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_035_XREF_GDPR_Article_83_4",
+          "source": "OBJ_15M_EUR_Or_3_Percent_Worldwide_Turnover",
+          "target": "XREF_GDPR_Article_83_4",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "edge_statute_ART_99",
+          "source": "EU_AI_ACT",
+          "target": "ART_99",
+          "label": "containsArticle",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_triple_EU_AIA_TRIPLE_036",
+          "source": "ART_99",
+          "target": "OBJ_7.5M_EUR_Or_1.5_Percent_Worldwide_Turnover",
+          "label": "shallImposeAdministrativeFineUpTo",
+          "modality": "OBLIGATION",
+          "properties": {
+            "triple_id": "EU_AIA_TRIPLE_036",
+            "source_text_hash": "268042e372b7021f5b05e282e26934e0381bf9c62272946c5f9311053c99240f",
+            "enforcement_tier": "TIER_3_MISINFORMATION_NOTIFICATION"
+          }
+        }
+      },
+      {
+        "data": {
+          "id": "e_sub_EU_AIA_TRIPLE_036",
+          "source": "SUBJ_National_Competent_Authority_Or_Court",
+          "target": "OBJ_7.5M_EUR_Or_1.5_Percent_Worldwide_Turnover",
+          "label": "shallImposeAdministrativeFineUpTo",
+          "modality": "OBLIGATION",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_pen_EU_AIA_TRIPLE_036",
+          "source": "OBJ_7.5M_EUR_Or_1.5_Percent_Worldwide_Turnover",
+          "target": "TIER_3_FINE",
+          "label": "penalizedUnder",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      },
+      {
+        "data": {
+          "id": "e_xref_EU_AIA_TRIPLE_036_XREF_GDPR_Article_83_4",
+          "source": "OBJ_7.5M_EUR_Or_1.5_Percent_Worldwide_Turnover",
+          "target": "XREF_GDPR_Article_83_4",
+          "label": "harmonizesWith",
+          "modality": "STRUCTURAL",
+          "properties": {}
+        }
+      }
+    ]
+  }
+}

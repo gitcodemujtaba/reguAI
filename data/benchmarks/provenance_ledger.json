@@ -1,0 +1,52 @@
+{
+  "ledger_version": "2.0.0",
+  "ledger_title": "EU AI Act Normative Benchmark Cryptographic Provenance Ledger",
+  "hash_algorithm": "SHA-256",
+  "genesis_anchor": {
+    "statutory_act": "Regulation (EU) 2024/1689",
+    "official_journal": "OJ L, 2024/1689, 12.7.2024",
+    "eli_uri": "http://data.europa.eu/eli/reg/2024/1689/oj",
+    "celex": "32024R1689",
+    "genesis_sha256": "a825360fd337ca843f8fb533ab72302901b8536fad9eb841ce34544727e89bb8"
+  },
+  "merkle_root": "cbf58e52a6f9066ec12826e4fbb7aa267c5a32180566fc0afe47e27eaefe1d08",
+  "tier_provenance": {
+    "tier_1_statutory_triples": {
+      "file": "eu_ai_act_normative_triples.json",
+      "sha256": "28697aa56d6649dfe51a1cf92ba94c524612c76b22bc7995de2afcf1ef5c69c1",
+      "record_count": 36,
+      "verification_status": "VERIFIED_CANONICAL"
+    },
+    "tier_2_knowledge_graph": {
+      "file": "eu_ai_act_knowledge_graph.json",
+      "sha256": "23da4caab1d1494d8284df227c76fdf7b6395ec2522dbe472befcaf66b341e42",
+      "node_count": 105,
+      "edge_count": 222,
+      "verification_status": "VERIFIED_TOPOLOGY"
+    },
+    "tier_3_domain_dictionary": {
+      "file": "domain_data_dictionary.json",
+      "sha256": "1fce348ad813e89073aed7fd76c8ef65d9ec393d5701ed2a696a4c0fbfe37e82",
+      "verification_status": "VERIFIED_VOCABULARY"
+    },
+    "tier_4_cross_regulatory_rules": {
+      "files": [
+        {
+          "path": "rules/ai_act_fine_guidelines.json",
+          "sha256": "540150f082fc3157bc068014e68dd0fb2652c557383f56a6e5d6296df7f31451"
+        },
+        {
+          "path": "rules/cross_regulatory_frameworks.json",
+          "sha256": "478b23ab8a7daf76308d75db142dd605c296462765e1c94af3d8c9d34e315825"
+        }
+      ],
+      "verification_status": "VERIFIED_RULES"
+    },
+    "tier_5_ground_truth_benchmarks": {
+      "file": "conformity_ground_truth_benchmark.jsonl",
+      "sha256": "246e141c6b516009029af76f68e556a60b2341f56848d557b2e9b685c05428f6",
+      "verification_status": "VERIFIED_BENCHMARK"
+    }
+  },
+  "verification_procedure": "To verify the integrity of the benchmark assets, run: hashlib.sha256(open(filename, 'rb').read()).hexdigest() and compare against tier_provenance."
+}

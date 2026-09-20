@@ -1,0 +1,130 @@
+{
+  "schema_version": "2.0.0",
+  "dataset_title": "EU AI Act Controlled Domain Vocabulary and Legal Data Dictionary",
+  "statutory_authority": "Regulation (EU) 2024/1689 of the European Parliament and of the Council (13 June 2024)",
+  "official_journal_ref": "OJ L, 2024/1689, 12.7.2024, ELI: http://data.europa.eu/eli/reg/2024/1689/oj",
+  "deontic_modalities": {
+    "OBLIGATION": {
+      "description": "Imperative statutory duty imposed on an actor. Non-compliance constitutes a direct violation.",
+      "linguistic_markers": [
+        "shall",
+        "must",
+        "is required to",
+        "shall ensure",
+        "shall establish"
+      ],
+      "shacl_severity": "sh:Violation"
+    },
+    "PROHIBITION": {
+      "description": "Strict statutory ban on placement, commissioning, or use. Irrevocable non-conformity triggering maximum penalties.",
+      "linguistic_markers": [
+        "shall not",
+        "is prohibited",
+        "shall be prohibited",
+        "shall not be placed"
+      ],
+      "shacl_severity": "sh:Violation",
+      "penalty_tier": "TIER_1_PROHIBITED_AI (Article 99(3))"
+    },
+    "PERMISSION": {
+      "description": "Discretionary statutory right or authorized procedural pathway.",
+      "linguistic_markers": [
+        "may",
+        "is entitled to",
+        "has the right to"
+      ],
+      "shacl_severity": "sh:Info"
+    },
+    "EXEMPTION": {
+      "description": "Statutory carve-out, safe harbor, or condition under which a requirement or prohibition ceases to apply.",
+      "linguistic_markers": [
+        "shall not apply to",
+        "derogation",
+        "by way of derogation",
+        "except where"
+      ],
+      "shacl_severity": "sh:Info"
+    }
+  },
+  "statutory_roles": {
+    "Provider": {
+      "legal_basis": "Article 3(3)",
+      "definition": "Natural or legal person, public authority, agency or other body that develops an AI system or a general-purpose AI model or has it developed and places it on the market or puts it into service under its own name or trademark."
+    },
+    "Deployer": {
+      "legal_basis": "Article 3(4)",
+      "definition": "Natural or legal person, public authority, agency or other body using an AI system under its authority, except where the AI system is used in the course of a personal non-professional activity."
+    },
+    "Authorized_Representative": {
+      "legal_basis": "Article 3(5)",
+      "definition": "Natural or legal person located in the Union who has received and accepted a written mandate from a provider of an AI system or general-purpose AI model to perform on its behalf specified obligations."
+    },
+    "Importer": {
+      "legal_basis": "Article 3(6)",
+      "definition": "Natural or legal person located in the Union that places on the market an AI system that bears the name or trademark of a natural or legal person established in a third country."
+    },
+    "Distributor": {
+      "legal_basis": "Article 3(7)",
+      "definition": "Natural or legal person in the supply chain, other than the provider or the importer, that makes an AI system available on the Union market without affecting its properties."
+    },
+    "Notified_Body": {
+      "legal_basis": "Article 3(22)",
+      "definition": "Conformity assessment body designated in accordance with Article 31 and other relevant Union harmonisation legislation."
+    },
+    "AI_Office": {
+      "legal_basis": "Article 3(47)",
+      "definition": "Commission's function of contributing to the implementation, monitoring and supervision of AI systems and general-purpose AI models, and AI governance."
+    }
+  },
+  "risk_classification_tiers": {
+    "PROHIBITED": {
+      "legal_basis": "Article 5",
+      "description": "AI practices deemed an unacceptable threat to safety, livelihoods, and fundamental rights. Strictly banned.",
+      "statutory_examples": [
+        "Subliminal manipulation",
+        "Exploitation of vulnerabilities",
+        "Social scoring",
+        "Predictive policing based solely on profiling",
+        "Facial recognition scraping",
+        "Workplace/education emotion recognition",
+        "Real-time biometric categorization"
+      ]
+    },
+    "HIGH_RISK_ANNEX_I": {
+      "legal_basis": "Article 6(1)",
+      "description": "AI systems intended to be used as safety components of products covered by Union harmonisation legislation (e.g. medical devices, aviation, machinery, toys)."
+    },
+    "HIGH_RISK_ANNEX_III": {
+      "legal_basis": "Article 6(2) & Annex III",
+      "description": "Standalone high-risk AI systems deployed in critical domains: biometrics, critical infrastructure, education & vocational training, employment & worker management, access to essential private/public services, law enforcement, migration & border control, administration of justice."
+    },
+    "GPAI_SYSTEMIC_RISK": {
+      "legal_basis": "Article 51",
+      "description": "General-purpose AI models with high impact capabilities evaluated using cumulative training compute exceeding 10^25 FLOPs."
+    },
+    "GPAI_STANDARD": {
+      "legal_basis": "Article 53",
+      "description": "General-purpose AI models without systemic risk designation, subject to technical transparency, copyright policy, and training summaries."
+    },
+    "SPECIFIC_TRANSPARENCY": {
+      "legal_basis": "Article 50",
+      "description": "AI systems directly interacting with natural persons, emotion recognition/biometric categorization systems, or synthetic media (deepfakes)."
+    },
+    "MINIMAL_RISK": {
+      "legal_basis": "Recital 114",
+      "description": "All AI systems not categorized in the above tiers. Permitted with voluntary adherence to codes of conduct."
+    }
+  },
+  "conformity_assessment_procedures": {
+    "Internal_Control_Annex_VI": {
+      "legal_basis": "Article 43(1)(a) & Annex VI",
+      "applicable_to": "Annex III high-risk AI systems (except biometrics)",
+      "audit_mechanism": "First-party provider internal verification based on Annex IV technical documentation, quality management system, and post-market monitoring."
+    },
+    "Notified_Body_Assessment_Annex_VII": {
+      "legal_basis": "Article 43(1)(b) & Annex VII",
+      "applicable_to": "Biometric identification and high-risk systems without harmonized standards",
+      "audit_mechanism": "Third-party audit by an officially designated Notified Body evaluating quality management system and Annex IV technical file."
+    }
+  }
+}

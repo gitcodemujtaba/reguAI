@@ -41,9 +41,9 @@ ReguAI solves this by coupling domain-adapted entity and assertion extraction (G
     "Interactive Vis.js Regulatory Dependency Visualizer and one-click Annex IV print-ready PDF/HTML certificate export.",
   ],
   links: {
-    github: "https://github.com/your-username/reguAI",
-    demo: "https://huggingface.co/spaces/your-username/reguai-engine",
-    dataset: "https://huggingface.co/datasets/your-username/eu-ai-act-normative-triples",
+    github: "https://github.com/gitcodemujtaba/reguAI",
+    demo: "https://huggingface.co/spaces/gitmodelmujtaba/reguai-engine",
+    dataset: "https://huggingface.co/datasets/gitmodelmujtaba/eu-ai-act-normative-triples",
     apiDocs: "http://localhost:8000/docs",
   },
 };
