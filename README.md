@@ -1,3 +1,16 @@
+---
+title: ReguAI Neuro-Symbolic AI GRC Engine
+emoji: 🏛️
+colorFrom: blue
+colorTo: indigo
+sdk: gradio
+sdk_version: 6.28.0
+app_file: app.py
+pinned: false
+license: apache-2.0
+short_description: Deterministic AI GRC & Automated EU AI Act Conformity Assessment
+---
+
 # 🏛️ ReguAI: Deterministic Neuro-Symbolic AI GRC & Automated Conformity Assessment Engine
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
