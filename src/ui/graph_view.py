@@ -179,7 +179,7 @@ class RegulatoryGraphView:
                     z-index: 10;
                     color: #1e293b;
                 }}
-                @media (prefers-color-scheme: dark) {
+                @media (prefers-color-scheme: dark) {{
                     body, html {{
                         background: #0f172a;
                         color: #f8fafc;
