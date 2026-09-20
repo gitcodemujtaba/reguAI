@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "system_id": "gpai-nexus-70b",
+    "name": "Nexus-70B Frontier Foundation Model",
+    "version": "1.0.0",
+    "domain": "General Purpose AI (GPAI)",
+    "intended_purpose": "Multimodal general-purpose foundation model capable of text generation, code synthesis, mathematical reasoning, and workflow automation.",
+    "eu_risk_classification": "General Purpose AI with Systemic Risk (Chapter V, Article 51)",
+    "developer_name": "Frontier Cognitive Labs",
+    "deployment_context": "Global Cloud API & Enterprise Self-Hosted Weight Weights"
+  },
+  "raw_document_text": "# Nexus-70B Frontier Foundation Model Specification\n\n## Intended Scope & Architecture\nNexus-70B is a 70-billion parameter autoregressive transformer trained on 15 trillion tokens of multilingual text, code, and scientific literature.\n\n## Systemic Risk & Computational Threshold (Article 51)\nThe cumulative computational capacity used for training exceeded 1.2e26 FLOPs, surpassing the EU AI Act Article 51 systemic risk threshold of 10^25 FLOPs. The model is therefore classified as a General Purpose AI Model with Systemic Risk.\n\n## Risk Management & Mitigation (Article 55)\nA continuous risk management system is implemented to identify and mitigate systemic risks including cybersecurity compromise, autonomous chemical/biological hazards, and societal manipulation.\n\n## Data Governance & Copyright (Article 53 & 10)\nTraining data provenance is documented in a detailed dataset summary. A robust opt-out compliance mechanism honoring robots.txt and EU DSM Copyright Directive (Directive (EU) 2019/790) is enforced.\n\n## Model Evaluation & Adversarial Red-Teaming (Article 55)\nAdversarial testing and red-teaming protocols were conducted across 40 specialized external safety testing organizations. Defenses against jailbreaking, prompt injection, and automated cyberattack planning are validated.\n\n## Energy Consumption & Transparency (Article 53 & Annex IV)\nTotal energy consumption during pre-training was measured at 1,420 MWh, with an estimated carbon footprint of 480 tCO2eq, fully documented in the technical documentation package."
+}

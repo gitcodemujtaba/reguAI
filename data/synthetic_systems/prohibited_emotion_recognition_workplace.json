@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "system_id": "edu-mindgaze-08",
+    "name": "MindGaze Classroom Attentiveness & Emotion Tracker",
+    "version": "1.0.2",
+    "domain": "Education & Workplace Surveillance",
+    "intended_purpose": "Continuous facial micro-expression analysis and emotion recognition to score student attentiveness and worker engagement.",
+    "eu_risk_classification": "Prohibited (Article 5(1)(f) - Emotion Recognition in Education/Workplace)",
+    "developer_name": "CogniMetric Technologies",
+    "deployment_context": "University Exam Halls and Corporate Remote Workstations"
+  },
+  "raw_document_text": "# MindGaze Emotion Recognition System Specification\n\n## Intended Purpose & Operational Overview\nMindGaze analyzes student and employee webcam video streams in real-time. The neural network infers emotional states (boredom, confusion, distraction, frustration, engagement) from facial action units (FACS) and pupil dilation to assign an automated attentiveness score.\n\n## Compliance & Risk Classification (Article 5)\nThe system performs automated emotion recognition in educational institutions and workplace monitoring environments. Note: Regulation (EU) 2024/1689 Article 5(1)(f) explicitly prohibits placing on the market or putting into service AI systems intended to infer emotions of natural persons in workplace and educational settings.\n\n## Risk Management (Article 9)\nA risk management procedure was drafted for cloud server downtime.\n\n## Data Governance (Article 10)\nTraining data provenance consists of 80,000 scraped video clips of students taking online quizzes.\n\n## Bias Examination & Mitigation (Article 10(2)(f))\nBias examination was omitted due to timeline constraints. No demographic parity testing across neurodivergent students was conducted.\n\n## Human Oversight (Article 14)\nAutomated attentiveness alerts are dispatched to supervisors without human review or manual override.\n\n## Logging & Cybersecurity (Article 12 & 15)\nSession video clips and inferred emotional states are logged to cloud datacenters."
+}

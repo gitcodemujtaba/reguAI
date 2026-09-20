@@ -9,15 +9,45 @@
   },
   "@graph": [
     {
-      "@id": "eu:Article_9",
+      "@id": "eu:Article_5_1_c_Social_Scoring",
+      "@type": "regu:ProhibitedPractice",
+      "rdfs:label": "Prohibition of Social Scoring",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter II Article 5(1)(c)",
+      "regu:complianceTier": "Prohibited (Unacceptable Risk)",
+      "skos:closeMatch": "nist:GOVERN_1.1",
+      "regu:description": "Placing on the market, putting into service or use of AI systems for the evaluation or classification of natural persons based on their social behaviour or personality characteristics, leading to detrimental or unfavourable treatment."
+    },
+    {
+      "@id": "eu:Article_5_1_f_Emotion_Recognition_Workplace",
+      "@type": "regu:ProhibitedPractice",
+      "rdfs:label": "Prohibition of Emotion Recognition in Workplace & Education",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter II Article 5(1)(f)",
+      "regu:complianceTier": "Prohibited (Unacceptable Risk)",
+      "skos:closeMatch": "nist:MAP_1.1",
+      "regu:description": "Placing on the market, putting into service or use of AI systems to infer emotions of a natural person in the areas of workplace and educational institutions, except for medical or safety reasons."
+    },
+    {
+      "@id": "eu:Article_9_Risk_Management_System",
       "@type": "regu:RegulatoryRequirement",
-      "rdfs:label": "Risk Management System",
+      "rdfs:label": "Continuous Risk Management System",
       "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 9",
       "regu:targetClass": "regu:RiskManagementSystem",
       "regu:mandatoryFor": "regu:HighRiskAISystem",
       "skos:closeMatch": "nist:GOVERN_1.1",
       "skos:relatedMatch": "iso:Clause_6_1",
-      "regu:description": "Establish, implement, document and maintain a continuous risk management system throughout the entire lifecycle of a high-risk AI system."
+      "regu:shaclShape": "regu:HighRiskSystemShape",
+      "regu:description": "A risk management system shall be established, implemented, documented and maintained in relation to high-risk AI systems as a continuous iterative process throughout the entire lifecycle."
+    },
+    {
+      "@id": "eu:Article_9_2_Residual_Risk",
+      "@type": "regu:RegulatoryRequirement",
+      "rdfs:label": "Identification and Mitigation of Residual Risks",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 9(2)",
+      "regu:targetClass": "regu:RiskManagementSystem",
+      "regu:mandatoryFor": "regu:HighRiskAISystem",
+      "skos:closeMatch": "nist:MANAGE_1.3",
+      "skos:relatedMatch": "iso:Clause_6_1_2",
+      "regu:description": "Identification, estimation, and evaluation of the most likely risks, with targeted mitigation measures to judge residual risks as acceptable."
     },
     {
       "@id": "eu:Article_10_Data_Governance",
@@ -28,7 +58,8 @@
       "regu:mandatoryFor": "regu:HighRiskAISystem",
       "skos:closeMatch": "nist:MAP_1.5",
       "skos:relatedMatch": "iso:Control_A_8_2",
-      "regu:description": "Training, validation and testing datasets shall be subject to appropriate data governance and management practices."
+      "regu:shaclShape": "regu:HighRiskSystemShape",
+      "regu:description": "Training, validation and testing datasets shall be subject to appropriate data governance and management practices covering design choices, collection, curation, and provenance."
     },
     {
       "@id": "eu:Article_10_2_f_Bias_Mitigation",
@@ -39,40 +70,55 @@
       "regu:mandatoryFor": "regu:HighRiskAISystem",
       "skos:closeMatch": "nist:MEASURE_2.11",
       "skos:relatedMatch": "iso:Control_A_8_4",
-      "regu:description": "Examination in view of possible biases that are likely to affect the health and safety of persons, negatively impact fundamental rights or lead to discrimination."
+      "regu:shaclShape": "regu:HighRiskSystemShape",
+      "regu:description": "Examination in view of possible biases that are likely to affect health, safety, fundamental rights or lead to discrimination; appropriate measures to prevent and mitigate detected biases."
+    },
+    {
+      "@id": "eu:Article_10_3_Data_Representativeness",
+      "@type": "regu:RegulatoryRequirement",
+      "rdfs:label": "Data Representativeness & Statistical Properties",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 10(3)",
+      "regu:targetClass": "regu:DataGovernanceProcess",
+      "regu:mandatoryFor": "regu:HighRiskAISystem",
+      "skos:closeMatch": "nist:MEASURE_1.2",
+      "skos:relatedMatch": "iso:Control_A_8_3",
+      "regu:description": "Datasets shall be sufficiently representative, free of errors and complete, having regard to the specific geographical, contextual, behavioural or functional setting within which the AI system is intended to be used."
     },
     {
       "@id": "eu:Article_11_Technical_Documentation",
       "@type": "regu:RegulatoryRequirement",
-      "rdfs:label": "Technical Documentation",
+      "rdfs:label": "Technical Documentation (Annex IV)",
       "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 11 & Annex IV",
       "regu:targetClass": "regu:TechnicalDocumentation",
       "regu:mandatoryFor": "regu:HighRiskAISystem",
       "skos:closeMatch": "nist:GOVERN_1.4",
       "skos:relatedMatch": "iso:Control_A_6_2",
-      "regu:description": "Drawn up before the system is placed on the market or put into service and kept up-to-date."
+      "regu:shaclShape": "regu:HighRiskSystemShape",
+      "regu:description": "Technical documentation shall be drawn up before the system is placed on the market or put into service and kept up to date, complying with Annex IV requirements."
     },
     {
       "@id": "eu:Article_12_Record_Keeping",
       "@type": "regu:RegulatoryRequirement",
-      "rdfs:label": "Record-Keeping & Logging",
+      "rdfs:label": "Record-Keeping & Automated Logging",
       "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 12",
       "regu:targetClass": "regu:AutomatedLogging",
       "regu:mandatoryFor": "regu:HighRiskAISystem",
       "skos:closeMatch": "nist:GOVERN_1.5",
       "skos:relatedMatch": "iso:Control_A_9_3",
-      "regu:description": "High-risk AI systems shall technically allow for the automatic recording of events (logging) over their lifecycle."
+      "regu:shaclShape": "regu:HighRiskSystemShape",
+      "regu:description": "High-risk AI systems shall technically allow for the automatic recording of events (logging) over their lifecycle, ensuring traceability of system functioning and operator interventions."
     },
     {
       "@id": "eu:Article_13_Transparency",
       "@type": "regu:RegulatoryRequirement",
-      "rdfs:label": "Transparency and Provision of Information",
+      "rdfs:label": "Transparency and Provision of Information to Deployers",
       "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 13",
       "regu:targetClass": "regu:TransparencySpecification",
       "regu:mandatoryFor": "regu:HighRiskAISystem",
       "skos:closeMatch": "nist:MAP_1.2",
       "skos:relatedMatch": "iso:Control_A_7_2",
-      "regu:description": "High-risk AI systems shall be designed and developed in such a way as to ensure that their operation is sufficiently transparent to enable deployers to interpret the system's output."
+      "regu:shaclShape": "regu:HighRiskSystemShape",
+      "regu:description": "Designed and developed in such a way as to ensure operation is sufficiently transparent to enable deployers to interpret outputs and use them appropriately; accompanied by comprehensive instructions for use."
     },
     {
       "@id": "eu:Article_14_Human_Oversight",
@@ -83,18 +129,64 @@
       "regu:mandatoryFor": "regu:HighRiskAISystem",
       "skos:closeMatch": "nist:MANAGE_2.2",
       "skos:relatedMatch": "iso:Control_A_8_5",
-      "regu:description": "High-risk AI systems shall be designed and developed in such a way, including with appropriate human-machine interface tools, that they can be effectively overseen by natural persons."
+      "regu:shaclShape": "regu:HighRiskSystemShape",
+      "regu:description": "Designed to enable natural persons to oversee the system operation during use, preventing or minimising risks to health, safety or fundamental rights."
     },
     {
-      "@id": "eu:Article_15_Cybersecurity_Robustness",
+      "@id": "eu:Article_14_4_e_Emergency_Stop",
+      "@type": "regu:RegulatoryRequirement",
+      "rdfs:label": "Human Override & Emergency Stop / Kill Switch",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 14(4)(e)",
+      "regu:targetClass": "regu:StopMechanism",
+      "regu:mandatoryFor": "regu:HighRiskAISystem",
+      "skos:closeMatch": "nist:MANAGE_2.4",
+      "skos:relatedMatch": "iso:Control_A_8_5",
+      "regu:description": "Ability to intervene on the operation of the high-risk AI system or interrupt the system through a stop button or a similar procedure."
+    },
+    {
+      "@id": "eu:Article_15_Accuracy_Robustness_Cybersecurity",
       "@type": "regu:RegulatoryRequirement",
       "rdfs:label": "Accuracy, Robustness and Cybersecurity",
       "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 15",
-      "regu:targetClass": "regu:CybersecurityControl",
+      "regu:targetClass": "regu:RobustnessControl",
       "regu:mandatoryFor": "regu:HighRiskAISystem",
       "skos:closeMatch": "nist:MEASURE_2.6",
       "skos:relatedMatch": "iso:Control_A_9_2",
-      "regu:description": "Resilient against attempts by unauthorised third parties to alter their use, outputs or performance by exploiting system vulnerabilities."
+      "regu:shaclShape": "regu:HighRiskSystemShape",
+      "regu:description": "Designed to achieve appropriate level of accuracy, robustness and cybersecurity, resilient against errors, faults, inconsistencies, and adversarial attacks."
+    },
+    {
+      "@id": "eu:Article_15_4_Cybersecurity_Defense",
+      "@type": "regu:RegulatoryRequirement",
+      "rdfs:label": "Cybersecurity & Adversarial Defense",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 15(4)",
+      "regu:targetClass": "regu:CybersecurityControl",
+      "regu:mandatoryFor": "regu:HighRiskAISystem",
+      "skos:closeMatch": "nist:GOVERN_1.6",
+      "skos:relatedMatch": "iso:Control_A_9_2",
+      "regu:description": "Resilient against attempts by unauthorised third parties to alter system use, outputs or performance through data poisoning, model evasion, adversarial perturbations, and prompt injection."
+    },
+    {
+      "@id": "eu:Article_51_GPAI_Systemic_Risk",
+      "@type": "regu:RegulatoryRequirement",
+      "rdfs:label": "General-Purpose AI Models with Systemic Risk",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter V Article 51",
+      "regu:targetClass": "regu:GeneralPurposeAIModel",
+      "regu:mandatoryFor": "regu:GPAIWithSystemicRisk",
+      "skos:closeMatch": "nist:MEASURE_1.1",
+      "skos:relatedMatch": "iso:Control_A_6_1",
+      "regu:description": "A general-purpose AI model shall be classified as having systemic risk if the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25 FLOPs."
+    },
+    {
+      "@id": "eu:Article_55_GPAI_Safety_Evaluation",
+      "@type": "regu:RegulatoryRequirement",
+      "rdfs:label": "GPAI Model Evaluation & Adversarial Red-Teaming",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter V Article 55",
+      "regu:targetClass": "regu:GeneralPurposeAIModel",
+      "regu:mandatoryFor": "regu:GPAIWithSystemicRisk",
+      "skos:closeMatch": "nist:MEASURE_2.8",
+      "skos:relatedMatch": "iso:Control_A_9_4",
+      "regu:description": "Perform model evaluation in accordance with standardised protocols, including conducting and documenting adversarial testing (red-teaming) to identify and mitigate systemic risks."
     }
   ]
 }
