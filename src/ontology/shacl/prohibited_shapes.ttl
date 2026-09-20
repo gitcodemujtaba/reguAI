@@ -1,0 +1,31 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix regu: <http://regu.ai/schema#> .
+@prefix eu: <http://data.europa.eu/eli/reg/2024/1689#> .
+
+# =========================================================================
+# ReguAI Normative SHACL Shape Validation: Article 5 Prohibited AI Practices
+# Regulation (EU) 2024/1689 - Chapter II (Prohibited Practices)
+# =========================================================================
+
+regu:ProhibitedAISystemShape
+    a sh:NodeShape ;
+    sh:targetClass regu:ProhibitedAISystem ;
+    sh:name "EU AI Act Article 5 Prohibited Practice Mandatory Ban Shape" ;
+    sh:description "Enforces the absolute statutory prohibition on placing on the market, putting into service or using AI systems under Article 5." ;
+
+    sh:property [
+        sh:path regu:prohibitionStatus ;
+        sh:hasValue regu:PermittedSystem ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 5 Non-Conformity: The AI system engages in an explicitly prohibited AI practice under Article 5 (unacceptable risk). Placing on the market, putting into service or using this system is strictly unlawful across the European Union." ;
+    ] ;
+
+    sh:property [
+        sh:path regu:hasProhibitedPracticeType ;
+        sh:maxCount 0 ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 5(1) Non-Conformity: Detected prohibited AI capability (e.g. emotion recognition in workplace/education, social scoring, biometric scraping, or subliminal manipulation). Immediate market withdrawal required." ;
+    ] .

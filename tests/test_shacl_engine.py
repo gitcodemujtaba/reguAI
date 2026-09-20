@@ -51,3 +51,29 @@ def test_non_compliant_hr_fails(components):
     assert any("14" in art for art in violation_articles)
     assert any("10" in art for art in violation_articles)
     assert score < 80.0
+
+
+def test_prohibited_emotion_recognition_fails(components):
+    proh_file = SYNTHETIC_DIR / "prohibited_emotion_recognition_workplace.json"
+    spec = components["parser"].parse_file(proh_file)
+    spec = components["extractor"].enrich_system_specification(spec)
+    graph = components["builder"].build_system_graph(spec)
+
+    conforms, violations, warnings, score = components["engine"].validate_system(graph)
+
+    assert conforms is False
+    assert len(violations) >= 1
+    violation_articles = [v.regulatory_article for v in violations]
+    # Must flag Article 5 Prohibited Practice
+    assert any("5" in art for art in violation_articles)
+
+
+def test_gpai_foundation_llm_evaluates(components):
+    gpai_file = SYNTHETIC_DIR / "gpai_foundation_llm.json"
+    spec = components["parser"].parse_file(gpai_file)
+    spec = components["extractor"].enrich_system_specification(spec)
+    graph = components["builder"].build_system_graph(spec)
+
+    conforms, violations, warnings, score = components["engine"].validate_system(graph)
+    assert conforms is True
+    assert len(violations) == 0

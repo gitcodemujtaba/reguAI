@@ -5,6 +5,7 @@ binding them to formal legal ontologies.
 """
 
 from typing import Tuple, Dict, Any, List
+import re
 import rdflib
 from rdflib import Graph, URIRef, Literal, RDF, RDFS, XSD
 
@@ -61,8 +62,20 @@ class NormativeGraphBuilder:
 
         sys_uri = REGU[f"system_{spec.metadata.system_id.replace('-', '_')}"]
         
-        # System Node & Typing
-        if "High-Risk" in spec.metadata.eu_risk_classification:
+        # System Node & Regulatory Typing
+        risk_class_lower = spec.metadata.eu_risk_classification.lower()
+        is_prohibited = "prohibited" in risk_class_lower or bool(re.search(r"\barticle\s*5\b", risk_class_lower))
+        
+        if is_prohibited:
+            g.add((sys_uri, RDF.type, REGU.ProhibitedAISystem))
+            g.add((sys_uri, REGU.prohibitionStatus, REGU.ProhibitedPracticeDetected))
+            g.add((sys_uri, REGU.hasProhibitedPracticeType, REGU.ProhibitedPracticeDetected))
+        elif "general purpose" in risk_class_lower or "gpai" in risk_class_lower:
+            if "systemic" in risk_class_lower or "article 51" in risk_class_lower:
+                g.add((sys_uri, RDF.type, REGU.GPAISystemicRiskModel))
+            else:
+                g.add((sys_uri, RDF.type, REGU.GPAIModel))
+        elif "high-risk" in risk_class_lower or "annex iii" in risk_class_lower or "annex i" in risk_class_lower:
             g.add((sys_uri, RDF.type, REGU.HighRiskAISystem))
         else:
             g.add((sys_uri, RDF.type, REGU.AISystem))

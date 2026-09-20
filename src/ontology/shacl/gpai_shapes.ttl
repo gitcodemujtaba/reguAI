@@ -1,0 +1,75 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix regu: <http://regu.ai/schema#> .
+@prefix eu: <http://data.europa.eu/eli/reg/2024/1689#> .
+
+# =========================================================================
+# ReguAI Normative SHACL Shape Validation: General-Purpose AI (GPAI)
+# Regulation (EU) 2024/1689 - Chapter V (Articles 51, 53, 55)
+# =========================================================================
+
+regu:GPAISystemicRiskShape
+    a sh:NodeShape ;
+    sh:targetClass regu:GPAISystemicRiskModel ;
+    sh:name "EU AI Act Chapter V GPAI with Systemic Risk Conformity Shape" ;
+    sh:description "Enforces mandatory requirements for General-Purpose AI Models with Systemic Risk (> 10^25 FLOPs) under Articles 51, 53, and 55." ;
+
+    # ---------------------------------------------------------------------
+    # Article 53: Technical Documentation (Annex XI)
+    # ---------------------------------------------------------------------
+    sh:property [
+        sh:path regu:hasTechnicalDocumentation ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 53(1)(a) Non-Conformity: Providers of general-purpose AI models must draw up and keep up-to-date technical documentation of the model (Annex XI)." ;
+    ] ;
+    sh:property [
+        sh:path ( regu:hasTechnicalDocumentation regu:implementationStatus ) ;
+        sh:hasValue regu:Implemented ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 53(1)(a) Non-Conformity: GPAI technical documentation package must be 'Implemented' and available for the AI Office." ;
+    ] ;
+
+    # ---------------------------------------------------------------------
+    # Article 53(1)(c): Copyright Compliance & TDM Opt-Out
+    # ---------------------------------------------------------------------
+    sh:property [
+        sh:path regu:hasDataGovernance ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 53(1)(c) Non-Conformity: Providers of GPAI models must put in place a policy to comply with Union copyright law (Directive (EU) 2019/790) and respect text and data mining opt-outs." ;
+    ] ;
+
+    # ---------------------------------------------------------------------
+    # Article 55: Adversarial Red-Teaming & Safety Evaluation
+    # ---------------------------------------------------------------------
+    sh:property [
+        sh:path regu:hasCybersecurityControl ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 55(1)(a) Non-Conformity: Providers of GPAI models with systemic risk must conduct and document continuous adversarial testing (red-teaming) to identify and mitigate systemic risks." ;
+    ] ;
+    sh:property [
+        sh:path ( regu:hasCybersecurityControl regu:implementationStatus ) ;
+        sh:hasValue regu:Implemented ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 55(1)(a) Non-Conformity: Adversarial red-teaming defenses must be verified as 'Implemented'." ;
+    ] ;
+
+    # ---------------------------------------------------------------------
+    # Article 55(1)(b): Systemic Risk Mitigation & Monitoring
+    # ---------------------------------------------------------------------
+    sh:property [
+        sh:path regu:hasRiskManagementSystem ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 55(1)(b) Non-Conformity: Providers of GPAI models with systemic risk must continuously assess and mitigate systemic risks, including serious incidents." ;
+    ] ;
+    sh:property [
+        sh:path ( regu:hasRiskManagementSystem regu:implementationStatus ) ;
+        sh:hasValue regu:Implemented ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 55(1)(b) Non-Conformity: Systemic risk management system must be 'Implemented'." ;
+    ] .
