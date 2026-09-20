@@ -33,25 +33,52 @@ DEFAULT_CASE_TITLES = [c["title"] for c in DEFAULT_CASES]
 DEFAULT_CASE_TITLE = DEFAULT_CASE_TITLES[0]
 DEFAULT_SPEC_TEXT = catalog.get_case_document_text(DEFAULT_CASE_TITLE)
 DEFAULT_FACTSHEET = catalog.render_factsheet_html(DEFAULT_CASE_TITLE)
+DEFAULT_QUICK_BAR = catalog.render_quick_bar(DEFAULT_CASE_TITLE)
 
 
 def on_domain_change(selected_domain_name: str):
     cases = catalog.get_cases_for_domain(selected_domain_name)
     if not cases:
-        return gr.update(choices=[], value=None), "", "<div style='padding:15px;'>No cases found.</div>"
+        return gr.update(choices=[], value=None), "", "", "<div style='padding:15px;'>No cases found.</div>"
     titles = [c["title"] for c in cases]
     first_title = titles[0]
     text = catalog.get_case_document_text(first_title)
     factsheet = catalog.render_factsheet_html(first_title)
-    return gr.update(choices=titles, value=first_title), text, factsheet
+    quick_bar = catalog.render_quick_bar(first_title)
+    return gr.update(choices=titles, value=first_title), text, quick_bar, factsheet
 
 
 def on_case_change(selected_case_title: str):
     if not selected_case_title:
-        return "", "<div style='padding:15px;'>Select a case study.</div>"
+        return "", "", "<div style='padding:15px;'>Select a case study.</div>"
     text = catalog.get_case_document_text(selected_case_title)
     factsheet = catalog.render_factsheet_html(selected_case_title)
-    return text, factsheet
+    quick_bar = catalog.render_quick_bar(selected_case_title)
+    return text, quick_bar, factsheet
+
+
+def load_preset(domain_idx: int, case_idx: int = 0):
+    domains = catalog.list_domains()
+    if domain_idx >= len(domains):
+        domain_idx = 0
+    dom = domains[domain_idx]
+    dom_name = dom["domain_name"]
+    cases = dom.get("case_studies", [])
+    if not cases:
+        return gr.update(), gr.update(), "", "", ""
+    case = cases[min(case_idx, len(cases) - 1)]
+    case_title = case["title"]
+    case_titles = [c["title"] for c in cases]
+    text = catalog.get_case_document_text(case_title)
+    factsheet = catalog.render_factsheet_html(case_title)
+    quick_bar = catalog.render_quick_bar(case_title)
+    return (
+        gr.update(value=dom_name),
+        gr.update(choices=case_titles, value=case_title),
+        text,
+        quick_bar,
+        factsheet,
+    )
 
 
 def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 50000000.0, is_sme: bool = False):
@@ -178,7 +205,7 @@ def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 5000
     border = "#bbf7d0" if ceiling == 0.0 else "#fed7aa"
 
     fine_html = f"""
-    <div style="background: {bg}; border: 1px solid {border}; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+    <div class="fine-liability-card" style="background: {bg}; border: 1px solid {border}; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
         <div style="font-size: 13px; font-weight: 700; color: {color}; text-transform: uppercase; letter-spacing: 0.5px;">Regulation (EU) 2024/1689 Article 99 Corporate Fine Exposure</div>
         <div style="font-size: 32px; font-weight: 800; color: {color}; margin: 8px 0;">
             €{ceiling:,.2f}
@@ -189,7 +216,7 @@ def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 5000
             <div><strong>SME Discount (Art. 99(6)):</strong> {'✓ Active' if fine.get('is_sme_discount_applied') else '✗ Inactive (Standard Enterprise)'}</div>
             <div><strong>Simulated Turnover:</strong> €{float(annual_turnover):,.2f}</div>
         </div>
-        <div style="font-size: 13px; color: #1e293b; line-height: 1.6; background: rgba(255,255,255,0.85); padding: 12px 16px; border-radius: 6px; border: 1px solid #e2e8f0;">
+        <div class="fine-basis" style="font-size: 13px; color: #1e293b; line-height: 1.6; background: rgba(255,255,255,0.85); padding: 12px 16px; border-radius: 6px; border: 1px solid #e2e8f0;">
             <strong>Statutory Basis & Remediations:</strong> {fine.get('executive_liability_summary', '')}
         </div>
     </div>
@@ -231,6 +258,16 @@ def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 5000
         frameworks_data,
         fine_html,
     )
+
+
+def load_preset_and_assess(domain_idx: int, case_idx: int, auditor_id: str, turnover: float, is_sme: bool):
+    dom_update, case_update, text, quick_bar, factsheet = load_preset(domain_idx, case_idx)
+    assessment_res = run_assessment(text, auditor_id, turnover, is_sme)
+    return (dom_update, case_update, text, quick_bar, factsheet, *assessment_res)
+
+
+# Pre-compute live initial evaluation for default case study so dashboard opens fully populated
+DEFAULT_ASSESSMENT = run_assessment(DEFAULT_SPEC_TEXT, "lead_compliance_auditor_01", 50000000.0, False)
 
 
 def record_triage(claim_id: str, new_status: str, new_category: str, notes: str, auditor_id: str):
@@ -530,6 +567,128 @@ button:not(.primary):not([variant="primary"]) {
     border-color: #78350f !important;
     color: #fef3c7 !important;
 }
+
+/* Quick Summary Bar */
+.quick-summary-bar {
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 6px !important;
+}
+
+.dark .quick-summary-bar {
+    background: #0f172a !important;
+    border-color: #334155 !important;
+    color: #cbd5e1 !important;
+}
+
+/* -------------------------------------------------------------
+   WORKFLOW STEPPER
+------------------------------------------------------------- */
+.workflow-stepper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin: 12px 0 16px 0;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.dark .workflow-stepper {
+    background: #0f172a !important;
+    border-color: #334155 !important;
+}
+
+.step-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.step-num {
+    background: #2563eb;
+    color: #ffffff !important;
+    font-weight: 800;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.step-text {
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.25;
+}
+
+.dark .step-text {
+    color: #94a3b8 !important;
+}
+
+.step-text strong {
+    display: block;
+    color: #0f172a;
+    font-size: 13px;
+}
+
+.dark .step-text strong {
+    color: #f8fafc !important;
+}
+
+.step-arrow {
+    color: #94a3b8;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+/* -------------------------------------------------------------
+   PRESET BUTTONS
+------------------------------------------------------------- */
+.preset-btn {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    padding: 6px 12px !important;
+    border-radius: 8px !important;
+    border: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
+    color: #1e293b !important;
+    transition: all 0.15s ease !important;
+}
+
+.preset-btn:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08) !important;
+}
+
+.dark .preset-btn {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+.dark .preset-btn:hover {
+    background: #334155 !important;
+}
+
+/* -------------------------------------------------------------
+   FINE LIABILITY CARD DARK MODE
+------------------------------------------------------------- */
+.dark .fine-liability-card {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+.dark .fine-liability-card .fine-basis {
+    background: #0f172a !important;
+    color: #cbd5e1 !important;
+    border-color: #334155 !important;
+}
 """
 
 with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
@@ -548,84 +707,146 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
             <span class="header-badge">🔗 W3C PROV-O Audit Ledger</span>
             <span class="header-badge">👤 Auditor-in-the-Loop Active Learning</span>
         </div>
+
+        <div class="workflow-stepper">
+            <div class="step-card">
+                <span class="step-num">1</span>
+                <div class="step-text">
+                    <strong>Select AI Scenario</strong>
+                    1-Click Preset or 11 EU Domains
+                </div>
+            </div>
+            <div class="step-arrow">➔</div>
+            <div class="step-card">
+                <span class="step-num">2</span>
+                <div class="step-text">
+                    <strong>Review Legal Grounding</strong>
+                    EUR-Lex CELEX & W3C PROV-O
+                </div>
+            </div>
+            <div class="step-arrow">➔</div>
+            <div class="step-card">
+                <span class="step-num">3</span>
+                <div class="step-text">
+                    <strong>Run Deterministic Audit</strong>
+                    W3C SHACL Mathematical Proofs
+                </div>
+            </div>
+            <div class="step-arrow">➔</div>
+            <div class="step-card">
+                <span class="step-num">4</span>
+                <div class="step-text">
+                    <strong>Export Findings & Cert</strong>
+                    Annex IV Certificate, Fines & Graph
+                </div>
+            </div>
+        </div>
         """
     )
 
     with gr.Row():
         with gr.Column(scale=5):
+            gr.Markdown("**⚡ 1-Click Quick Scenarios (Click to Instantly Evaluate):**")
+            with gr.Row():
+                preset_samd = gr.Button("🏥 Compliant SaMD", size="sm", elem_classes=["preset-btn"])
+                preset_hr = gr.Button("💼 Failed HR AI", size="sm", elem_classes=["preset-btn"])
+                preset_prohibited = gr.Button("🚫 Prohibited AI", size="sm", elem_classes=["preset-btn"])
+                preset_gpai = gr.Button("🌐 Frontier GPAI", size="sm", elem_classes=["preset-btn"])
+                preset_grid = gr.Button("⚡ Critical Grid", size="sm", elem_classes=["preset-btn"])
+
             with gr.Row():
                 domain_dropdown = gr.Dropdown(
-                    label="🌐 1. Select Regulatory Domain / Statutory Classification",
+                    label="🌐 1. Select Regulatory Domain",
                     choices=DOMAIN_OPTIONS,
                     value=DEFAULT_DOMAIN,
                     scale=6,
                     interactive=True,
+                    info="11 statutory sectors under EU AI Act",
                 )
                 case_dropdown = gr.Dropdown(
-                    label="📁 2. Select Benchmark Case Study & Legal Scenario",
+                    label="📁 2. Select AI Benchmark Case Study",
                     choices=DEFAULT_CASE_TITLES,
                     value=DEFAULT_CASE_TITLE,
                     scale=6,
                     interactive=True,
+                    info="Canonical legal scenarios with EUR-Lex provenance",
                 )
-            factsheet_box = gr.HTML(
-                value=DEFAULT_FACTSHEET,
-                label="Statutory Reference Factsheet & Cryptographic Provenance",
+
+            quick_bar_box = gr.HTML(
+                value=DEFAULT_QUICK_BAR,
+                label="Statutory Quick Summary",
             )
-            spec_input = gr.Textbox(
-                label="📄 System Technical Specification / Model Card (Markdown or JSON)",
-                lines=12,
-                placeholder="Paste AI system architecture or model card text...",
-                value=DEFAULT_SPEC_TEXT,
-            )
-            auditor_input = gr.Textbox(
-                label="Auditor Credential Identifier",
-                value="lead_compliance_auditor_01",
-                placeholder="e.g. auditor@enterprise.org",
-            )
-            with gr.Accordion("💰 Article 99 Corporate Fine Modeling", open=False):
+
+            with gr.Tabs():
+                with gr.TabItem("📄 Technical Specification / Model Card"):
+                    spec_input = gr.Textbox(
+                        label="System Technical Specification (Markdown or JSON - Fully Editable)",
+                        lines=12,
+                        placeholder="Paste AI system architecture or model card text...",
+                        value=DEFAULT_SPEC_TEXT,
+                        info="Grounds natural language model cards into normative RDF knowledge graph",
+                    )
+                with gr.TabItem("📚 Statutory Factsheet & Cryptographic Provenance"):
+                    factsheet_box = gr.HTML(
+                        value=DEFAULT_FACTSHEET,
+                        label="Full Regulatory Factsheet & EUR-Lex Provenance",
+                    )
+
+            with gr.Row():
+                auditor_input = gr.Textbox(
+                    label="Auditor Identifier",
+                    value="lead_compliance_auditor_01",
+                    scale=5,
+                    info="Embedded in W3C PROV-O audit ledger",
+                )
                 turnover_input = gr.Number(
-                    label="Worldwide Annual Turnover (EUR)",
+                    label="Annual Turnover (€)",
                     value=50000000.0,
                     step=5000000.0,
-                    info="Used to calculate maximum turnover percentage ceilings under Article 99"
+                    scale=4,
+                    info="For Art. 99 administrative fine modeling",
                 )
                 is_sme_input = gr.Checkbox(
-                    label="SME / Startup Status (Article 99(6) Special Ceiling)",
+                    label="SME Status",
                     value=False,
-                    info="Applies lower of fixed amount or turnover percentage"
+                    scale=3,
+                    info="Art. 99(6) reduced fine caps (whichever is lower)",
                 )
+
             assess_btn = gr.Button("⚡ Run Deterministic Conformity Assessment", variant="primary", size="lg")
 
         with gr.Column(scale=7):
-            exec_output = gr.HTML(label="Executive Conformity Summary")
+            exec_output = gr.HTML(value=DEFAULT_ASSESSMENT[0], label="Executive Conformity Summary")
             
             with gr.Tabs():
-                with gr.TabItem("🌐 Interactive Regulatory Graph"):
-                    graph_output = gr.HTML(label="Force-Directed Regulatory Dependency Network")
-
                 with gr.TabItem("⚖️ SHACL Deterministic Violations"):
                     violations_table = gr.Dataframe(
                         headers=["Legal Article", "Normative Requirement", "Severity", "SHACL Path", "Remediation Guidance"],
                         datatype=["str", "str", "str", "str", "str"],
+                        value=DEFAULT_ASSESSMENT[1],
                         label="Mathematical Proof: Non-Conformities Found",
                     )
 
-                with gr.TabItem("🌐 Multi-Framework Crosswalk"):
+                with gr.TabItem("📊 Multi-Framework Crosswalk"):
                     gr.Markdown("### 🇪🇺 EU AI Act ⟷ NIST AI RMF 1.0 ⟷ ISO/IEC 42001:2023 ⟷ GDPR")
                     frameworks_table = gr.Dataframe(
                         headers=["Target Framework", "Control ID", "Control Name", "Status", "Linked AI Act Article", "Audit Guidance"],
                         datatype=["str", "str", "str", "str", "str", "str"],
+                        value=DEFAULT_ASSESSMENT[10],
                         label="Automated Cross-Regulatory Control Status",
                     )
 
                 with gr.TabItem("💰 Article 99 Fine Liability"):
-                    fine_liability_output = gr.HTML(label="Corporate Balance Sheet Exposure")
+                    fine_liability_output = gr.HTML(value=DEFAULT_ASSESSMENT[11], label="Corporate Balance Sheet Exposure")
+
+                with gr.TabItem("🕸️ Interactive Regulatory Graph"):
+                    graph_output = gr.HTML(value=DEFAULT_ASSESSMENT[3], label="Force-Directed Regulatory Dependency Network")
 
                 with gr.TabItem("🔍 Extracted Regulatory Claims"):
                     claims_table = gr.Dataframe(
                         headers=["Claim ID", "Category", "Status", "Confidence", "Target Article", "Evidence Span"],
                         datatype=["str", "str", "str", "str", "str", "str"],
+                        value=DEFAULT_ASSESSMENT[2],
                         label="Domain-Adapted Claim Extraction & NegEx Grounding",
                     )
 
@@ -634,6 +855,7 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
                     borderline_table = gr.Dataframe(
                         headers=["Claim ID", "Category", "Status", "Confidence", "Evidence Quote"],
                         datatype=["str", "str", "str", "str", "str"],
+                        value=DEFAULT_ASSESSMENT[9],
                     )
                     with gr.Row():
                         triage_claim_id = gr.Textbox(label="Claim ID to Triage", placeholder="e.g. clm_001")
@@ -644,30 +866,79 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
                     triage_result = gr.Markdown()
 
                 with gr.TabItem("🔐 Cryptographic Audit Ledger"):
-                    token_display = gr.Textbox(label="Official Digital Conformity Token", interactive=False)
-                    ledger_display = gr.Markdown()
+                    token_display = gr.Textbox(value=DEFAULT_ASSESSMENT[4], label="Official Digital Conformity Token", interactive=False)
+                    ledger_display = gr.Markdown(value=DEFAULT_ASSESSMENT[5])
 
                 with gr.TabItem("📑 Export Technical Documentation (Annex IV)"):
                     with gr.Tabs():
                         with gr.TabItem("📜 Official Print-Ready Certificate (HTML)"):
-                            cert_html_output = gr.HTML()
+                            cert_html_output = gr.HTML(value=DEFAULT_ASSESSMENT[8])
                         with gr.TabItem("Annex IV Official Report (Markdown)"):
-                            report_markdown = gr.Markdown()
+                            report_markdown = gr.Markdown(value=DEFAULT_ASSESSMENT[7])
                         with gr.TabItem("Machine-Readable JSON-LD"):
-                            jsonld_display = gr.Code(language="json", label="W3C JSON-LD Digital Certificate")
+                            jsonld_display = gr.Code(value=DEFAULT_ASSESSMENT[6], language="json", label="W3C JSON-LD Digital Certificate")
 
-    # Wire event handlers
+    # Outputs list for 1-click preset execution (17 components)
+    preset_outputs = [
+        domain_dropdown,
+        case_dropdown,
+        spec_input,
+        quick_bar_box,
+        factsheet_box,
+        exec_output,
+        violations_table,
+        claims_table,
+        graph_output,
+        token_display,
+        ledger_display,
+        jsonld_display,
+        report_markdown,
+        cert_html_output,
+        borderline_table,
+        frameworks_table,
+        fine_liability_output,
+    ]
+
+    # Wire 1-Click Preset Scenario Buttons
+    preset_samd.click(
+        fn=lambda a, t, s: load_preset_and_assess(0, 0, a, t, s),
+        inputs=[auditor_input, turnover_input, is_sme_input],
+        outputs=preset_outputs,
+    )
+    preset_hr.click(
+        fn=lambda a, t, s: load_preset_and_assess(1, 0, a, t, s),
+        inputs=[auditor_input, turnover_input, is_sme_input],
+        outputs=preset_outputs,
+    )
+    preset_prohibited.click(
+        fn=lambda a, t, s: load_preset_and_assess(8, 1, a, t, s),
+        inputs=[auditor_input, turnover_input, is_sme_input],
+        outputs=preset_outputs,
+    )
+    preset_gpai.click(
+        fn=lambda a, t, s: load_preset_and_assess(7, 0, a, t, s),
+        inputs=[auditor_input, turnover_input, is_sme_input],
+        outputs=preset_outputs,
+    )
+    preset_grid.click(
+        fn=lambda a, t, s: load_preset_and_assess(4, 0, a, t, s),
+        inputs=[auditor_input, turnover_input, is_sme_input],
+        outputs=preset_outputs,
+    )
+
+    # Wire cascading dropdown event handlers
     domain_dropdown.change(
         fn=on_domain_change,
         inputs=[domain_dropdown],
-        outputs=[case_dropdown, spec_input, factsheet_box],
+        outputs=[case_dropdown, spec_input, quick_bar_box, factsheet_box],
     )
     case_dropdown.change(
         fn=on_case_change,
         inputs=[case_dropdown],
-        outputs=[spec_input, factsheet_box],
+        outputs=[spec_input, quick_bar_box, factsheet_box],
     )
 
+    # Wire manual assessment button
     assess_btn.click(
         fn=run_assessment,
         inputs=[spec_input, auditor_input, turnover_input, is_sme_input],
@@ -695,3 +966,4 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
 
 if __name__ == "__main__":
     demo.launch(server_name="0.0.0.0", server_port=7860, share=False, theme=gr.themes.Soft(), css=CUSTOM_CSS)
+

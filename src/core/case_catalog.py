@@ -73,6 +73,52 @@ class CaseStudyCatalog:
             return data.get("raw_document_text", "")
         return ""
 
+    def render_quick_bar(self, case_id_or_title: str) -> str:
+        case = self.get_case(case_id_or_title) or self.get_case_by_title(case_id_or_title)
+        if not case:
+            return ""
+
+        expected = case.get("expected_conformity", "UNKNOWN")
+        if "PASSED" in expected or "CONFORMANT" in expected:
+            pill_color = "#10b981"
+            pill_bg = "#ecfdf5"
+            pill_border = "#a7f3d0"
+        elif "PROHIBITED" in expected:
+            pill_color = "#991b1b"
+            pill_bg = "#fee2e2"
+            pill_border = "#f87171"
+        elif "FAILED" in expected or "NON-CONFORMANT" in expected:
+            pill_color = "#b91c1c"
+            pill_bg = "#fef2f2"
+            pill_border = "#fca5a5"
+        else:
+            pill_color = "#b45309"
+            pill_bg = "#fffbeb"
+            pill_border = "#fde68a"
+
+        reqs = case.get("regulatory_requirements", {})
+        fine = reqs.get("fine_exposure_tier", "N/A")
+        tier = case.get("statutory_tier", "AI System")
+        celex = case.get("provenance", {}).get("celex", "32024R1689")
+        eli_uri = case.get("provenance", {}).get("eli_uri", "http://data.europa.eu/eli/reg/2024/1689/oj")
+
+        return f"""
+        <div class="quick-summary-bar" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:8px 12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; margin:4px 0 10px 0; font-size:12px;">
+            <span style="background:{pill_bg}; color:{pill_color}; border:1px solid {pill_border}; padding:2px 8px; border-radius:4px; font-weight:700;">
+                {expected}
+            </span>
+            <span style="background:#e0f2fe; color:#0369a1; border:1px solid #bae6fd; padding:2px 8px; border-radius:4px; font-weight:600;">
+                ⚖️ {tier}
+            </span>
+            <span style="background:#fef2f2; color:#991b1b; border:1px solid #fecaca; padding:2px 8px; border-radius:4px; font-weight:600;">
+                💰 {fine.split('(')[0].strip()}
+            </span>
+            <a href="{eli_uri}" target="_blank" style="margin-left:auto; color:#2563eb; text-decoration:none; font-weight:600; display:flex; align-items:center; gap:2px;">
+                📜 EUR-Lex CELEX:{celex} ↗
+            </a>
+        </div>
+        """
+
     def render_factsheet_html(self, case_id_or_title: str) -> str:
         case = self.get_case(case_id_or_title) or self.get_case_by_title(case_id_or_title)
         if not case:
