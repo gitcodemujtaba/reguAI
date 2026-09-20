@@ -19,6 +19,8 @@ from src.reasoning.shacl_engine import DeterministicSHACLEngine
 from src.ledger.provenance import ProvenanceLedger
 from src.triage.active_learning import ActiveLearningTriageQueue
 from src.triage.report_generator import ConformityReportGenerator
+from src.reasoning.framework_crosswalk import MultiFrameworkCrosswalk
+from src.reasoning.fine_calculator import FineLiabilityCalculator
 
 
 class ReguAIEngine:
@@ -30,11 +32,15 @@ class ReguAIEngine:
         self.ledger = ProvenanceLedger()
         self.triage_queue = ActiveLearningTriageQueue()
         self.report_generator = ConformityReportGenerator()
+        self.crosswalk = MultiFrameworkCrosswalk()
+        self.fine_calculator = FineLiabilityCalculator()
 
     def evaluate_system(
         self,
         input_data: Union[str, Path, Dict[str, Any]],
         auditor_id: str = "reguai_lead_auditor",
+        annual_turnover_eur: float = 0.0,
+        is_sme: bool = False,
     ) -> ConformityReport:
         """
         Executes full deterministic conformity assessment pipeline:
@@ -43,7 +49,9 @@ class ReguAIEngine:
         3. Construct RDF normative graph
         4. Run deterministic W3C SHACL shape validation
         5. Generate cryptographic W3C PROV-O audit ledger
-        6. Generate comprehensive ConformityReport
+        6. Compute Multi-Framework Harmonization Crosswalk (NIST / ISO / GDPR)
+        7. Calculate Article 99 Statutory Fine Liability
+        8. Generate comprehensive ConformityReport
         """
         # 1. Parsing
         if isinstance(input_data, Path):
@@ -77,7 +85,15 @@ class ReguAIEngine:
             auditor_id=auditor_id,
         )
 
-        # 6. Build Conformity Report
+        # 6. Multi-Framework Harmonization & Article 99 Liability
+        crosswalk_res = self.crosswalk.harmonize(violations=violations)
+        fine_res = self.fine_calculator.calculate_exposure(
+            violations=violations,
+            annual_turnover_eur=annual_turnover_eur,
+            is_sme=is_sme,
+        )
+
+        # 7. Build Conformity Report
         total_reqs = len(violations) + len(warnings) + 6
         passed_reqs = max(0, total_reqs - len(violations))
         now_utc = datetime.now(timezone.utc).isoformat()
@@ -94,7 +110,8 @@ class ReguAIEngine:
             summary = (
                 f"The AI system '{spec.metadata.name}' fails mandatory EU AI Act Chapter III high-risk requirements. "
                 f"Formal W3C SHACL constraint validation discovered {len(violations)} non-conformities affecting {violation_articles}. "
-                f"Remediation is required before deployment into high-impact environments."
+                f"Remediation is required before deployment into high-impact environments. "
+                f"{fine_res.executive_liability_summary}"
             )
 
         report = ConformityReport(
@@ -111,6 +128,8 @@ class ReguAIEngine:
             provenance=provenance,
             generated_at_utc=now_utc,
             executive_summary=summary,
+            fine_exposure=fine_res.model_dump(),
+            harmonized_frameworks=crosswalk_res.model_dump(),
         )
 
         return report

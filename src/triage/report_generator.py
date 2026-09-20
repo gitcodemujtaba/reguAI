@@ -68,8 +68,35 @@ class ConformityReportGenerator:
             md.append(f"| `{c.claim_id}` | `{c.category.value}` | {status_emoji} {c.assertion_status.value} | {c.confidence:.2f} | {c.normative_article} | *\"{c.evidence_quote[:75]}...\"* |")
         md.append("")
 
-        # Section 5: Cryptographic Provenance Ledger
-        md.append("## 5. Cryptographic Provenance & Audit Ledger (W3C PROV-O)")
+        # Section 5: Multi-Framework Regulatory Harmonization
+        if report.harmonized_frameworks:
+            md.append("## 5. Multi-Framework Regulatory Harmonization (NIST RMF / ISO 42001 / GDPR)")
+            fw_data = report.harmonized_frameworks.get("frameworks", {})
+            for fw_name, fw_summary in fw_data.items():
+                pct = fw_summary.get("conformity_percentage", 100.0)
+                sat = fw_summary.get("satisfied_controls_count", 0)
+                tot = fw_summary.get("total_mapped_controls", 0)
+                md.append(f"### {fw_name} (Alignment: {pct}% - {sat}/{tot} controls)")
+                md.append("| Target Control | Control Name | Status | Linked AI Act Article | Audit Guidance |")
+                md.append("|---|---|---|---|---|")
+                for ctrl in fw_summary.get("controls", []):
+                    c_badge = "🟢 SATISFIED" if ctrl.get("status") == "SATISFIED" else "🔴 NON-COMPLIANT"
+                    md.append(f"| `{ctrl.get('control_id')}` | {ctrl.get('control_name')} | {c_badge} | **{ctrl.get('eu_ai_act_article')}** | {ctrl.get('audit_guidance')} |")
+                md.append("")
+
+        # Section 6: Statutory Fine Liability Analysis
+        if report.fine_exposure:
+            fine = report.fine_exposure
+            md.append("## 6. Article 99 Statutory Fine & Financial Liability Audit")
+            md.append(f"- **Highest Triggered Penalty Tier:** `{fine.get('highest_tier_triggered')}`")
+            md.append(f"- **Legal Basis:** {fine.get('statutory_legal_basis')}")
+            md.append(f"- **Maximum Statutory Ceiling:** **€{fine.get('applicable_ceiling_eur', 0):,.2f}**")
+            md.append(f"- **Turnover Penalty Rate:** {fine.get('turnover_percentage', 0)}% of global annual turnover")
+            md.append(f"- **SME Special Cap Applied:** {'Yes (Article 99(6))' if fine.get('is_sme_discount_applied') else 'No'}")
+            md.append(f"- **Executive Liability Assessment:** {fine.get('executive_liability_summary')}\n")
+
+        # Section 7: Cryptographic Provenance Ledger
+        md.append("## 7. Cryptographic Provenance & Audit Ledger (W3C PROV-O)")
         md.append("Every artifact in this assessment is cryptographically anchored to prevent tampering and guarantee non-repudiation:")
         md.append(f"- **Source Specification SHA-256:** `{prov.input_doc_sha256}`")
         md.append(f"- **Normative RDF Knowledge Graph Canonical SHA-256:** `{prov.graph_triples_sha256}`")
@@ -142,6 +169,50 @@ class ConformityReportGenerator:
                     ✓ Zero non-conformities identified. All W3C SHACL Chapter III constraints satisfied.
                 </td>
             </tr>
+            """
+
+        fine_box_html = ""
+        if report.fine_exposure:
+            fine = report.fine_exposure
+            ceiling = fine.get("applicable_ceiling_eur", 0.0)
+            f_tier = fine.get("highest_tier_triggered", "NONE")
+            f_color = "#15803d" if ceiling == 0.0 else ("#b91c1c" if "PROHIBITED" in f_tier else "#c2410c")
+            f_bg = "#f0fdf4" if ceiling == 0.0 else "#fff7ed"
+            f_border = "#bbf7d0" if ceiling == 0.0 else "#fed7aa"
+
+            fine_box_html = f"""
+            <div style="background: {f_bg}; border: 1px solid {f_border}; padding: 12px 16px; border-radius: 6px; margin-bottom: 20px;">
+                <div style="font-size: 11px; font-weight: 700; color: {f_color}; text-transform: uppercase;">Article 99 Statutory Fine Liability Exposure</div>
+                <div style="font-size: 18px; font-weight: 800; color: {f_color}; margin: 2px 0;">
+                    €{ceiling:,.2f} <span style="font-size: 12px; font-weight: 500; color: #64748b;">({f_tier})</span>
+                </div>
+                <div style="font-size: 12px; color: #475569;">
+                    {fine.get('executive_liability_summary', '')}
+                </div>
+            </div>
+            """
+
+        frameworks_html = ""
+        if report.harmonized_frameworks:
+            fw_data = report.harmonized_frameworks.get("frameworks", {})
+            fw_badges = ""
+            for fw_name, fw_info in fw_data.items():
+                fw_pct = fw_info.get("conformity_percentage", 100.0)
+                fw_sat = fw_info.get("satisfied_controls_count", 0)
+                fw_tot = fw_info.get("total_mapped_controls", 0)
+                b_color = "#15803d" if fw_pct == 100.0 else "#d97706"
+                fw_badges += f"""
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 6px; flex: 1;">
+                    <div style="font-size: 11px; font-weight: 700; color: #64748b;">{fw_name}</div>
+                    <div style="font-size: 16px; font-weight: 800; color: {b_color};">{fw_pct}%</div>
+                    <div style="font-size: 11px; color: #94a3b8;">{fw_sat}/{fw_tot} controls compliant</div>
+                </div>
+                """
+            frameworks_html = f"""
+            <h3 style="font-size: 14px; text-transform: uppercase; margin: 20px 0 8px 0;">Multi-Framework Harmonization Crosswalk</h3>
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                {fw_badges}
+            </div>
             """
 
         html = f"""<!DOCTYPE html>
@@ -284,6 +355,8 @@ class ConformityReportGenerator:
             <div class="info-item"><strong>Conformity Score</strong> {report.conformity_score:.1f}% ({report.passed_requirements_count}/{report.total_requirements_evaluated} requirements passed)</div>
         </div>
 
+        {fine_box_html}
+
         <h3 style="font-size: 14px; text-transform: uppercase; margin-bottom: 8px;">Deterministic Normative Evaluation Matrix</h3>
         <table>
             <thead>
@@ -297,6 +370,8 @@ class ConformityReportGenerator:
                 {violations_rows}
             </tbody>
         </table>
+
+        {frameworks_html}
 
         <div class="crypto-block">
             <strong>CRYPTOGRAPHIC PROVENANCE LEDGER (W3C PROV-O)</strong><br>

@@ -43,6 +43,14 @@ CERTIFICATE_CACHE: Dict[str, ConformityReport] = {}
 class AuditRequest(BaseModel):
     specification_text: str = Field(..., description="Markdown model card, YAML spec, or JSON system document.")
     auditor_id: Optional[str] = Field("ci_cd_automated_pipeline", description="Identifier of the executing pipeline or auditor.")
+    annual_turnover_eur: Optional[float] = Field(0.0, description="Annual corporate worldwide turnover in EUR for fine exposure modeling.")
+    is_sme: Optional[bool] = Field(False, description="Whether the organization qualifies as an SME/startup under Article 99(6).")
+
+
+class PenaltyCalculationRequest(BaseModel):
+    violations: List[str] = Field(default_factory=list, description="List of violated articles, e.g. ['Article 5(1)(c)', 'Article 14'].")
+    annual_turnover_eur: float = Field(0.0, description="Annual corporate turnover in EUR.")
+    is_sme: bool = Field(False, description="SME cap flag under Article 99(6).")
 
 
 class TripletFeedbackRequest(BaseModel):
@@ -63,6 +71,45 @@ def health_check():
     }
 
 
+@app.get("/api/v1/frameworks/crosswalk", tags=["Harmonization"])
+def get_regulatory_crosswalk():
+    """
+    Returns the complete bidirectional regulatory ontology crosswalk linking
+    EU AI Act Articles to NIST AI RMF 1.0, ISO/IEC 42001:2023, and GDPR.
+    """
+    return {
+        "total_mappings": len(engine.crosswalk.mappings),
+        "mappings": engine.crosswalk.mappings,
+    }
+
+
+@app.post("/api/v1/penalties/calculate", tags=["Penalties"])
+def calculate_penalties(request: PenaltyCalculationRequest):
+    """
+    Calculates statutory fine liability and financial balance sheet risk under Article 99.
+    """
+    from src.core.models import ValidationViolation
+    mock_violations = [
+        ValidationViolation(
+            focus_node="MockNode",
+            result_path="MockPath",
+            source_constraint_component="MockComponent",
+            message="Violated constraint",
+            severity="Violation",
+            regulatory_article=art,
+            normative_reference=art,
+            remediation_guidance="Remediate constraint",
+        )
+        for art in request.violations
+    ]
+    estimate = engine.fine_calculator.calculate_exposure(
+        violations=mock_violations,
+        annual_turnover_eur=request.annual_turnover_eur,
+        is_sme=request.is_sme,
+    )
+    return estimate.model_dump()
+
+
 @app.post("/api/v1/audit/evaluate", response_model=Dict[str, Any], tags=["Conformity Assessment"])
 def evaluate_specification(request: AuditRequest):
     """
@@ -72,7 +119,12 @@ def evaluate_specification(request: AuditRequest):
         raise HTTPException(status_code=400, detail="Specification text cannot be empty.")
 
     try:
-        report = engine.evaluate_system(request.specification_text, auditor_id=request.auditor_id)
+        report = engine.evaluate_system(
+            request.specification_text,
+            auditor_id=request.auditor_id,
+            annual_turnover_eur=request.annual_turnover_eur or 0.0,
+            is_sme=request.is_sme or False,
+        )
         token = report.provenance.digital_signature
         CERTIFICATE_CACHE[token] = report
 
@@ -97,6 +149,8 @@ def evaluate_specification(request: AuditRequest):
             "claims_extracted_count": len(report.claims_analyzed),
             "borderline_claims_count": len(report.borderline_claims),
             "executive_summary": report.executive_summary,
+            "fine_exposure": report.fine_exposure,
+            "harmonized_frameworks": report.harmonized_frameworks,
             "provenance": {
                 "source_doc_sha256": report.provenance.input_doc_sha256,
                 "graph_sha256": report.provenance.graph_triples_sha256,

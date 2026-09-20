@@ -101,3 +101,5 @@ class ConformityReport(BaseModel):
     provenance: AuditProvenance
     generated_at_utc: str
     executive_summary: str
+    fine_exposure: Optional[Dict[str, Any]] = None
+    harmonized_frameworks: Optional[Dict[str, Any]] = None

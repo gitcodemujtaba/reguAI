@@ -39,7 +39,7 @@ def load_sample_content(sample_name: str) -> str:
     return ""
 
 
-def run_assessment(doc_text: str, auditor_id: str):
+def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 50000000.0, is_sme: bool = False):
     if not doc_text or not doc_text.strip():
         return (
             "⚠️ Please enter model card text or select a pre-loaded sample.",
@@ -52,9 +52,16 @@ def run_assessment(doc_text: str, auditor_id: str):
             "",
             "<div>No certificate generated.</div>",
             [],
+            [],
+            "<div style='padding:15px;'>No fine liability evaluated.</div>",
         )
 
-    report = engine.evaluate_system(doc_text, auditor_id=auditor_id or "auditor_01")
+    report = engine.evaluate_system(
+        doc_text,
+        auditor_id=auditor_id or "auditor_01",
+        annual_turnover_eur=float(annual_turnover or 0.0),
+        is_sme=bool(is_sme),
+    )
     
     # 1. Executive Summary HTML
     status_color = "#10b981" if report.overall_conforms else "#ef4444"
@@ -131,7 +138,49 @@ def run_assessment(doc_text: str, auditor_id: str):
             b.evidence_quote[:100],
         ])
 
-    # 6. Cryptographic Ledger Proofs
+    # 6. Multi-Framework Harmonization Data Table
+    frameworks_data = []
+    if report.harmonized_frameworks:
+        fw_dict = report.harmonized_frameworks.get("frameworks", {})
+        for fw_name, fw_info in fw_dict.items():
+            for ctrl in fw_info.get("controls", []):
+                stat_badge = "🟢 SATISFIED" if ctrl.get("status") == "SATISFIED" else "🔴 NON-COMPLIANT"
+                frameworks_data.append([
+                    fw_name,
+                    ctrl.get("control_id"),
+                    ctrl.get("control_name"),
+                    stat_badge,
+                    ctrl.get("eu_ai_act_article"),
+                    ctrl.get("audit_guidance"),
+                ])
+
+    # 7. Article 99 Fine Liability Scorecard HTML
+    fine = report.fine_exposure or {}
+    ceiling = fine.get("applicable_ceiling_eur", 0.0)
+    tier_name = fine.get("highest_tier_triggered", "NONE")
+    color = "#10b981" if ceiling == 0.0 else ("#ef4444" if "PROHIBITED" in tier_name else "#f59e0b")
+    bg = "#f0fdf4" if ceiling == 0.0 else "#fff7ed"
+    border = "#bbf7d0" if ceiling == 0.0 else "#fed7aa"
+
+    fine_html = f"""
+    <div style="background: {bg}; border: 1px solid {border}; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+        <div style="font-size: 13px; font-weight: 700; color: {color}; text-transform: uppercase; letter-spacing: 0.5px;">Regulation (EU) 2024/1689 Article 99 Corporate Fine Exposure</div>
+        <div style="font-size: 32px; font-weight: 800; color: {color}; margin: 8px 0;">
+            €{ceiling:,.2f}
+        </div>
+        <div style="display: flex; gap: 25px; font-size: 13px; color: #475569; margin-bottom: 14px; flex-wrap: wrap;">
+            <div><strong>Penalty Tier:</strong> <code>{tier_name}</code></div>
+            <div><strong>Turnover Percentage:</strong> {fine.get('turnover_percentage', 0)}% of global annual turnover</div>
+            <div><strong>SME Discount (Art. 99(6)):</strong> {'✓ Active' if fine.get('is_sme_discount_applied') else '✗ Inactive (Standard Enterprise)'}</div>
+            <div><strong>Simulated Turnover:</strong> €{float(annual_turnover):,.2f}</div>
+        </div>
+        <div style="font-size: 13px; color: #1e293b; line-height: 1.6; background: rgba(255,255,255,0.85); padding: 12px 16px; border-radius: 6px; border: 1px solid #e2e8f0;">
+            <strong>Statutory Basis & Remediations:</strong> {fine.get('executive_liability_summary', '')}
+        </div>
+    </div>
+    """
+
+    # 8. Cryptographic Ledger Proofs
     prov = report.provenance
     cert_token = prov.digital_signature
     hash_summary = (
@@ -144,7 +193,7 @@ def run_assessment(doc_text: str, auditor_id: str):
         f"| Conformity Assessment Digest | `{prov.certificate_sha256}` |\n"
     )
 
-    # 7. Annex IV Markdown, JSON-LD & Styled HTML Certificate
+    # 9. Annex IV Markdown, JSON-LD & Styled HTML Certificate
     md_report = engine.report_generator.generate_markdown_report(report)
     json_ld_cert = json.dumps(engine.report_generator.generate_json_ld(report), indent=2)
     raw_cert_html = engine.report_generator.generate_html_certificate(report)
@@ -164,6 +213,8 @@ def run_assessment(doc_text: str, auditor_id: str):
         md_report,
         cert_iframe_html,
         borderline_data,
+        frameworks_data,
+        fine_html,
     )
 
 
@@ -435,7 +486,7 @@ button:not(.primary):not([variant="primary"]) {
 }
 """
 
-with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine", css=CUSTOM_CSS, theme=gr.themes.Soft()) as demo:
+with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
     gr.Markdown(
         """
         # 🏛️ ReguAI: Deterministic Neuro-Symbolic AI GRC & Conformity Engine
@@ -446,9 +497,9 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine", css=CUSTOM_CSS, the
         <div style="display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap;">
             <span class="header-badge">🇪🇺 EU AI Act High-Risk (Arts. 9-15)</span>
             <span class="header-badge">📐 W3C SHACL Deterministic Proofs</span>
-            <span class="header-badge">🌐 Interactive Knowledge Graph</span>
+            <span class="header-badge">🌐 Multi-Framework Crosswalk (NIST & ISO)</span>
+            <span class="header-badge">💰 Article 99 Statutory Fine Modeling</span>
             <span class="header-badge">🔗 W3C PROV-O Audit Ledger</span>
-            <span class="header-badge">🛡️ Zero-Hallucination Guarantee</span>
             <span class="header-badge">👤 Auditor-in-the-Loop Active Learning</span>
         </div>
         """
@@ -472,6 +523,18 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine", css=CUSTOM_CSS, the
                 value="lead_compliance_auditor_01",
                 placeholder="e.g. auditor@enterprise.org",
             )
+            with gr.Accordion("💰 Article 99 Corporate Fine Modeling", open=False):
+                turnover_input = gr.Number(
+                    label="Worldwide Annual Turnover (EUR)",
+                    value=50000000.0,
+                    step=5000000.0,
+                    info="Used to calculate maximum turnover percentage ceilings under Article 99"
+                )
+                is_sme_input = gr.Checkbox(
+                    label="SME / Startup Status (Article 99(6) Special Ceiling)",
+                    value=False,
+                    info="Applies lower of fixed amount or turnover percentage"
+                )
             assess_btn = gr.Button("⚡ Run Deterministic Conformity Assessment", variant="primary", size="lg")
 
         with gr.Column(scale=7):
@@ -487,6 +550,17 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine", css=CUSTOM_CSS, the
                         datatype=["str", "str", "str", "str", "str"],
                         label="Mathematical Proof: Non-Conformities Found",
                     )
+
+                with gr.TabItem("🌐 Multi-Framework Crosswalk"):
+                    gr.Markdown("### 🇪🇺 EU AI Act ⟷ NIST AI RMF 1.0 ⟷ ISO/IEC 42001:2023 ⟷ GDPR")
+                    frameworks_table = gr.Dataframe(
+                        headers=["Target Framework", "Control ID", "Control Name", "Status", "Linked AI Act Article", "Audit Guidance"],
+                        datatype=["str", "str", "str", "str", "str", "str"],
+                        label="Automated Cross-Regulatory Control Status",
+                    )
+
+                with gr.TabItem("💰 Article 99 Fine Liability"):
+                    fine_liability_output = gr.HTML(label="Corporate Balance Sheet Exposure")
 
                 with gr.TabItem("🔍 Extracted Regulatory Claims"):
                     claims_table = gr.Dataframe(
@@ -531,7 +605,7 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine", css=CUSTOM_CSS, the
 
     assess_btn.click(
         fn=run_assessment,
-        inputs=[spec_input, auditor_input],
+        inputs=[spec_input, auditor_input, turnover_input, is_sme_input],
         outputs=[
             exec_output,
             violations_table,
@@ -543,6 +617,8 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine", css=CUSTOM_CSS, the
             report_markdown,
             cert_html_output,
             borderline_table,
+            frameworks_table,
+            fine_liability_output,
         ],
     )
 
@@ -553,4 +629,4 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine", css=CUSTOM_CSS, the
     )
 
 if __name__ == "__main__":
-    demo.launch(server_name="0.0.0.0", server_port=7860, share=False)
+    demo.launch(server_name="0.0.0.0", server_port=7860, share=False, theme=gr.themes.Soft(), css=CUSTOM_CSS)

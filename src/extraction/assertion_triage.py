@@ -25,8 +25,10 @@ class AssertionTriage:
         self.planned_patterns = [
             r"\b(planned|planning|roadmap|scheduled|targeted|proposed)\b",
             r"\b(will\s+be|to\s+be\s+implemented|in\s+development|in\s+progress)\b",
-            r"\b(future\s+(?:release|version|iteration|work))\b",
+            r"\b(future\s+(?:releases?|versions?|iterations?|work))\b",
             r"\b(under\s+(?:consideration|evaluation|review))\b",
+            r"\b(might\s+be\s+considered|could\s+be\s+considered|considered\s+for)\b",
+            r"\b(if\s+budget\s+permits|pending\s+approval)\b",
             r"\b(q[1-4]\s*202[0-9])\b",
         ]
 

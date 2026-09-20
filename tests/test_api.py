@@ -36,12 +36,47 @@ def test_api_evaluate_endpoint():
     assert result["overall_conforms"] is True
     assert result["conformity_score"] == 100.0
     assert result["certificate_token"].startswith("REGU-")
+    assert "fine_exposure" in result
+    assert "harmonized_frameworks" in result
 
 
 def test_api_certificate_html():
     response = client.get("/api/v1/certificates/REGU-DEMO-TEST/html")
     assert response.status_code == 200
     assert "EU AI Act Conformity Attestation" in response.text
+    assert "Article 99 Statutory Fine Liability Exposure" in response.text
+
+
+def test_api_framework_crosswalk():
+    response = client.get("/api/v1/frameworks/crosswalk")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["total_mappings"] >= 20
+    assert any(m["target_framework"] == "NIST AI RMF 1.0" for m in data["mappings"])
+    assert any(m["target_framework"] == "ISO/IEC 42001:2023" for m in data["mappings"])
+    assert any("GDPR" in m["target_framework"] for m in data["mappings"])
+
+
+def test_api_penalties_calculate():
+    # Test Tier 1 Prohibited practice penalty
+    response = client.post(
+        "/api/v1/penalties/calculate",
+        json={"violations": ["Article 5(1)(c)"], "annual_turnover_eur": 500_000_000, "is_sme": False},
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert data["highest_tier_triggered"] == "TIER_1_PROHIBITED_AI"
+    assert data["applicable_ceiling_eur"] == 35_000_000.0  # 7% of 500M is 35M
+
+    # Test SME cap
+    sme_res = client.post(
+        "/api/v1/penalties/calculate",
+        json={"violations": ["Article 14"], "annual_turnover_eur": 10_000_000, "is_sme": True},
+    )
+    assert sme_res.status_code == 200
+    sme_data = sme_res.json()
+    assert sme_data["is_sme_discount_applied"] is True
+    assert sme_data["applicable_ceiling_eur"] == 300_000.0  # min(15M, 3% of 10M = 300k)
 
 
 def test_api_triage_feedback():

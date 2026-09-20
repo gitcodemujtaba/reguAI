@@ -24,19 +24,19 @@ class RegulatoryClaimExtractor:
 
         # Domain Regex & Semantic Keywords for Regulatory Concepts
         self.category_patterns: Dict[EntityCategory, Dict[str, Any]] = {
+            EntityCategory.FAIL_SAFE: {
+                "article": "Article 14(4)(e) / Art 15",
+                "keywords": [
+                    r"\b(emergency\s+stop|kill\s+switch|fail-safe|fallback\s+mechanism)\b",
+                    r"\b(graceful\s+degradation|circuit\s+breaker|safe\s+shutdown)\b",
+                ],
+            },
             EntityCategory.HUMAN_OVERSIGHT: {
                 "article": "Article 14",
                 "keywords": [
                     r"\b(human-in-the-loop|human\s+oversight|manual\s+override|clinician\s+review)\b",
                     r"\b(operator\s+intervention|override\s+capability|human\s+supervisor)\b",
                     r"\b(two-person\s+rule|dual\s+authorization|doctor\s+approval)\b",
-                ],
-            },
-            EntityCategory.FAIL_SAFE: {
-                "article": "Article 14(4)(e) / Art 15",
-                "keywords": [
-                    r"\b(emergency\s+stop|kill\s+switch|fail-safe|fallback\s+mechanism)\b",
-                    r"\b(graceful\s+degradation|circuit\s+breaker|safe\s+shutdown)\b",
                 ],
             },
             EntityCategory.DATA_GOVERNANCE: {
@@ -88,8 +88,8 @@ class RegulatoryClaimExtractor:
             EntityCategory.CYBERSECURITY: {
                 "article": "Article 15(4)",
                 "keywords": [
-                    r"\b(cybersecurity|adversarial\s+robustness|adversarial\s+attack)\b",
-                    r"\b(prompt\s+injection\s+defense|data\s+poisoning|model\s+inversion)\b",
+                    r"\b(cybersecurity|adversarial\s+(?:robustness|attack|testing)|adversarial)\b",
+                    r"\b(prompt\s+injection(?:\s+defense)?|data\s+poisoning|model\s+inversion)\b",
                     r"\b(input\s+sanitization|model\s+extraction\s+defense)\b",
                 ],
             },
