@@ -8,7 +8,7 @@ sdk_version: 6.28.0
 app_file: app.py
 pinned: false
 license: apache-2.0
-short_description: Deterministic AI GRC & Automated EU AI Act Conformity Assessment
+short_description: Neuro-Symbolic AI GRC & EU AI Act Conformity
 ---
 
 # 🏛️ ReguAI: Deterministic Neuro-Symbolic AI GRC & Automated Conformity Assessment Engine
