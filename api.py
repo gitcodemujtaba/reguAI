@@ -161,16 +161,59 @@ def evaluate_specification(request: AuditRequest):
         raise HTTPException(status_code=500, detail=f"Conformity assessment failed: {str(e)}")
 
 
+from src.core.case_catalog import CaseStudyCatalog
+
+catalog = CaseStudyCatalog()
+
+
+@app.get("/api/v1/benchmarks/catalog", tags=["Benchmarks"])
+def get_benchmark_catalog(domain: Optional[str] = Query(None, description="Optional domain filter, e.g. 'healthcare_samd'")):
+    """
+    Returns the complete multi-domain benchmark case studies catalog
+    with EUR-Lex CELEX:32024R1689 cryptographic provenance and W3C PROV-O anchors.
+    """
+    if domain:
+        cases = catalog.get_cases_for_domain(domain)
+        dom_info = catalog.get_domain(domain)
+        return {
+            "domain": dom_info,
+            "total_cases": len(cases),
+            "case_studies": cases,
+        }
+    return catalog.raw_data
+
+
+@app.get("/api/v1/benchmarks/cases/{case_id}", tags=["Benchmarks"])
+def get_benchmark_case(case_id: str):
+    """
+    Retrieves full benchmark case study details, statutory citations,
+    cryptographic provenance hashes, and technical specification text.
+    """
+    case = catalog.get_case(case_id)
+    if not case:
+        raise HTTPException(status_code=404, detail=f"Benchmark case '{case_id}' not found.")
+    
+    spec_text = catalog.get_case_document_text(case_id)
+    return {
+        "case_metadata": case,
+        "raw_specification_text": spec_text,
+    }
+
+
 @app.get("/api/v1/audit/samples", tags=["Benchmarks"])
 def list_benchmark_samples():
-    """Returns available pre-loaded synthetic case studies."""
-    return [
-        {"id": "compliant_clinical_samd", "title": "OncoScan AI Diagnostic Assistant (SaMD - Compliant)"},
-        {"id": "non_compliant_hr_recruitment", "title": "TalentSift Automated Candidate Evaluator (HR - Violations)"},
-        {"id": "borderline_credit_scoring", "title": "CrediScore Neural Underwriter (FinTech - Planned Roadmap)"},
-        {"id": "prohibited_emotion_recognition_workplace", "title": "MindGaze Emotion Tracker (EdTech/HR - Article 5 Prohibited)"},
-        {"id": "gpai_foundation_llm", "title": "Nexus-70B Frontier Foundation Model (GPAI - Systemic Risk)"},
-    ]
+    """Returns all available benchmark case studies from the multi-domain catalog."""
+    samples = []
+    for domain in catalog.list_domains():
+        for case in domain.get("case_studies", []):
+            samples.append({
+                "id": case["case_id"],
+                "title": f"[{domain['domain_name']}] {case['title']}",
+                "domain": domain["domain_id"],
+                "statutory_tier": case["statutory_tier"],
+                "expected_conformity": case["expected_conformity"],
+            })
+    return samples
 
 
 @app.get("/api/v1/audit/samples/{sample_id}", tags=["Benchmarks"])
@@ -178,6 +221,12 @@ def get_sample_content(sample_id: str):
     """Retrieves full specification content for a sample."""
     file_path = SYNTHETIC_DIR / f"{sample_id}.json"
     if not file_path.exists():
+        # Fallback to catalog lookup
+        case = catalog.get_case(sample_id)
+        if case and case.get("file_path"):
+            full_path = Path(case["file_path"])
+            if full_path.exists():
+                return json.loads(full_path.read_text(encoding="utf-8"))
         raise HTTPException(status_code=404, detail="Sample not found.")
     data = json.loads(file_path.read_text(encoding="utf-8"))
     return data

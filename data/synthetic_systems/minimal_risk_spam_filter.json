@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "system_id": "minimal-spam-07",
+    "name": "SmartShield Email Security & Phishing Classifier",
+    "version": "5.0.1",
+    "domain": "Enterprise Cybersecurity & Email Management",
+    "intended_purpose": "Automated inbound email classification model filtering unsolicited spam, business email compromise (BEC), and phishing links before inbox delivery.",
+    "eu_risk_classification": "Minimal / No Statutory Risk (Voluntary Codes of Conduct)",
+    "developer_name": "CyberDefense Core Labs",
+    "deployment_context": "Corporate Cloud Mail Servers"
+  },
+  "raw_document_text": "# SmartShield Email Security Classifier Specification\n\n## Intended Use\nSmartShield evaluates inbound SMTP email headers, sender reputation, and body text tokens to flag commercial spam and fraudulent phishing attempts.\n\n## Statutory Risk Classification\nUnder the EU AI Act risk categorization scheme, email spam filters and routine enterprise text classifiers do not fall under Article 5 (Prohibited), Article 6 / Annex III (High-Risk), or Article 50 (Transparency/Generative AI). They represent Minimal / Low Risk AI systems permitted for unconstrained EU deployment without mandatory pre-market conformity assessments.\n\n## Voluntary Adherence to Union AI Standards (Article 95)\nAlthough exempt from mandatory Annex IV technical documentation and Notified Body oversight, the developer voluntarily complies with ISO/IEC 42001 AI management principles and adheres to the European Code of Conduct for trustworthy AI.\n\n## Robustness & Security Controls\nThe classifier runs on locally sandboxed infrastructure with zero external data telemetry. Regular false-positive calibration maintains a user junk delivery rate of under 0.05%."
+}

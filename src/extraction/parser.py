@@ -77,20 +77,52 @@ class SpecificationParser:
         name_match = re.search(r"^#\s+(.+)$", raw_markdown, re.MULTILINE)
         name = name_match.group(1).strip() if name_match else default_id.replace("-", " ").title()
 
-        domain = "High-Risk Healthcare / HR / Finance"
-        if re.search(r"\b(medical|clinical|diagnostic|radiology|samd)\b", raw_markdown, re.I):
+        # Dynamic Domain Detection
+        domain = "High-Risk AI System"
+        if re.search(r"\b(medical|clinical|diagnostic|radiology|samd|oncology)\b", raw_markdown, re.I):
             domain = "Healthcare & Medical Diagnostics"
-        elif re.search(r"\b(recruitment|employment|cv|resume|interview)\b", raw_markdown, re.I):
+        elif re.search(r"\b(recruitment|employment|cv|resume|interview|workplace)\b", raw_markdown, re.I):
             domain = "Employment & HR Screening"
-        elif re.search(r"\b(credit|loan|financial|underwriting)\b", raw_markdown, re.I):
+        elif re.search(r"\b(credit|loan|financial|underwriting|banking)\b", raw_markdown, re.I):
             domain = "Financial Services & Credit Scoring"
+        elif re.search(r"\b(automotive|transport|braking|vehicle)\b", raw_markdown, re.I):
+            domain = "Automotive & Road Transport Safety"
+        elif re.search(r"\b(grid|electricity|energy|critical infrastructure|scada)\b", raw_markdown, re.I):
+            domain = "Critical Infrastructure & Energy Management"
+        elif re.search(r"\b(education|proctoring|exam|student|cheating)\b", raw_markdown, re.I):
+            domain = "Education & Vocational Training"
+        elif re.search(r"\b(justice|recidivism|court|bail|law enforcement)\b", raw_markdown, re.I):
+            domain = "Law Enforcement & Criminal Justice"
+        elif re.search(r"\b(gpai|frontier|foundation model|llm)\b", raw_markdown, re.I):
+            domain = "General Purpose AI & Frontier Models"
+        elif re.search(r"\b(social scoring|trustworthiness|civic score)\b", raw_markdown, re.I):
+            domain = "Public Administration & Civic Scoring"
+        elif re.search(r"\b(chatbot|conversational|support agent)\b", raw_markdown, re.I):
+            domain = "Customer Support & Conversational AI"
+        elif re.search(r"\b(spam|phishing|email security)\b", raw_markdown, re.I):
+            domain = "Enterprise Cybersecurity & Email Management"
+
+        # Dynamic Statutory Risk Classification
+        risk_class = "High-Risk (Annex III)"
+        if re.search(r"\b(prohibited|social scoring|emotion recognition|article 5\b)", raw_markdown, re.I):
+            risk_class = "Prohibited (Article 5)"
+        elif re.search(r"\b(systemic risk|article 51|10\^25|frontier foundation)\b", raw_markdown, re.I):
+            risk_class = "GPAI with Systemic Risk (Article 51)"
+        elif re.search(r"\b(general purpose|gpai|article 53)\b", raw_markdown, re.I):
+            risk_class = "GPAI Model (Article 53)"
+        elif re.search(r"\b(limited risk|article 50|transparency obligations)\b", raw_markdown, re.I):
+            risk_class = "Limited Risk (Article 50)"
+        elif re.search(r"\b(minimal risk|voluntary codes? of conduct)\b", raw_markdown, re.I):
+            risk_class = "Minimal / No Statutory Risk"
+        elif re.search(r"\b(annex i|automotive safety component|article 6\(1\)|medical device|mdr)\b", raw_markdown, re.I):
+            risk_class = "High-Risk (Annex I / Article 6(1))"
 
         metadata = SystemMetadata(
             system_id=default_id,
             name=name,
             domain=domain,
             intended_purpose="Automated processing and evaluation in high-impact workflows.",
-            eu_risk_classification="High-Risk (Annex III)",
+            eu_risk_classification=risk_class,
         )
 
         return SystemSpecification(

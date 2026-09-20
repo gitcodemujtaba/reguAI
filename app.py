@@ -18,25 +18,40 @@ from src.core.config import SYNTHETIC_DIR
 from src.core.models import AssertionStatus, EntityCategory
 from src.ui.graph_view import RegulatoryGraphView
 
-# Initialize ReguAI Engine & Graph Visualizer
+from src.core.case_catalog import CaseStudyCatalog
+
+# Initialize ReguAI Engine & Graph Visualizer & Case Study Catalog
 engine = ReguAIEngine()
 graph_viewer = RegulatoryGraphView()
+catalog = CaseStudyCatalog()
 
-# Pre-load sample specifications
-SAMPLE_PATHS = {
-    "Healthcare / Medical AI (Compliant SaMD - Articles 9-15 Passed)": SYNTHETIC_DIR / "compliant_clinical_samd.json",
-    "HR / Recruitment AI (High-Risk - Human Oversight & Bias Non-Conformities)": SYNTHETIC_DIR / "non_compliant_hr_recruitment.json",
-    "FinTech / Credit Underwriting (Borderline - Planned Roadmap & Auditor Review)": SYNTHETIC_DIR / "borderline_credit_scoring.json",
-    "EdTech / Surveillance AI (Prohibited - Article 5(1)(f) Emotion Recognition)": SYNTHETIC_DIR / "prohibited_emotion_recognition_workplace.json",
-    "GPAI Foundation LLM (Systemic Risk - Articles 51-55 Compute > 10^25 FLOPs)": SYNTHETIC_DIR / "gpai_foundation_llm.json",
-}
+# Pre-load domains and cases
+DOMAIN_OPTIONS = [d["domain_name"] for d in catalog.list_domains()]
+DEFAULT_DOMAIN = DOMAIN_OPTIONS[0]
+DEFAULT_CASES = catalog.get_cases_for_domain(DEFAULT_DOMAIN)
+DEFAULT_CASE_TITLES = [c["title"] for c in DEFAULT_CASES]
+DEFAULT_CASE_TITLE = DEFAULT_CASE_TITLES[0]
+DEFAULT_SPEC_TEXT = catalog.get_case_document_text(DEFAULT_CASE_TITLE)
+DEFAULT_FACTSHEET = catalog.render_factsheet_html(DEFAULT_CASE_TITLE)
 
-def load_sample_content(sample_name: str) -> str:
-    path = SAMPLE_PATHS.get(sample_name)
-    if path and path.exists():
-        data = json.loads(path.read_text(encoding="utf-8"))
-        return data.get("raw_document_text", "")
-    return ""
+
+def on_domain_change(selected_domain_name: str):
+    cases = catalog.get_cases_for_domain(selected_domain_name)
+    if not cases:
+        return gr.update(choices=[], value=None), "", "<div style='padding:15px;'>No cases found.</div>"
+    titles = [c["title"] for c in cases]
+    first_title = titles[0]
+    text = catalog.get_case_document_text(first_title)
+    factsheet = catalog.render_factsheet_html(first_title)
+    return gr.update(choices=titles, value=first_title), text, factsheet
+
+
+def on_case_change(selected_case_title: str):
+    if not selected_case_title:
+        return "", "<div style='padding:15px;'>Select a case study.</div>"
+    text = catalog.get_case_document_text(selected_case_title)
+    factsheet = catalog.render_factsheet_html(selected_case_title)
+    return text, factsheet
 
 
 def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 50000000.0, is_sme: bool = False):
@@ -484,6 +499,37 @@ button:not(.primary):not([variant="primary"]) {
     border-color: #475569 !important;
     color: #e2e8f0 !important;
 }
+
+/* -------------------------------------------------------------
+   FACTSHEET & PROVENANCE STYLING (Dark & Light Mode)
+------------------------------------------------------------- */
+.factsheet-container {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+}
+
+.dark .factsheet-container {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #e2e8f0 !important;
+}
+
+.dark .factsheet-container h3 {
+    color: #f8fafc !important;
+}
+
+.dark .factsheet-container div[style*="background:#f8fafc"] {
+    background: #0f172a !important;
+    border-color: #334155 !important;
+    color: #cbd5e1 !important;
+}
+
+.dark .factsheet-container div[style*="background:#fffbeb"] {
+    background: #451a03 !important;
+    border-color: #78350f !important;
+    color: #fef3c7 !important;
+}
 """
 
 with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
@@ -507,16 +553,30 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
 
     with gr.Row():
         with gr.Column(scale=5):
-            sample_dropdown = gr.Dropdown(
-                label="📁 Select Pre-loaded High-Risk AI Benchmark Case Study",
-                choices=list(SAMPLE_PATHS.keys()),
-                value=list(SAMPLE_PATHS.keys())[0],
+            with gr.Row():
+                domain_dropdown = gr.Dropdown(
+                    label="🌐 1. Select Regulatory Domain / Statutory Classification",
+                    choices=DOMAIN_OPTIONS,
+                    value=DEFAULT_DOMAIN,
+                    scale=6,
+                    interactive=True,
+                )
+                case_dropdown = gr.Dropdown(
+                    label="📁 2. Select Benchmark Case Study & Legal Scenario",
+                    choices=DEFAULT_CASE_TITLES,
+                    value=DEFAULT_CASE_TITLE,
+                    scale=6,
+                    interactive=True,
+                )
+            factsheet_box = gr.HTML(
+                value=DEFAULT_FACTSHEET,
+                label="Statutory Reference Factsheet & Cryptographic Provenance",
             )
             spec_input = gr.Textbox(
                 label="📄 System Technical Specification / Model Card (Markdown or JSON)",
-                lines=14,
+                lines=12,
                 placeholder="Paste AI system architecture or model card text...",
-                value=load_sample_content(list(SAMPLE_PATHS.keys())[0]),
+                value=DEFAULT_SPEC_TEXT,
             )
             auditor_input = gr.Textbox(
                 label="Auditor Credential Identifier",
@@ -597,10 +657,15 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
                             jsonld_display = gr.Code(language="json", label="W3C JSON-LD Digital Certificate")
 
     # Wire event handlers
-    sample_dropdown.change(
-        fn=load_sample_content,
-        inputs=[sample_dropdown],
-        outputs=[spec_input],
+    domain_dropdown.change(
+        fn=on_domain_change,
+        inputs=[domain_dropdown],
+        outputs=[case_dropdown, spec_input, factsheet_box],
+    )
+    case_dropdown.change(
+        fn=on_case_change,
+        inputs=[case_dropdown],
+        outputs=[spec_input, factsheet_box],
     )
 
     assess_btn.click(

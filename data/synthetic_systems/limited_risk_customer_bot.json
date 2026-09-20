@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "system_id": "limited-bot-06",
+    "name": "OmniAssist Enterprise Conversational Support Agent",
+    "version": "4.2.0",
+    "domain": "Customer Support & Conversational AI",
+    "intended_purpose": "Natural language conversational agent interacting with retail bank customers to answer account inquiries, resolve billing disputes, and assist with website navigation.",
+    "eu_risk_classification": "Limited Risk (Article 50 - Transparency Obligations)",
+    "developer_name": "Synthetix Voice AI",
+    "deployment_context": "Consumer Banking Web Portal & Mobile App"
+  },
+  "raw_document_text": "# OmniAssist Conversational Support Agent Specification\n\n## Intended Use and User Interaction\nOmniAssist provides real-time chat assistance to banking customers for routine non-credit administrative requests such as branch locator, card reordering, and FAQ resolution.\n\n## Statutory Transparency Obligations (Article 50(1))\nIn full compliance with Article 50(1) of the EU AI Act, the interface explicitly discloses to consumers upon initial interaction that they are communicating with an artificial intelligence system. The system clearly exposes visual indicators and audio notifications stating: 'You are speaking with OmniAssist, an automated AI assistant.'\n\n## Synthetic Content Disclosures (Article 50(2))\nAll dynamically generated synthetic audio responses are watermarked with machine-readable cryptographic metadata identifying them as AI-generated in accordance with C2PA open standards.\n\n## Risk Management & Privacy Controls\nStrict PII redaction filters cleanse customer credit card numbers, passwords, and sensitive financial identifiers before LLM inference. Session transcripts are retained for 30 days under GDPR Article 6(1)(f) legitimate interest."
+}

@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "system_id": "justice-recid-04",
+    "name": "JustiRisk Criminal Recidivism & Bail Assessment Tool",
+    "version": "1.5.0",
+    "domain": "Law Enforcement & Criminal Justice",
+    "intended_purpose": "AI tool evaluating individual defendant risk of re-offending and failure to appear at trial to assist judicial bail and sentencing decisions.",
+    "eu_risk_classification": "High-Risk (Annex III, Point 6(a) - Law Enforcement & Justice)",
+    "developer_name": "Lexis Juris AI Systems",
+    "deployment_context": "Municipal Courts and Pretrial Supervision Agencies"
+  },
+  "raw_document_text": "# JustiRisk Recidivism Risk Assessment Architecture\n\n## Intended Use and Judicial Role\nJustiRisk processes criminal arrest histories, socio-demographic indicators, and court appearance records to output a numerical recidivism risk score (1-10) for arraignment judges.\n\n## Risk Management (Article 9)\nA static risk log was produced during initial procurement. Continuous hazard tracking is not integrated into court workflows.\n\n## Data Governance (Article 10)\nTraining datasets rely on historical county arrest and conviction records spanning 2010-2022.\n\n## Bias Examination & Mitigation (Article 10(2)(f))\nDisparate impact analysis and bias mitigation across racial and socioeconomic defendant categories are unaddressed. Systematic false-positive skew against minority defendants is unmitigated.\n\n## Technical Documentation (Article 11)\nA vendor summary whitepaper is provided to court administrative officers.\n\n## Automated Logging (Article 12)\nStandard database transaction logs record generated scores.\n\n## Transparency & Explainability (Article 13)\nJudicial officers receive only the composite risk number. Detailed factor weighting, causal attribution, and algorithmic transparency are absent from the judicial dashboard.\n\n## Human Oversight (Article 14)\nJudges retain discretion to depart from recommended risk scores, though no structured operator intervention or fail safe kill switch exists within the software.\n\n## Cybersecurity and Robustness (Article 15)\nBasic database access controls are active. Model robustness against data poisoning or missing arrest records has not been systematically validated."
+}

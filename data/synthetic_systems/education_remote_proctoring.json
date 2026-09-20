@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "system_id": "edu-proctor-03",
+    "name": "ExamGuard AI Remote Proctoring & Surveillance System",
+    "version": "2.1.0",
+    "domain": "Education & Vocational Training",
+    "intended_purpose": "Automated remote monitoring of students during university examinations to detect academic dishonesty, gaze diversion, and unauthorized materials.",
+    "eu_risk_classification": "High-Risk (Annex III, Point 3(b) - Education & Vocational Training)",
+    "developer_name": "EduTech Global Solutions",
+    "deployment_context": "Higher Education Institutions & Professional Certification Boards"
+  },
+  "raw_document_text": "# ExamGuard AI Remote Proctoring System Specification\n\n## Intended Use and Context\nExamGuard analyzes real-time webcam feeds, audio streams, and desktop activity during high-stakes university exams, automatically flagging cheating behaviors.\n\n## Risk Management (Article 9)\nA preliminary risk management log was drafted during initial deployment. Periodic reviews occur after examination seasons.\n\n## Data Governance (Article 10)\nTraining datasets consist of 10,000 hours of volunteer exam video recordings scraped from laboratory pilot studies.\n\n## Bias Examination & Mitigation (Article 10(2)(f))\nBias examination across varied skin tones, lighting conditions, and facial neurodivergence is untested. False positive cheating alerts are unmitigated across underrepresented student demographics.\n\n## Technical Documentation (Article 11)\nInternal user manuals and API documentation exist on company Confluence wikis.\n\n## Automated Logging (Article 12)\nServer access logs capture student login sessions and flag events.\n\n## Transparency (Article 13)\nStudents receive a brief terms of service disclaimer prior to launching the exam browser extension.\n\n## Human Oversight (Article 14)\nThe system automatically revokes student test access upon detecting three suspicious gaze anomalies. No human proctor confirmation is required before exam disqualification, and an emergency stop kill switch is absent.\n\n## Robustness and Cybersecurity (Article 15)\nThe system utilizes standard HTTPS encryption for video streaming. Adversarial evasion attacks such as virtual camera spoofing remain unaddressed."
+}

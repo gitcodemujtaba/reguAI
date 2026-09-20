@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "system_id": "prohibit-social-05",
+    "name": "CitizenTrust Universal Civic Score & Trustworthiness Engine",
+    "version": "1.0.0",
+    "domain": "Public Administration & Civic Scoring",
+    "intended_purpose": "Continuous automated evaluation of citizen trustworthiness based on social behavior, payment history, and public infractions to allocate municipal benefits and public transit discounts.",
+    "eu_risk_classification": "Prohibited (Article 5(1)(c) - Social Scoring)",
+    "developer_name": "OmniGov Civic Systems",
+    "deployment_context": "Municipal Smart City Civic Management Network"
+  },
+  "raw_document_text": "# CitizenTrust Universal Civic Score Specification\n\n## Intended Use and Public Scope\nCitizenTrust tracks citizen activity across public transportation, recycling compliance, parking fines, and utility payments to generate a centralized Civic Reputation Score.\n\n## Statutory Classification Warning\nThis system constitutes an AI system intended for the evaluation or classification of the trustworthiness of natural persons over a given period based on their social behaviour, which is strictly prohibited under Article 5(1)(c) of Regulation (EU) 2024/1689.\n\n## Social Behavior Classification (Article 5 Violation)\nThe system aggregates cross-contextual surveillance metrics from smart cameras and credit bureaus to deduct civic points for disorderly conduct or minor administrative delays. Disadvantaged scores result in restricted access to public housing vouchers and municipal recreation facilities.\n\n## Risk Management (Article 9)\nInternal departmental risk assessments were conducted prior to pilot launch.\n\n## Human Oversight & Appeal Mechanisms (Article 14)\nCitizens may file manual paper appeals at municipal offices within 30 days of score deduction."
+}

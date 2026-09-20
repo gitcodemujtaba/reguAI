@@ -94,3 +94,29 @@ def test_api_triage_feedback():
     data = response.json()
     assert data["status"] == "RECORDED"
     assert "positive_label" in data["triplet"]
+
+
+def test_api_benchmark_catalog():
+    response = client.get("/api/v1/benchmarks/catalog")
+    assert response.status_code == 200
+    data = response.json()
+    assert "domains" in data
+    assert len(data["domains"]) >= 10
+    assert data["celex"] == "32024R1689"
+
+    # Test domain filtering query
+    filtered = client.get("/api/v1/benchmarks/catalog?domain=healthcare_samd")
+    assert filtered.status_code == 200
+    f_data = filtered.json()
+    assert f_data["total_cases"] >= 1
+    assert any("SaMD" in c["title"] for c in f_data["case_studies"])
+
+
+def test_api_benchmark_case():
+    response = client.get("/api/v1/benchmarks/cases/compliant_clinical_samd")
+    assert response.status_code == 200
+    data = response.json()
+    assert "case_metadata" in data
+    assert "raw_specification_text" in data
+    assert data["case_metadata"]["provenance"]["celex"] == "32024R1689"
+    assert "spec_file_sha256" in data["case_metadata"]["provenance"]

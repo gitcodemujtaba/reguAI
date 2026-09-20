@@ -9,7 +9,7 @@
     "celex": "32024R1689",
     "genesis_sha256": "a825360fd337ca843f8fb533ab72302901b8536fad9eb841ce34544727e89bb8"
   },
-  "merkle_root": "cbf58e52a6f9066ec12826e4fbb7aa267c5a32180566fc0afe47e27eaefe1d08",
+  "merkle_root": "1a330820e46367890f239340ef6d0693a56f08209d2572a03777053f224c35ba",
   "tier_provenance": {
     "tier_1_statutory_triples": {
       "file": "eu_ai_act_normative_triples.json",
@@ -46,6 +46,13 @@
       "file": "conformity_ground_truth_benchmark.jsonl",
       "sha256": "246e141c6b516009029af76f68e556a60b2341f56848d557b2e9b685c05428f6",
       "verification_status": "VERIFIED_BENCHMARK"
+    },
+    "tier_6_case_studies_catalog": {
+      "file": "case_studies_catalog.json",
+      "sha256": "95e7c8a159b59903fdfd865ffadb14f0ad945b96c88cd4de3f87c98d1ac7d76d",
+      "domain_count": 11,
+      "case_count": 12,
+      "verification_status": "VERIFIED_CATALOG"
     }
   },
   "verification_procedure": "To verify the integrity of the benchmark assets, run: hashlib.sha256(open(filename, 'rb').read()).hexdigest() and compare against tier_provenance."

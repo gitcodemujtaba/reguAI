@@ -51,13 +51,26 @@ class DeterministicSHACLEngine:
                 debug=False,
             )
             violations, warnings = self._parse_shacl_report(report_graph)
+            # In W3C SHACL, warnings do not break conformity; only sh:Violation breaks conformity
+            conforms = len(violations) == 0
         except ImportError:
             # Fallback deterministic rule validator if PySHACL is not installed in runtime
             conforms, violations, warnings = self._fallback_deterministic_validation(system_graph)
 
         total_rules = max(1, len(violations) + len(warnings) + 5)
         passed_rules = max(0, total_rules - len(violations))
-        conformity_score = round((passed_rules / total_rules) * 100.0, 1)
+
+        # Article 5 Prohibited AI practices are fatal violations that yield 0.0% conformity score
+        has_prohibited_violation = any(
+            "Article 5" in v.regulatory_article or "prohibited" in v.message.lower()
+            for v in violations
+        )
+        if has_prohibited_violation:
+            conformity_score = 0.0
+        elif conforms:
+            conformity_score = 100.0
+        else:
+            conformity_score = round((passed_rules / total_rules) * 100.0, 1)
 
         return conforms, violations, warnings, conformity_score
 
