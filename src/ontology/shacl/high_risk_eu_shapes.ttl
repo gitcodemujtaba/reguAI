@@ -1,0 +1,113 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix regu: <http://regu.ai/schema#> .
+@prefix eu: <http://data.europa.eu/eli/reg/2024/1689#> .
+
+# =========================================================================
+# ReguAI Normative SHACL Shape Validation
+# Regulation (EU) 2024/1689 - Chapter III (High-Risk AI Systems)
+# =========================================================================
+
+regu:HighRiskSystemShape
+    a sh:NodeShape ;
+    sh:targetClass regu:HighRiskAISystem ;
+    sh:name "EU AI Act High-Risk System Mandatory Conformity Shape" ;
+    sh:description "Enforces mandatory deterministic legal constraints under Chapter III of the EU AI Act." ;
+
+    # ---------------------------------------------------------------------
+    # Article 9: Risk Management System
+    # ---------------------------------------------------------------------
+    sh:property [
+        sh:path regu:hasRiskManagementSystem ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 9 Non-Conformity: High-risk AI system must establish, implement, document and maintain a continuous risk management system." ;
+    ] ;
+    sh:property [
+        sh:path ( regu:hasRiskManagementSystem regu:implementationStatus ) ;
+        sh:hasValue regu:Implemented ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 9 Non-Conformity: Risk management system must be fully 'Implemented', not 'Planned' or 'Absent'." ;
+    ] ;
+
+    # ---------------------------------------------------------------------
+    # Article 10: Data Governance & Bias Mitigation
+    # ---------------------------------------------------------------------
+    sh:property [
+        sh:path regu:hasDataGovernance ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 10 Non-Conformity: Training, validation, and testing datasets must be governed with validated provenance and data quality checks." ;
+    ] ;
+    sh:property [
+        sh:path regu:hasBiasMitigation ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 10(2)(f) Non-Conformity: High-risk AI systems must have specific bias examination and mitigation controls across demographic groups." ;
+    ] ;
+    sh:property [
+        sh:path ( regu:hasBiasMitigation regu:implementationStatus ) ;
+        sh:hasValue regu:Implemented ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 10(2)(f) Non-Conformity: Bias mitigation control must have status 'Implemented'." ;
+    ] ;
+
+    # ---------------------------------------------------------------------
+    # Article 12: Record-Keeping & Logging
+    # ---------------------------------------------------------------------
+    sh:property [
+        sh:path regu:hasLoggingCapability ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 12 Non-Conformity: High-risk AI systems must technically enable automatic recording of events (logs) over their lifecycle." ;
+    ] ;
+    sh:property [
+        sh:path ( regu:hasLoggingCapability regu:implementationStatus ) ;
+        sh:hasValue regu:Implemented ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 12 Non-Conformity: Automated logging capability must be 'Implemented'." ;
+    ] ;
+
+    # ---------------------------------------------------------------------
+    # Article 13: Transparency
+    # ---------------------------------------------------------------------
+    sh:property [
+        sh:path regu:hasTransparencySpecification ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "EU AI Act Art 13 Warning: High-risk AI systems must be accompanied by instructions for use and model card transparency disclosures." ;
+    ] ;
+
+    # ---------------------------------------------------------------------
+    # Article 14: Human Oversight
+    # ---------------------------------------------------------------------
+    sh:property [
+        sh:path regu:hasHumanOversight ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 14 Non-Conformity: High-risk AI systems must be designed to enable natural persons to oversee their operation (Human-in-the-loop / Human-on-the-loop)." ;
+    ] ;
+    sh:property [
+        sh:path ( regu:hasHumanOversight regu:implementationStatus ) ;
+        sh:hasValue regu:Implemented ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 14 Non-Conformity: Human oversight mechanism must be operational ('Implemented'), not merely 'Planned' or absent." ;
+    ] ;
+
+    # ---------------------------------------------------------------------
+    # Article 15: Accuracy, Robustness and Cybersecurity
+    # ---------------------------------------------------------------------
+    sh:property [
+        sh:path regu:hasCybersecurityControl ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 15(4) Non-Conformity: High-risk AI systems must have resilient cybersecurity defenses against adversarial inputs, model extraction, and data poisoning." ;
+    ] ;
+    sh:property [
+        sh:path ( regu:hasCybersecurityControl regu:implementationStatus ) ;
+        sh:hasValue regu:Implemented ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 15(4) Non-Conformity: Cybersecurity defenses must have status 'Implemented'." ;
+    ] .

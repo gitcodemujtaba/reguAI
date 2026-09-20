@@ -1,0 +1,167 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix regu: <http://regu.ai/schema#> .
+@prefix eu: <http://data.europa.eu/eli/reg/2024/1689#> .
+@prefix nist: <http://csrc.nist.gov/ns/rmf#> .
+@prefix iso: <http://iso.org/standard/42001#> .
+
+# -------------------------------------------------------------------------
+# Ontology Metadata
+# -------------------------------------------------------------------------
+<http://regu.ai/schema/eu_ai_act> a owl:Ontology ;
+    rdfs:label "ReguAI Normative EU AI Act Ontology" ;
+    rdfs:comment "Formal semantic representation of Regulation (EU) 2024/1689 Chapter III High-Risk AI Obligations." ;
+    owl:versionInfo "1.0.0" .
+
+# -------------------------------------------------------------------------
+# Core Classes
+# -------------------------------------------------------------------------
+regu:AISystem a owl:Class ;
+    rdfs:label "AI System" ;
+    rdfs:comment "A machine-based system designed to operate with varying levels of autonomy." .
+
+regu:HighRiskAISystem a owl:Class ;
+    rdfs:subClassOf regu:AISystem ;
+    rdfs:label "High-Risk AI System" ;
+    rdfs:comment "AI system classified as high-risk under Article 6 and Annex III of Regulation (EU) 2024/1689." .
+
+regu:ImplementationStatus a owl:Class ;
+    rdfs:label "Implementation Status" .
+
+regu:Implemented a regu:ImplementationStatus ;
+    rdfs:label "Implemented" ;
+    rdfs:comment "Control is fully verified and operational in the system." .
+
+regu:Planned a regu:ImplementationStatus ;
+    rdfs:label "Planned" ;
+    rdfs:comment "Control is on a future roadmap and not currently operational." .
+
+regu:Absent a regu:ImplementationStatus ;
+    rdfs:label "Absent" ;
+    rdfs:comment "Control is explicitly missing or negative assertion identified." .
+
+# -------------------------------------------------------------------------
+# Article 9: Risk Management System
+# -------------------------------------------------------------------------
+regu:RiskManagementSystem a owl:Class ;
+    rdfs:label "Risk Management System" ;
+    eu:legalBasis "Article 9, Regulation (EU) 2024/1689" ;
+    nist:crossWalk nist:GOVERN .
+
+regu:hasRiskManagementSystem a owl:ObjectProperty ;
+    rdfs:domain regu:HighRiskAISystem ;
+    rdfs:range regu:RiskManagementSystem .
+
+# -------------------------------------------------------------------------
+# Article 10: Data and Data Governance
+# -------------------------------------------------------------------------
+regu:DataGovernanceProcess a owl:Class ;
+    rdfs:label "Data Governance and Management" ;
+    eu:legalBasis "Article 10, Regulation (EU) 2024/1689" ;
+    nist:crossWalk nist:MAP .
+
+regu:hasDataGovernance a owl:ObjectProperty ;
+    rdfs:domain regu:HighRiskAISystem ;
+    rdfs:range regu:DataGovernanceProcess .
+
+regu:BiasMitigationControl a owl:Class ;
+    rdfs:label "Bias Examination and Mitigation Control" ;
+    eu:legalBasis "Article 10(2)(f), Regulation (EU) 2024/1689" ;
+    nist:crossWalk nist:MEASURE_2.11 .
+
+regu:hasBiasMitigation a owl:ObjectProperty ;
+    rdfs:domain regu:HighRiskAISystem ;
+    rdfs:range regu:BiasMitigationControl .
+
+# -------------------------------------------------------------------------
+# Article 11: Technical Documentation
+# -------------------------------------------------------------------------
+regu:TechnicalDocumentation a owl:Class ;
+    rdfs:label "Technical Documentation" ;
+    eu:legalBasis "Article 11 & Annex IV, Regulation (EU) 2024/1689" ;
+    iso:crossWalk iso:Control_A_6_2 .
+
+regu:hasTechnicalDocumentation a owl:ObjectProperty ;
+    rdfs:domain regu:HighRiskAISystem ;
+    rdfs:range regu:TechnicalDocumentation .
+
+# -------------------------------------------------------------------------
+# Article 12: Record-Keeping
+# -------------------------------------------------------------------------
+regu:AutomatedLogging a owl:Class ;
+    rdfs:label "Automated Record-Keeping / Event Logging" ;
+    eu:legalBasis "Article 12, Regulation (EU) 2024/1689" ;
+    nist:crossWalk nist:GOVERN_1.5 .
+
+regu:hasLoggingCapability a owl:ObjectProperty ;
+    rdfs:domain regu:HighRiskAISystem ;
+    rdfs:range regu:AutomatedLogging .
+
+# -------------------------------------------------------------------------
+# Article 13: Transparency and Provision of Information
+# -------------------------------------------------------------------------
+regu:TransparencySpecification a owl:Class ;
+    rdfs:label "Transparency and Instructions for Use" ;
+    eu:legalBasis "Article 13, Regulation (EU) 2024/1689" ;
+    nist:crossWalk nist:MAP_1.2 .
+
+regu:hasTransparencySpecification a owl:ObjectProperty ;
+    rdfs:domain regu:HighRiskAISystem ;
+    rdfs:range regu:TransparencySpecification .
+
+# -------------------------------------------------------------------------
+# Article 14: Human Oversight
+# -------------------------------------------------------------------------
+regu:HumanOversightMechanism a owl:Class ;
+    rdfs:label "Human Oversight Mechanism" ;
+    eu:legalBasis "Article 14, Regulation (EU) 2024/1689" ;
+    nist:crossWalk nist:MANAGE_2.2 .
+
+regu:hasHumanOversight a owl:ObjectProperty ;
+    rdfs:domain regu:HighRiskAISystem ;
+    rdfs:range regu:HumanOversightMechanism .
+
+regu:StopMechanism a owl:Class ;
+    rdfs:subClassOf regu:HumanOversightMechanism ;
+    rdfs:label "Human-in-the-Loop Override / Emergency Stop" ;
+    eu:legalBasis "Article 14(4)(e), Regulation (EU) 2024/1689" .
+
+regu:hasEmergencyStop a owl:ObjectProperty ;
+    rdfs:domain regu:HighRiskAISystem ;
+    rdfs:range regu:StopMechanism .
+
+# -------------------------------------------------------------------------
+# Article 15: Accuracy, Robustness and Cybersecurity
+# -------------------------------------------------------------------------
+regu:RobustnessControl a owl:Class ;
+    rdfs:label "Robustness and Resilience Control" ;
+    eu:legalBasis "Article 15(1), Regulation (EU) 2024/1689" ;
+    nist:crossWalk nist:MEASURE_2.6 .
+
+regu:hasRobustnessControl a owl:ObjectProperty ;
+    rdfs:domain regu:HighRiskAISystem ;
+    rdfs:range regu:RobustnessControl .
+
+regu:CybersecurityControl a owl:Class ;
+    rdfs:label "Cybersecurity and Adversarial Defense Control" ;
+    eu:legalBasis "Article 15(4), Regulation (EU) 2024/1689" ;
+    nist:crossWalk nist:GOVERN_1.6 .
+
+regu:hasCybersecurityControl a owl:ObjectProperty ;
+    rdfs:domain regu:HighRiskAISystem ;
+    rdfs:range regu:CybersecurityControl .
+
+# -------------------------------------------------------------------------
+# General Properties
+# -------------------------------------------------------------------------
+regu:implementationStatus a owl:ObjectProperty ;
+    rdfs:range regu:ImplementationStatus .
+
+regu:evidenceSource a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+regu:confidenceScore a owl:DatatypeProperty ;
+    rdfs:range xsd:float .

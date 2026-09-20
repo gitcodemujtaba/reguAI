@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "system_id": "hr-talentsift-09",
+    "name": "TalentSift Automated Candidate Evaluator",
+    "version": "1.1.0",
+    "domain": "Employment & HR Recruitment",
+    "intended_purpose": "Automated CV scoring, video interview sentiment parsing, and algorithmic candidate filtering.",
+    "eu_risk_classification": "High-Risk (Annex III, Point 4 - Employment & Recruitment)",
+    "developer_name": "HireFast Technologies",
+    "deployment_context": "Commercial Cloud SaaS"
+  },
+  "raw_document_text": "# TalentSift Candidate Evaluator Specification\n\n## Intended Use\nTalentSift autonomously scores thousands of inbound job applications, auto-rejecting the bottom 70% percentile prior to hiring manager interviews.\n\n## Risk Management (Article 9)\nA risk management procedure was drafted during initial prototype design.\n\n## Data Governance (Article 10)\nTraining data provenance comprises 120,000 historical corporate hiring resumes scraped from internal company records.\n\n## Bias Examination & Demographic Parity (Article 10(2)(f))\nThe development team did not conduct bias examination or demographic parity audits across protected attributes due to data privacy constraints. Bias mitigation controls are currently absent.\n\n## Automated Logging (Article 12)\nInference logging is implemented for error debugging in cloud datacenters.\n\n## Transparency (Article 13)\nBasic instructions for use are provided in the software administrator portal.\n\n## Human Oversight (Article 14)\nCandidate rejections are executed autonomously with no human oversight mechanism. The platform operates without human-in-the-loop validation or manual override prior to sending candidate rejection notices.\n\n## Cybersecurity & Robustness (Article 15)\nStandard SSL encryption is configured, but adversarial robustness against resume prompt injection was untested."
+}

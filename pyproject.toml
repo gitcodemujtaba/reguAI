@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reguai"
+version = "0.1.0"
+description = "Deterministic Neuro-Symbolic AI GRC & Automated Conformity Assessment Engine"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Mujtaba Hussain", email = "mujtaba@example.com" }
+]
+keywords = ["ai-governance", "eu-ai-act", "neuro-symbolic", "shacl", "w3c-prov", "compliance", "grc"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Legal Industry",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "rdflib>=7.0.0",
+    "pyshacl>=0.25.0",
+    "pydantic>=2.5.0",
+    "fastapi>=0.109.0",
+    "uvicorn>=0.27.0",
+    "jinja2>=3.1.2",
+    "networkx>=3.2.0",
+    "pyyaml>=6.0.1",
+    "gradio>=4.20.0",
+]
+
+[project.optional-dependencies]
+nlp = [
+    "gliner>=0.2.0",
+    "torch>=2.1.0",
+    "transformers>=4.38.0",
+]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+]

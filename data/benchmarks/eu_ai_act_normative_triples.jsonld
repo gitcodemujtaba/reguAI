@@ -1,0 +1,100 @@
+{
+  "@context": {
+    "regu": "http://regu.ai/schema#",
+    "eu": "http://data.europa.eu/eli/reg/2024/1689#",
+    "nist": "http://csrc.nist.gov/ns/rmf#",
+    "iso": "http://iso.org/standard/42001#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
+  },
+  "@graph": [
+    {
+      "@id": "eu:Article_9",
+      "@type": "regu:RegulatoryRequirement",
+      "rdfs:label": "Risk Management System",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 9",
+      "regu:targetClass": "regu:RiskManagementSystem",
+      "regu:mandatoryFor": "regu:HighRiskAISystem",
+      "skos:closeMatch": "nist:GOVERN_1.1",
+      "skos:relatedMatch": "iso:Clause_6_1",
+      "regu:description": "Establish, implement, document and maintain a continuous risk management system throughout the entire lifecycle of a high-risk AI system."
+    },
+    {
+      "@id": "eu:Article_10_Data_Governance",
+      "@type": "regu:RegulatoryRequirement",
+      "rdfs:label": "Data and Data Governance",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 10",
+      "regu:targetClass": "regu:DataGovernanceProcess",
+      "regu:mandatoryFor": "regu:HighRiskAISystem",
+      "skos:closeMatch": "nist:MAP_1.5",
+      "skos:relatedMatch": "iso:Control_A_8_2",
+      "regu:description": "Training, validation and testing datasets shall be subject to appropriate data governance and management practices."
+    },
+    {
+      "@id": "eu:Article_10_2_f_Bias_Mitigation",
+      "@type": "regu:RegulatoryRequirement",
+      "rdfs:label": "Bias Examination and Mitigation",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 10(2)(f)",
+      "regu:targetClass": "regu:BiasMitigationControl",
+      "regu:mandatoryFor": "regu:HighRiskAISystem",
+      "skos:closeMatch": "nist:MEASURE_2.11",
+      "skos:relatedMatch": "iso:Control_A_8_4",
+      "regu:description": "Examination in view of possible biases that are likely to affect the health and safety of persons, negatively impact fundamental rights or lead to discrimination."
+    },
+    {
+      "@id": "eu:Article_11_Technical_Documentation",
+      "@type": "regu:RegulatoryRequirement",
+      "rdfs:label": "Technical Documentation",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 11 & Annex IV",
+      "regu:targetClass": "regu:TechnicalDocumentation",
+      "regu:mandatoryFor": "regu:HighRiskAISystem",
+      "skos:closeMatch": "nist:GOVERN_1.4",
+      "skos:relatedMatch": "iso:Control_A_6_2",
+      "regu:description": "Drawn up before the system is placed on the market or put into service and kept up-to-date."
+    },
+    {
+      "@id": "eu:Article_12_Record_Keeping",
+      "@type": "regu:RegulatoryRequirement",
+      "rdfs:label": "Record-Keeping & Logging",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 12",
+      "regu:targetClass": "regu:AutomatedLogging",
+      "regu:mandatoryFor": "regu:HighRiskAISystem",
+      "skos:closeMatch": "nist:GOVERN_1.5",
+      "skos:relatedMatch": "iso:Control_A_9_3",
+      "regu:description": "High-risk AI systems shall technically allow for the automatic recording of events (logging) over their lifecycle."
+    },
+    {
+      "@id": "eu:Article_13_Transparency",
+      "@type": "regu:RegulatoryRequirement",
+      "rdfs:label": "Transparency and Provision of Information",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 13",
+      "regu:targetClass": "regu:TransparencySpecification",
+      "regu:mandatoryFor": "regu:HighRiskAISystem",
+      "skos:closeMatch": "nist:MAP_1.2",
+      "skos:relatedMatch": "iso:Control_A_7_2",
+      "regu:description": "High-risk AI systems shall be designed and developed in such a way as to ensure that their operation is sufficiently transparent to enable deployers to interpret the system's output."
+    },
+    {
+      "@id": "eu:Article_14_Human_Oversight",
+      "@type": "regu:RegulatoryRequirement",
+      "rdfs:label": "Human Oversight",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 14",
+      "regu:targetClass": "regu:HumanOversightMechanism",
+      "regu:mandatoryFor": "regu:HighRiskAISystem",
+      "skos:closeMatch": "nist:MANAGE_2.2",
+      "skos:relatedMatch": "iso:Control_A_8_5",
+      "regu:description": "High-risk AI systems shall be designed and developed in such a way, including with appropriate human-machine interface tools, that they can be effectively overseen by natural persons."
+    },
+    {
+      "@id": "eu:Article_15_Cybersecurity_Robustness",
+      "@type": "regu:RegulatoryRequirement",
+      "rdfs:label": "Accuracy, Robustness and Cybersecurity",
+      "eu:legalBasis": "Regulation (EU) 2024/1689 Chapter III Article 15",
+      "regu:targetClass": "regu:CybersecurityControl",
+      "regu:mandatoryFor": "regu:HighRiskAISystem",
+      "skos:closeMatch": "nist:MEASURE_2.6",
+      "skos:relatedMatch": "iso:Control_A_9_2",
+      "regu:description": "Resilient against attempts by unauthorised third parties to alter their use, outputs or performance by exploiting system vulnerabilities."
+    }
+  ]
+}

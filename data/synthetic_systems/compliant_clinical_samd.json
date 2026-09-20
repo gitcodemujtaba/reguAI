@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "system_id": "samd-oncology-01",
+    "name": "OncoScan AI Diagnostic Assistant",
+    "version": "2.4.0",
+    "domain": "Healthcare & Medical Diagnostics",
+    "intended_purpose": "AI Software as a Medical Device (SaMD) for automated lesion segmentation and malignancy risk stratification in thoracic CT scans.",
+    "eu_risk_classification": "High-Risk (Annex III, Medical Device)",
+    "developer_name": "Aether Health Therapeutics",
+    "deployment_context": "Clinical Hospital Radiology Network"
+  },
+  "raw_document_text": "# OncoScan AI Diagnostic Assistant Model Specification\n\n## Intended Use and Scope\nOncoScan AI is a high-risk diagnostic medical assistant deployed across EU hospital networks. The system assists radiologists with early detection of pulmonary nodules.\n\n## Risk Management (Article 9)\nA continuous risk management system is implemented and maintained in accordance with ISO 14971 and EU AI Act Article 9. Hazard analysis and residual risk evaluations are monitored continuously in production.\n\n## Data Governance & Training Lineage (Article 10)\nTraining data provenance is documented across multi-center clinical cohorts comprising 45,000 diverse thoracic scans. Rigorous data curation and cleaning pipelines ensure representative sampling.\n\n## Bias Examination & Mitigation (Article 10(2)(f))\nBias examination and mitigation controls are fully implemented. Equalized odds and demographic parity across patient sex, age brackets, and pediatric vs geriatric cohorts were verified with zero statistically significant disparity.\n\n## Technical Documentation (Article 11)\nComprehensive technical documentation conforming to Annex IV is maintained and archived.\n\n## Record-Keeping & Automated Logging (Article 12)\nAutomated logging of every inference request, model confidence score, and operator override is enabled with immutable cryptographic hashes.\n\n## Transparency (Article 13)\nDetailed instructions for use, clinical limitation disclosures, and interpretability heatmaps are provided to deployers.\n\n## Human Oversight (Article 14)\nA clinician-in-the-loop human oversight mechanism is strictly operational. Diagnostic predictions require mandatory confirmation by a board-certified radiologist before EHR entry. A manual override and emergency stop kill switch are implemented.\n\n## Accuracy, Robustness and Cybersecurity (Article 15)\nThe model exhibits 94.8% sensitivity and 96.2% specificity. Cybersecurity controls and adversarial robustness defenses against image perturbation and data poisoning attacks are verified and active."
+}

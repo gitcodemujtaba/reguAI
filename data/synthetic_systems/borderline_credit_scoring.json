@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "system_id": "fin-creditrisk-04",
+    "name": "CrediScore Neural Underwriter",
+    "version": "1.0.0-rc2",
+    "domain": "Financial Services & Credit Scoring",
+    "intended_purpose": "Automated creditworthiness assessment and loan interest rate pricing.",
+    "eu_risk_classification": "High-Risk (Annex III, Point 5 - Essential Services)",
+    "developer_name": "NovaBank FinTech",
+    "deployment_context": "Staging / Pre-Production Pilot"
+  },
+  "raw_document_text": "# CrediScore Neural Underwriter Specification\n\n## Intended Purpose\nAutomated credit scoring and loan default prediction for retail mortgage applications.\n\n## Risk Management (Article 9)\nA continuous risk management system is active and integrated with internal banking compliance frameworks.\n\n## Data Governance (Article 10)\nTraining data provenance is documented across 500,000 anonymized historical loan files.\n\n## Bias Examination (Article 10(2)(f))\nA preliminary fairness audit was performed on credit scores, though comprehensive disparate impact testing across immigrant zip codes is planned for Q4.\n\n## Human Oversight (Article 14)\nA manual override capability is currently in development and planned for future release in version 1.1. Underwriting decisions in beta pilot operate without human oversight fallback.\n\n## Record-Keeping (Article 12)\nInference logs and transaction traces are recorded to cloud storage.\n\n## Cybersecurity (Article 15)\nAdversarial testing against feature manipulation is under evaluation."
+}
