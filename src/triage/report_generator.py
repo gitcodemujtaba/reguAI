@@ -399,3 +399,8 @@ class ConformityReportGenerator:
 </html>
 """
         return html
+
+    def generate_cyclonedx_bom(self, report: ConformityReport) -> Dict[str, Any]:
+        """Generates an official CycloneDX 1.6 AI Bill of Materials (AIBOM) dictionary."""
+        from src.triage.bom_generator import AIBOMGenerator
+        return AIBOMGenerator.generate_bom(report)

@@ -32,6 +32,7 @@ class EntityCategory(str, Enum):
     ACCURACY_ROBUSTNESS = "ACCURACY_ROBUSTNESS"             # Art 15(1)
     CYBERSECURITY = "CYBERSECURITY"                         # Art 15(4)
     FAIL_SAFE = "FAIL_SAFE"                                 # Art 14(4)(e) / Art 15
+    WATERMARKING_CONTROL = "WATERMARKING_CONTROL"           # Art 50(2) / Synthetic Content Marking
 
 
 class ExtractedClaim(BaseModel):

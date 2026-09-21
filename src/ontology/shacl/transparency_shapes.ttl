@@ -1,0 +1,53 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix regu: <http://regu.ai/schema#> .
+@prefix eu: <http://data.europa.eu/eli/reg/2024/1689#> .
+
+# =========================================================================
+# ReguAI Normative SHACL Shape Validation
+# Regulation (EU) 2024/1689 - Article 50 (Transparency Obligations for Certain AI Systems)
+# =========================================================================
+
+regu:GenerativeAITransparencyShape
+    a sh:NodeShape ;
+    sh:targetClass regu:GenerativeAISystem ;
+    sh:name "EU AI Act Article 50 Generative AI Synthetic Content Transparency Shape" ;
+    sh:description "Enforces watermarking, machine-readable detection, and interaction disclosures under Article 50." ;
+
+    # Article 50(1): Direct Interaction Disclosure
+    sh:property [
+        sh:path regu:hasTransparencySpecification ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 50(1) Non-Conformity: Systems directly interacting with natural persons must disclose that the user is interacting with an AI system." ;
+    ] ;
+
+    # Article 50(2): Synthetic Content Watermarking & Machine-Readable Provenance
+    sh:property [
+        sh:path regu:hasWatermarkingControl ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 50(2) Non-Conformity: AI systems generating synthetic text, image, audio, or video must implement machine-readable watermarking or detection metadata." ;
+    ] ;
+    sh:property [
+        sh:path ( regu:hasWatermarkingControl regu:implementationStatus ) ;
+        sh:hasValue regu:Implemented ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 50(2) Non-Conformity: Synthetic content watermarking control must be 'Implemented'." ;
+    ] .
+
+regu:GPAICopyrightTransparencyShape
+    a sh:NodeShape ;
+    sh:targetClass regu:GPAIModel ;
+    sh:name "EU AI Act Article 53 GPAI Copyright & Training Data Disclosure Shape" ;
+    sh:description "Enforces copyright reservation compliance and training data summary disclosure under Article 53." ;
+
+    # Article 53(1)(c): Copyright Policy Compliance
+    sh:property [
+        sh:path regu:hasDataGovernance ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "EU AI Act Art 53(1)(c) Non-Conformity: Providers of GPAI models must maintain and document copyright reservation policies." ;
+    ] .

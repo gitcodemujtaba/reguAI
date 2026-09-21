@@ -19,6 +19,7 @@ from src.core.models import AssertionStatus, EntityCategory
 from src.ui.graph_view import RegulatoryGraphView
 
 from src.core.case_catalog import CaseStudyCatalog
+from src.triage.sarif_exporter import SarifExporter
 
 # Initialize ReguAI Engine & Graph Visualizer & Case Study Catalog
 engine = ReguAIEngine()
@@ -96,6 +97,8 @@ def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 5000
             [],
             [],
             "<div style='padding:15px;'>No fine liability evaluated.</div>",
+            "{}",
+            "{}",
         )
 
     report = engine.evaluate_system(
@@ -243,6 +246,8 @@ def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 5000
     cert_iframe_html = f"""
     <iframe srcdoc="{escaped_cert}" style="width: 100%; height: 680px; border: 1px solid #e2e8f0; border-radius: 8px;" frameborder="0"></iframe>
     """
+    bom_json = json.dumps(engine.report_generator.generate_cyclonedx_bom(report), indent=2)
+    sarif_json = SarifExporter.export_sarif_json(report, indent=2)
 
     return (
         exec_html,
@@ -257,6 +262,8 @@ def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 5000
         borderline_data,
         frameworks_data,
         fine_html,
+        bom_json,
+        sarif_json,
     )
 
 
@@ -877,8 +884,12 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
                             report_markdown = gr.Markdown(value=DEFAULT_ASSESSMENT[7])
                         with gr.TabItem("Machine-Readable JSON-LD"):
                             jsonld_display = gr.Code(value=DEFAULT_ASSESSMENT[6], language="json", label="W3C JSON-LD Digital Certificate")
+                        with gr.TabItem("📦 CycloneDX 1.6 AI-BOM"):
+                            bom_display = gr.Code(value=DEFAULT_ASSESSMENT[12], language="json", label="CycloneDX 1.6 Machine-Readable AI-BOM")
+                        with gr.TabItem("🛡️ OASIS SARIF 2.1.0 Report"):
+                            sarif_display = gr.Code(value=DEFAULT_ASSESSMENT[13], language="json", label="OASIS SARIF 2.1.0 Static Analysis Report")
 
-    # Outputs list for 1-click preset execution (17 components)
+    # Outputs list for 1-click preset execution (19 components)
     preset_outputs = [
         domain_dropdown,
         case_dropdown,
@@ -897,6 +908,8 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
         borderline_table,
         frameworks_table,
         fine_liability_output,
+        bom_display,
+        sarif_display,
     ]
 
     # Wire 1-Click Preset Scenario Buttons
@@ -955,6 +968,8 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
             borderline_table,
             frameworks_table,
             fine_liability_output,
+            bom_display,
+            sarif_display,
         ],
     )
 

@@ -25,6 +25,9 @@ ReguAI solves this by coupling domain-adapted entity and assertion extraction (G
     "FastAPI",
     "Gradio",
     "Active Learning",
+    "CycloneDX 1.6 AI-BOM",
+    "OASIS SARIF 2.1.0",
+    "CI/CD Gate",
   ],
   metrics: [
     { label: "Execution Speed", value: "< 1.5s" },
@@ -33,11 +36,12 @@ ReguAI solves this by coupling domain-adapted entity and assertion extraction (G
     { label: "Provenance Standard", value: "W3C PROV-O" },
   ],
   architectureHighlights: [
-    "Multi-Framework Normative Knowledge Graph linking EU AI Act (Arts. 9-15) with NIST AI RMF and ISO/IEC 42001.",
+    "Multi-Framework Normative Knowledge Graph linking EU AI Act (Arts. 9-15, 50, 53) with NIST AI RMF and ISO/IEC 42001.",
     "Deterministic SHACL Verification Engine enforcing mathematical shape constraints via PySHACL with zero hallucination risk.",
     "NegEx Assertion Triage classifying controls into Implemented, Planned, and Absent states with confidence thresholding.",
-    "W3C PROV-O Cryptographic Ledger generating canonical SHA-256 hashes and verifiable digital conformity tokens.",
-    "Auditor-in-the-Loop Active Learning Queue capturing human annotations and outputting triplet metric learning pairs.",
+    "Enterprise CI/CD Regulatory Gate CLI with OASIS SARIF 2.1.0 export and GitHub Code Scanning integration.",
+    "Machine-Readable CycloneDX 1.6 AI Bill of Materials (AIBOM) generator with W3C PROV-O cryptographic provenance ledger.",
+    "Auditor-in-the-Loop Active Learning Queue with contrastive triplet metric learning fine-tuner.",
     "Interactive Vis.js Regulatory Dependency Visualizer and one-click Annex IV print-ready PDF/HTML certificate export.",
   ],
   links: {

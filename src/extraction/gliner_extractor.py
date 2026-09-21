@@ -100,6 +100,13 @@ class RegulatoryClaimExtractor:
                     r"\b(conformity\s+assessment\s+file|design\s+specification)\b",
                 ],
             },
+            EntityCategory.WATERMARKING_CONTROL: {
+                "article": "Article 50(2)",
+                "keywords": [
+                    r"\b(watermark(?:ing)?|c2pa|machine-readable\s+provenance|synthetic\s+content\s+marking)\b",
+                    r"\b(steganograph(?:y|ic)|ai-generated\s+disclosure|deepfake\s+detection)\b",
+                ],
+            },
         }
 
     def extract_claims(self, text: str) -> List[ExtractedClaim]:

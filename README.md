@@ -159,11 +159,28 @@ markdown_report = engine.report_generator.generate_markdown_report(report)
 # Export Machine-Readable JSON-LD Certificate
 json_ld_cert = engine.report_generator.generate_json_ld(report)
 
+# Export CycloneDX 1.6 Machine-Readable AI-BOM
+aibom_json = engine.report_generator.generate_cyclonedx_bom(report)
+
 # Generate Print-Ready HTML Attestation Certificate
 html_cert = engine.report_generator.generate_html_certificate(report)
 ```
 
-### 5. Running the Test Suite
+### 5. Automated CI/CD Regulatory Gate (CLI & SARIF)
+
+```bash
+# Audit a model card or directory with exit code gate
+python -m src.cli audit data/synthetic_systems/compliant_clinical_samd.json \
+  --format text \
+  --sarif-out reports/audit.sarif \
+  --bom-out reports/cyclonedx_aibom.json \
+  --fail-on-violation
+
+# Train active learning triplet metric learner on auditor feedback
+python -m src.triage.train_triplets
+```
+
+### 6. Running the Test Suite
 
 ```bash
 pytest tests/ -v

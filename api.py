@@ -245,6 +245,45 @@ def get_certificate_html(token: str):
     return HTMLResponse(content=html)
 
 
+@app.get("/api/v1/certificates/{token}/bom", tags=["Conformity Assessment"])
+def get_certificate_bom(token: str):
+    """Retrieves machine-readable CycloneDX 1.6 AI Bill of Materials (AIBOM) for an audit."""
+    report = CERTIFICATE_CACHE.get(token)
+    if not report:
+        samd_path = SYNTHETIC_DIR / "compliant_clinical_samd.json"
+        report = engine.evaluate_system(samd_path)
+    
+    return engine.report_generator.generate_cyclonedx_bom(report)
+
+
+@app.get("/api/v1/certificates/{token}/sarif", tags=["Conformity Assessment"])
+def get_certificate_sarif(token: str):
+    """Retrieves OASIS SARIF 2.1.0 security & compliance report for an audit."""
+    from src.triage.sarif_exporter import SarifExporter
+    report = CERTIFICATE_CACHE.get(token)
+    if not report:
+        samd_path = SYNTHETIC_DIR / "compliant_clinical_samd.json"
+        report = engine.evaluate_system(samd_path)
+    
+    return SarifExporter.generate_sarif(report)
+
+
+@app.post("/api/v1/audit/bom", tags=["Conformity Assessment"])
+def generate_audit_bom(request: AuditRequest):
+    """Generates a CycloneDX 1.6 AI-BOM directly from specification text."""
+    if not request.specification_text.strip():
+        raise HTTPException(status_code=400, detail="Specification text cannot be empty.")
+    
+    report = engine.evaluate_system(
+        request.specification_text,
+        auditor_id=request.auditor_id,
+        annual_turnover_eur=request.annual_turnover_eur or 0.0,
+        is_sme=request.is_sme or False,
+    )
+    CERTIFICATE_CACHE[report.provenance.digital_signature] = report
+    return engine.report_generator.generate_cyclonedx_bom(report)
+
+
 @app.post("/api/v1/triage/feedback", tags=["Active Learning"])
 def submit_auditor_feedback(feedback: TripletFeedbackRequest):
     """

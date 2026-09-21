@@ -31,6 +31,7 @@ class NormativeGraphBuilder:
             EntityCategory.ACCURACY_ROBUSTNESS: (REGU.hasRobustnessControl, REGU.RobustnessControl),
             EntityCategory.CYBERSECURITY: (REGU.hasCybersecurityControl, REGU.CybersecurityControl),
             EntityCategory.FAIL_SAFE: (REGU.hasEmergencyStop, REGU.StopMechanism),
+            EntityCategory.WATERMARKING_CONTROL: (REGU.hasWatermarkingControl, REGU.WatermarkingControl),
         }
 
     def _bind_namespaces(self, g: Graph) -> None:
@@ -70,6 +71,8 @@ class NormativeGraphBuilder:
             g.add((sys_uri, RDF.type, REGU.ProhibitedAISystem))
             g.add((sys_uri, REGU.prohibitionStatus, REGU.ProhibitedPracticeDetected))
             g.add((sys_uri, REGU.hasProhibitedPracticeType, REGU.ProhibitedPracticeDetected))
+        elif "generative" in risk_class_lower or "genai" in risk_class_lower or "synthetic" in risk_class_lower or "article 50" in risk_class_lower:
+            g.add((sys_uri, RDF.type, REGU.GenerativeAISystem))
         elif "general purpose" in risk_class_lower or "gpai" in risk_class_lower:
             if "systemic" in risk_class_lower or "article 51" in risk_class_lower:
                 g.add((sys_uri, RDF.type, REGU.GPAISystemicRiskModel))

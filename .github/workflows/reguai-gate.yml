@@ -1,0 +1,70 @@
+name: ReguAI Deterministic Regulatory Gate
+
+on:
+  pull_request:
+    paths:
+      - '**.md'
+      - '**.json'
+      - '**.yaml'
+      - '**.yml'
+      - 'data/**'
+      - 'src/**'
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  security-events: write
+  pull-requests: write
+
+jobs:
+  regulatory-audit:
+    name: EU AI Act & GRC Normative Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Execute ReguAI Audit Gate
+        id: reguai_audit
+        continue-on-error: true
+        run: |
+          mkdir -p reports
+          python -m src.cli audit data/synthetic_systems/ \
+            --format text \
+            --sarif-out reports/reguai-results.sarif \
+            --fail-on-violation
+
+      - name: Upload SARIF to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: reports/reguai-results.sarif
+          category: ReguAI-EU-AI-Act
+
+      - name: Comment PR Conformity Summary
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let summary = '### 🏛️ ReguAI Regulatory Conformity Audit Complete\n\nDeterministic W3C SHACL verification results have been uploaded to GitHub Code Scanning.';
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: summary
+            });
