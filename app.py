@@ -40,7 +40,7 @@ DEFAULT_QUICK_BAR = catalog.render_quick_bar(DEFAULT_CASE_TITLE)
 READY_BANNER_HTML = """
 <div style="margin-top: 12px; padding: 12px 16px; border-radius: 8px; background: #f8fafc; border: 1px dashed #cbd5e1; font-size: 13px; color: #64748b; display: flex; align-items: center; gap: 8px;">
     <span>ℹ️</span>
-    <span>Ready to evaluate. Click <strong>⚡ Run Deterministic Conformity Assessment</strong> below to execute SHACL verification and auto-navigate to Proofs.</span>
+    <span>Ready to evaluate. Click <strong>⚡ Run Assessment & Review Grounding (Step 2)</strong> to execute SHACL verification and advance in sequence to Step 2: Review Grounding.</span>
 </div>
 """
 
@@ -252,7 +252,7 @@ def compute_assessment_data(doc_text: str, auditor_id: str, annual_turnover: flo
     }
 
 
-def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 50000000.0, is_sme: bool = False):
+def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 50000000.0, is_sme: bool = False, target_tab: str = "tab_review_grounding"):
     if not doc_text or not doc_text.strip():
         gr.Warning("Please select or enter a system technical specification.")
         empty_banner = """
@@ -281,8 +281,9 @@ def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 5000
 
     data = compute_assessment_data(doc_text, auditor_id, annual_turnover, is_sme)
 
+    dest_step_name = "Step 2: Review Grounding" if target_tab == "tab_review_grounding" else "Step 3: Run SHACL Proofs"
     status_tag = "PASSED (100%)" if data["overall_conforms"] else f"FAILED ({data['violations_count']} VIOLATIONS)"
-    gr.Info(f"Conformity Assessment: {data['system_name']} — {status_tag}. Navigating to Step 3: Run SHACL Proofs.")
+    gr.Info(f"Conformity Assessment: {data['system_name']} — {status_tag}. Navigating to {dest_step_name}.")
 
     if data["overall_conforms"]:
         banner_html = f"""
@@ -297,7 +298,7 @@ def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 5000
                 </div>
             </div>
             <div style="font-size: 13px; font-weight: 600; color: #166534; background: #dcfce7; padding: 6px 12px; border-radius: 6px;">
-                ➔ Auto-navigated to Step 3: Run SHACL Proofs
+                ➔ Auto-navigated to {dest_step_name}
             </div>
         </div>
         """
@@ -314,13 +315,13 @@ def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 5000
                 </div>
             </div>
             <div style="font-size: 13px; font-weight: 600; color: #991b1b; background: #fee2e2; padding: 6px 12px; border-radius: 6px;">
-                ➔ Auto-navigated to Step 3: Run SHACL Proofs
+                ➔ Auto-navigated to {dest_step_name}
             </div>
         </div>
         """
 
     return (
-        gr.update(selected="tab_run_shacl_proofs"),
+        gr.update(selected=target_tab),
         banner_html,
         data["exec_html"],
         data["violations_data"],
@@ -337,6 +338,14 @@ def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 5000
         data["bom_json"],
         data["sarif_json"],
     )
+
+
+def run_assessment_to_step2(doc_text: str, auditor_id: str, annual_turnover: float = 50000000.0, is_sme: bool = False):
+    return run_assessment(doc_text, auditor_id, annual_turnover, is_sme, target_tab="tab_review_grounding")
+
+
+def run_assessment_to_step3(doc_text: str, auditor_id: str, annual_turnover: float = 50000000.0, is_sme: bool = False):
+    return run_assessment(doc_text, auditor_id, annual_turnover, is_sme, target_tab="tab_run_shacl_proofs")
 
 
 # Pre-compute live initial evaluation for default case study so dashboard opens fully populated
@@ -960,7 +969,8 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
                 )
 
             with gr.Row():
-                assess_btn = gr.Button("⚡ Run Deterministic Conformity Assessment", variant="primary", size="lg")
+                assess_btn = gr.Button("⚡ Run Assessment & Review Grounding (Step 2) ➔", variant="primary", size="lg", scale=7)
+                assess_btn_direct = gr.Button("⚡ Direct to SHACL Proofs (Step 3) ➔", variant="secondary", size="lg", scale=5)
 
             status_banner_box = gr.HTML(
                 value=READY_BANNER_HTML,
@@ -1094,14 +1104,19 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
         outputs=[spec_input, quick_bar_box, factsheet_box, status_banner_box],
     )
 
-    # Wire assessment buttons (Tab 1 primary and Tab 3 re-run)
+    # Wire assessment buttons (Tab 1 primary to Step 2, direct to Step 3, and Tab 3 re-run)
     assess_btn.click(
-        fn=run_assessment,
+        fn=run_assessment_to_step2,
+        inputs=assessment_inputs,
+        outputs=assessment_outputs,
+    )
+    assess_btn_direct.click(
+        fn=run_assessment_to_step3,
         inputs=assessment_inputs,
         outputs=assessment_outputs,
     )
     assess_btn_tab3.click(
-        fn=run_assessment,
+        fn=run_assessment_to_step3,
         inputs=assessment_inputs,
         outputs=assessment_outputs,
     )
