@@ -381,14 +381,26 @@ def record_triage(claim_id: str, new_status: str, new_category: str, notes: str,
 
 # Custom Theme and CSS for Modern, Uncluttered Executive UI
 CUSTOM_CSS = """
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-/* Main Container */
+/* -------------------------------------------------------------
+   UNIVERSAL TYPOGRAPHY & ANTI-ALIASING
+   Crafted with 'Inter' for optimal screen legibility & eye comfort
+------------------------------------------------------------- */
+*, *::before, *::after {
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+}
+
 .gradio-container {
     max-width: 1440px !important;
     margin: 0 auto !important;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     color: #1e293b;
+    font-size: 13.5px !important;
+    line-height: 1.6 !important;
+    letter-spacing: -0.01em !important;
 }
 
 .dark .gradio-container {
@@ -423,9 +435,11 @@ CUSTOM_CSS = """
 }
 
 .hero-title-group h1 {
-    font-size: 24px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 22px !important;
     font-weight: 800 !important;
     margin: 0 !important;
+    letter-spacing: -0.02em !important;
     background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -441,10 +455,12 @@ CUSTOM_CSS = """
 }
 
 .hero-subtitle {
+    font-family: 'Inter', sans-serif !important;
     font-size: 13px !important;
     color: #64748b !important;
     margin-top: 4px !important;
     font-weight: 500 !important;
+    letter-spacing: -0.01em !important;
 }
 
 .dark .hero-subtitle {
@@ -458,14 +474,15 @@ CUSTOM_CSS = """
 }
 
 .hero-pill {
-    font-size: 11px;
-    font-weight: 700;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11.5px;
+    font-weight: 600;
     padding: 5px 12px;
     border-radius: 9999px;
     background: rgba(255, 255, 255, 0.85);
     border: 1px solid #cbd5e1;
     color: #334155;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     display: inline-flex;
     align-items: center;
     gap: 5px;
@@ -477,108 +494,115 @@ CUSTOM_CSS = """
     color: #cbd5e1;
 }
 
-.workflow-strip {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 14px;
-    padding-top: 14px;
-    border-top: 1px solid rgba(226, 232, 240, 0.8);
-    gap: 10px;
-    flex-wrap: wrap;
+/* -------------------------------------------------------------
+   SYMMETRIC FORM CONTROLS, LABELS & INPUTS
+------------------------------------------------------------- */
+label, .gr-form label, .block label, .gr-input-label, span.text-sm {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #334155 !important;
+    line-height: 1.4 !important;
+    letter-spacing: -0.01em !important;
+    margin-bottom: 5px !important;
 }
 
-.dark .workflow-strip {
-    border-top-color: rgba(51, 65, 85, 0.8);
+.dark label, .dark .gr-form label, .dark .block label, .dark .gr-input-label, .dark span.text-sm {
+    color: #cbd5e1 !important;
 }
 
-.wf-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    color: #475569;
-    font-weight: 500;
+input, select, .gr-input, .gr-dropdown input {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+    color: #0f172a !important;
 }
 
-.dark .wf-item {
-    color: #94a3b8;
+.dark input, .dark select, .dark .gr-input, .dark .gr-dropdown input {
+    color: #f8fafc !important;
 }
 
-.wf-num {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #2563eb;
-    color: #ffffff;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-}
-
-.wf-arrow {
-    color: #cbd5e1;
-    font-size: 12px;
-}
-
-.dark .wf-arrow {
-    color: #475569;
+/* Technical Specification Editor with Clean JetBrains Mono */
+textarea[placeholder*="system architecture"], textarea[placeholder*="model card"] {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    letter-spacing: 0px !important;
 }
 
 /* -------------------------------------------------------------
-   PRESET SCENARIO BUTTONS (Sleek & Segmented)
+   WORKFLOW TABS (Top-Level & Sub-Tabs)
 ------------------------------------------------------------- */
-.section-label {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #64748b;
-    letter-spacing: 0.6px;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.dark .section-label {
-    color: #94a3b8;
-}
-
-.preset-btn {
-    font-size: 12px !important;
-    font-weight: 600 !important;
-    padding: 7px 10px !important;
-    border-radius: 8px !important;
+#main-tabs > div[role="tablist"],
+.main-workflow-tabs > div[role="tablist"] {
+    display: flex !important;
+    gap: 8px !important;
+    background: #f1f5f9 !important;
+    padding: 6px !important;
+    border-radius: 12px !important;
     border: 1px solid #e2e8f0 !important;
-    background: #ffffff !important;
-    color: #334155 !important;
+    margin-bottom: 20px !important;
+}
+
+.dark #main-tabs > div[role="tablist"],
+.dark .main-workflow-tabs > div[role="tablist"] {
+    background: #0f172a !important;
+    border-color: #334155 !important;
+}
+
+#main-tabs > div[role="tablist"] > button[role="tab"],
+.main-workflow-tabs > div[role="tablist"] > button[role="tab"] {
+    flex: 1 !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    padding: 11px 16px !important;
+    border-radius: 8px !important;
+    color: #475569 !important;
+    border: none !important;
+    text-align: center !important;
+    background: transparent !important;
+    letter-spacing: -0.01em !important;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.preset-btn:hover {
-    transform: translateY(-1px) !important;
-    border-color: #3b82f6 !important;
+.dark #main-tabs > div[role="tablist"] > button[role="tab"],
+.dark .main-workflow-tabs > div[role="tablist"] > button[role="tab"] {
+    color: #94a3b8 !important;
+}
+
+#main-tabs > div[role="tablist"] > button[role="tab"]:hover,
+.main-workflow-tabs > div[role="tablist"] > button[role="tab"]:hover {
+    color: #0f172a !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+}
+
+.dark #main-tabs > div[role="tablist"] > button[role="tab"]:hover,
+.dark .main-workflow-tabs > div[role="tablist"] > button[role="tab"]:hover {
+    color: #f8fafc !important;
+    background: rgba(30, 41, 59, 0.8) !important;
+}
+
+#main-tabs > div[role="tablist"] > button[role="tab"][aria-selected="true"],
+#main-tabs > div[role="tablist"] > button[role="tab"].selected,
+.main-workflow-tabs > div[role="tablist"] > button[role="tab"][aria-selected="true"],
+.main-workflow-tabs > div[role="tablist"] > button[role="tab"].selected {
+    background: #ffffff !important;
     color: #2563eb !important;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    border-bottom: none !important;
 }
 
-.dark .preset-btn {
+.dark #main-tabs > div[role="tablist"] > button[role="tab"][aria-selected="true"],
+.dark #main-tabs > div[role="tablist"] > button[role="tab"].selected,
+.dark .main-workflow-tabs > div[role="tablist"] > button[role="tab"][aria-selected="true"],
+.dark .main-workflow-tabs > div[role="tablist"] > button[role="tab"].selected {
     background: #1e293b !important;
-    border-color: #334155 !important;
-    color: #e2e8f0 !important;
+    color: #60a5fa !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
 }
 
-.dark .preset-btn:hover {
-    background: #334155 !important;
-    border-color: #60a5fa !important;
-    color: #ffffff !important;
-}
-
-/* -------------------------------------------------------------
-   TAB NAVIGATION (High-Contrast & Clean Indicator)
-------------------------------------------------------------- */
+/* Sub-Tab Navigation */
 div[role="tablist"] {
     gap: 6px !important;
     border-bottom: 2px solid #e2e8f0 !important;
@@ -591,12 +615,14 @@ div[role="tablist"] {
 }
 
 button[role="tab"] {
+    font-family: 'Inter', sans-serif !important;
     font-size: 13px !important;
     font-weight: 600 !important;
     padding: 8px 16px !important;
     border-radius: 8px 8px 0 0 !important;
     color: #64748b !important;
     border: none !important;
+    letter-spacing: -0.01em !important;
     transition: all 0.15s ease !important;
 }
 
@@ -629,26 +655,104 @@ button[role="tab"].selected {
 }
 
 /* -------------------------------------------------------------
-   PRIMARY ACTION BUTTON
+   BUTTONS (Symmetric Typography & Proportions)
 ------------------------------------------------------------- */
+button, .gr-button {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+    line-height: 1.4 !important;
+    border-radius: 8px !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
 button.primary,
 button[variant="primary"] {
     background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
     color: #ffffff !important;
     font-weight: 700 !important;
-    font-size: 14px !important;
-    border-radius: 10px !important;
-    padding: 12px 24px !important;
+    border-radius: 9px !important;
+    padding: 11px 20px !important;
     border: none !important;
-    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3) !important;
-    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25) !important;
 }
 
 button.primary:hover,
 button[variant="primary"]:hover {
     background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
-    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4) !important;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35) !important;
     transform: translateY(-1px) !important;
+}
+
+button.secondary,
+button[variant="secondary"] {
+    border: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
+    color: #334155 !important;
+}
+
+.dark button.secondary,
+.dark button[variant="secondary"] {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #e2e8f0 !important;
+}
+
+button.secondary:hover,
+button[variant="secondary"]:hover {
+    border-color: #94a3b8 !important;
+    color: #0f172a !important;
+}
+
+.dark button.secondary:hover,
+.dark button[variant="secondary"]:hover {
+    border-color: #60a5fa !important;
+    color: #ffffff !important;
+}
+
+/* -------------------------------------------------------------
+   SYMMETRIC DATA TABLES ACROSS ALL TABS
+------------------------------------------------------------- */
+table, .gr-dataframe table {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    width: 100% !important;
+}
+
+table th, .gr-dataframe th {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    color: #475569 !important;
+    background: #f8fafc !important;
+    padding: 10px 14px !important;
+    border-bottom: 1.5px solid #e2e8f0 !important;
+}
+
+.dark table th, .dark .gr-dataframe th {
+    background: #0f172a !important;
+    color: #94a3b8 !important;
+    border-bottom-color: #334155 !important;
+}
+
+table td, .gr-dataframe td {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    padding: 10px 14px !important;
+    color: #334155 !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+}
+
+.dark table td, .dark .gr-dataframe td {
+    color: #cbd5e1 !important;
+    border-bottom-color: #1e293b !important;
 }
 
 /* -------------------------------------------------------------
@@ -681,8 +785,10 @@ button[variant="primary"]:hover {
 .summary-title {
     margin: 0;
     color: #0f172a;
-    font-size: 20px;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 19px;
     font-weight: 700;
+    letter-spacing: -0.01em;
 }
 
 .dark .summary-title {
@@ -691,16 +797,18 @@ button[variant="primary"]:hover {
 
 .status-pill {
     color: #ffffff !important;
+    font-family: 'Inter', sans-serif !important;
     padding: 6px 14px;
     border-radius: 9999px;
     font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.5px;
+    font-size: 12.5px;
+    letter-spacing: 0.3px;
 }
 
 .summary-meta {
     margin: 4px 0;
     color: #475569;
+    font-family: 'Inter', sans-serif !important;
     font-size: 13px;
 }
 
@@ -715,7 +823,8 @@ button[variant="primary"]:hover {
 .summary-desc {
     margin: 10px 0;
     color: #334155;
-    font-size: 14px;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13.5px;
     line-height: 1.6;
 }
 
@@ -745,11 +854,12 @@ button[variant="primary"]:hover {
 }
 
 .metric-label {
+    font-family: 'Inter', sans-serif !important;
     font-size: 11px;
     text-transform: uppercase;
     color: #64748b;
     font-weight: 700;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.5px;
 }
 
 .dark .metric-label {
@@ -757,9 +867,11 @@ button[variant="primary"]:hover {
 }
 
 .metric-val {
-    font-size: 24px;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 22px;
     font-weight: 800;
     margin-top: 4px;
+    letter-spacing: -0.02em;
 }
 
 .metric-val-main {
@@ -785,7 +897,12 @@ button[variant="primary"]:hover {
     background: #0f172a !important;
 }
 
-/* Fine Exposure Dark Mode */
+/* Fine Exposure Card */
+.fine-liability-card {
+    border-radius: 10px !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
 .dark .fine-liability-card {
     background: #1e293b !important;
     border-color: #334155 !important;
@@ -797,77 +914,14 @@ button[variant="primary"]:hover {
     border-color: #334155 !important;
 }
 
-/* -------------------------------------------------------------
-   WORKFLOW TABS (Top-Level)
-------------------------------------------------------------- */
-#main-tabs > div[role="tablist"],
-.main-workflow-tabs > div[role="tablist"] {
-    display: flex !important;
-    gap: 8px !important;
-    background: #f1f5f9 !important;
-    padding: 6px !important;
-    border-radius: 12px !important;
-    border: 1px solid #e2e8f0 !important;
-    margin-bottom: 20px !important;
+/* Code & Pre Blocks */
+pre, code, .gr-code pre, .gr-code code {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 12.5px !important;
+    line-height: 1.55 !important;
 }
 
-.dark #main-tabs > div[role="tablist"],
-.dark .main-workflow-tabs > div[role="tablist"] {
-    background: #0f172a !important;
-    border-color: #334155 !important;
-}
-
-#main-tabs > div[role="tablist"] > button[role="tab"],
-.main-workflow-tabs > div[role="tablist"] > button[role="tab"] {
-    flex: 1 !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    padding: 12px 18px !important;
-    border-radius: 8px !important;
-    color: #475569 !important;
-    border: none !important;
-    text-align: center !important;
-    background: transparent !important;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.dark #main-tabs > div[role="tablist"] > button[role="tab"],
-.dark .main-workflow-tabs > div[role="tablist"] > button[role="tab"] {
-    color: #94a3b8 !important;
-}
-
-#main-tabs > div[role="tablist"] > button[role="tab"]:hover,
-.main-workflow-tabs > div[role="tablist"] > button[role="tab"]:hover {
-    color: #0f172a !important;
-    background: rgba(255, 255, 255, 0.6) !important;
-}
-
-.dark #main-tabs > div[role="tablist"] > button[role="tab"]:hover,
-.dark .main-workflow-tabs > div[role="tablist"] > button[role="tab"]:hover {
-    color: #f8fafc !important;
-    background: rgba(30, 41, 59, 0.8) !important;
-}
-
-#main-tabs > div[role="tablist"] > button[role="tab"][aria-selected="true"],
-#main-tabs > div[role="tablist"] > button[role="tab"].selected,
-.main-workflow-tabs > div[role="tablist"] > button[role="tab"][aria-selected="true"],
-.main-workflow-tabs > div[role="tablist"] > button[role="tab"].selected {
-    background: #ffffff !important;
-    color: #2563eb !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
-    border-bottom: none !important;
-}
-
-.dark #main-tabs > div[role="tablist"] > button[role="tab"][aria-selected="true"],
-.dark #main-tabs > div[role="tablist"] > button[role="tab"].selected,
-.dark .main-workflow-tabs > div[role="tablist"] > button[role="tab"][aria-selected="true"],
-.dark .main-workflow-tabs > div[role="tablist"] > button[role="tab"].selected {
-    background: #1e293b !important;
-    color: #60a5fa !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
-}
-
-/* Workflow Step Navigation Buttons */
+/* Workflow Step Navigation Footers */
 .tab-nav-footer {
     margin-top: 24px !important;
     padding-top: 16px !important;
@@ -900,15 +954,6 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
                     <span class="hero-pill">📦 CycloneDX 1.6 AI-BOM</span>
                     <span class="hero-pill">🛡️ OASIS SARIF 2.1.0</span>
                 </div>
-            </div>
-            <div class="workflow-strip">
-                <div class="wf-item"><span class="wf-num">1</span><span>Select Scenario</span></div>
-                <span class="wf-arrow">➔</span>
-                <div class="wf-item"><span class="wf-num">2</span><span>Review Grounding</span></div>
-                <span class="wf-arrow">➔</span>
-                <div class="wf-item"><span class="wf-num">3</span><span>Run SHACL Proofs</span></div>
-                <span class="wf-arrow">➔</span>
-                <div class="wf-item"><span class="wf-num">4</span><span>Export Annex IV Package</span></div>
             </div>
         </div>
         """
