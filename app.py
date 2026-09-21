@@ -303,136 +303,303 @@ def record_triage(claim_id: str, new_status: str, new_category: str, notes: str,
     return f"✅ Triplet sample created and recorded into active learning repository! Anchor: '{record['anchor_text'][:50]}...' -> Label: {record['positive_label']}"
 
 
-# Custom Theme and CSS for Dark & Light Mode Contrast
+# Custom Theme and CSS for Modern, Uncluttered Executive UI
 CUSTOM_CSS = """
-/* Container */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* Main Container */
 .gradio-container {
-    max-width: 1380px !important;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 1440px !important;
+    margin: 0 auto !important;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    color: #1e293b;
+}
+
+.dark .gradio-container {
+    color: #f1f5f9;
 }
 
 /* -------------------------------------------------------------
-   TABS STYLING (Dark & Light Mode High-Contrast)
+   EXECUTIVE HERO BANNER
 ------------------------------------------------------------- */
-.tabs > .tab-nav button,
-div[role="tablist"] button,
-button[role="tab"],
-.tab-nav button {
-    color: #334155 !important;
-    font-weight: 600 !important;
+.hero-header {
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(241, 245, 249, 0.9) 100%);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    backdrop-filter: blur(12px);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.04);
+}
+
+.dark .hero-header {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%) !important;
+    border-color: rgba(51, 65, 85, 0.9) !important;
+    box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.4) !important;
+}
+
+.hero-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.hero-title-group h1 {
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    margin: 0 !important;
+    background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dark .hero-title-group h1 {
+    background: linear-gradient(135deg, #f8fafc 0%, #60a5fa 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+.hero-subtitle {
     font-size: 13px !important;
-    padding: 10px 16px !important;
-    border-radius: 6px 6px 0 0 !important;
-    transition: all 0.15s ease-in-out !important;
+    color: #64748b !important;
+    margin-top: 4px !important;
+    font-weight: 500 !important;
 }
 
-.dark .tabs > .tab-nav button,
-.dark div[role="tablist"] button,
-.dark button[role="tab"],
-.dark .tab-nav button {
-    color: #cbd5e1 !important;
-    background: transparent !important;
+.dark .hero-subtitle {
+    color: #94a3b8 !important;
 }
 
-.tabs > .tab-nav button:hover,
-div[role="tablist"] button:hover,
+.hero-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.hero-pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    letter-spacing: 0.3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dark .hero-pill {
+    background: rgba(30, 41, 59, 0.85);
+    border-color: #475569;
+    color: #cbd5e1;
+}
+
+.workflow-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.dark .workflow-strip {
+    border-top-color: rgba(51, 65, 85, 0.8);
+}
+
+.wf-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #475569;
+    font-weight: 500;
+}
+
+.dark .wf-item {
+    color: #94a3b8;
+}
+
+.wf-num {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: #ffffff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+}
+
+.wf-arrow {
+    color: #cbd5e1;
+    font-size: 12px;
+}
+
+.dark .wf-arrow {
+    color: #475569;
+}
+
+/* -------------------------------------------------------------
+   PRESET SCENARIO BUTTONS (Sleek & Segmented)
+------------------------------------------------------------- */
+.section-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+    letter-spacing: 0.6px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dark .section-label {
+    color: #94a3b8;
+}
+
+.preset-btn {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    padding: 7px 10px !important;
+    border-radius: 8px !important;
+    border: 1px solid #e2e8f0 !important;
+    background: #ffffff !important;
+    color: #334155 !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.preset-btn:hover {
+    transform: translateY(-1px) !important;
+    border-color: #3b82f6 !important;
+    color: #2563eb !important;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12) !important;
+}
+
+.dark .preset-btn {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #e2e8f0 !important;
+}
+
+.dark .preset-btn:hover {
+    background: #334155 !important;
+    border-color: #60a5fa !important;
+    color: #ffffff !important;
+}
+
+/* -------------------------------------------------------------
+   TAB NAVIGATION (High-Contrast & Clean Indicator)
+------------------------------------------------------------- */
+div[role="tablist"] {
+    gap: 6px !important;
+    border-bottom: 2px solid #e2e8f0 !important;
+    padding-bottom: 2px !important;
+    margin-bottom: 14px !important;
+}
+
+.dark div[role="tablist"] {
+    border-bottom-color: #334155 !important;
+}
+
+button[role="tab"] {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 8px 16px !important;
+    border-radius: 8px 8px 0 0 !important;
+    color: #64748b !important;
+    border: none !important;
+    transition: all 0.15s ease !important;
+}
+
+.dark button[role="tab"] {
+    color: #94a3b8 !important;
+}
+
 button[role="tab"]:hover {
     color: #0f172a !important;
-    background: rgba(0, 0, 0, 0.04) !important;
+    background: rgba(0, 0, 0, 0.03) !important;
 }
 
-.dark .tabs > .tab-nav button:hover,
-.dark div[role="tablist"] button:hover,
 .dark button[role="tab"]:hover {
-    color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.08) !important;
+    color: #f8fafc !important;
+    background: rgba(255, 255, 255, 0.05) !important;
 }
 
-.tabs > .tab-nav button.selected,
-div[role="tablist"] button.selected,
 button[role="tab"][aria-selected="true"],
 button[role="tab"].selected {
     color: #2563eb !important;
     border-bottom: 3px solid #2563eb !important;
+    background: transparent !important;
     font-weight: 700 !important;
 }
 
-.dark .tabs > .tab-nav button.selected,
-.dark div[role="tablist"] button.selected,
 .dark button[role="tab"][aria-selected="true"],
 .dark button[role="tab"].selected {
     color: #60a5fa !important;
-    border-bottom: 3px solid #60a5fa !important;
-    background: rgba(96, 165, 250, 0.1) !important;
+    border-bottom-color: #60a5fa !important;
 }
 
 /* -------------------------------------------------------------
-   BUTTONS STYLING (Dark & Light Mode High-Contrast)
+   PRIMARY ACTION BUTTON
 ------------------------------------------------------------- */
 button.primary,
-button[variant="primary"],
-.gr-button-primary,
-button.lg {
-    background: #2563eb !important;
+button[variant="primary"] {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
     color: #ffffff !important;
     font-weight: 700 !important;
     font-size: 14px !important;
+    border-radius: 10px !important;
+    padding: 12px 24px !important;
     border: none !important;
-    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3) !important;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3) !important;
+    transition: all 0.2s ease !important;
 }
 
 button.primary:hover,
-button[variant="primary"]:hover,
-button.lg:hover {
-    background: #1d4ed8 !important;
-    color: #ffffff !important;
-}
-
-.dark button.primary,
-.dark button[variant="primary"],
-.dark .gr-button-primary {
-    background: #2563eb !important;
-    color: #ffffff !important;
-}
-
-button:not(.primary):not([variant="primary"]) {
-    color: #1e293b !important;
-}
-
-.dark button:not(.primary):not([variant="primary"]) {
-    color: #f8fafc !important;
-    background: #334155 !important;
-    border-color: #475569 !important;
-}
-
-.dark button:not(.primary):not([variant="primary"]):hover {
-    background: #475569 !important;
-    color: #ffffff !important;
+button[variant="primary"]:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4) !important;
+    transform: translateY(-1px) !important;
 }
 
 /* -------------------------------------------------------------
-   SUMMARY CARD (Dark & Light Mode Dynamic Classes)
+   EXECUTIVE SUMMARY & METRIC CARDS
 ------------------------------------------------------------- */
 .summary-card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    padding: 18px;
-    margin-bottom: 15px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .dark .summary-card {
     background: #1e293b !important;
     border-color: #334155 !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .summary-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .summary-title {
@@ -458,7 +625,7 @@ button:not(.primary):not([variant="primary"]) {
 .summary-meta {
     margin: 4px 0;
     color: #475569;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .dark .summary-meta {
@@ -482,16 +649,18 @@ button:not(.primary):not([variant="primary"]) {
 
 .metrics-grid {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     margin-top: 14px;
+    flex-wrap: wrap;
 }
 
 .metric-box {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 12px 16px;
+    border-radius: 10px;
+    padding: 12px 18px;
     flex: 1;
+    min-width: 140px;
 }
 
 .dark .metric-box {
@@ -503,8 +672,8 @@ button:not(.primary):not([variant="primary"]) {
     font-size: 11px;
     text-transform: uppercase;
     color: #64748b;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
 }
 
 .dark .metric-label {
@@ -512,8 +681,8 @@ button:not(.primary):not([variant="primary"]) {
 }
 
 .metric-val {
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 800;
     margin-top: 4px;
 }
 
@@ -526,166 +695,21 @@ button:not(.primary):not([variant="primary"]) {
 }
 
 /* -------------------------------------------------------------
-   HEADER BADGES
+   ACCORDION & CARDS
 ------------------------------------------------------------- */
-.header-badge {
-    background: #f1f5f9;
-    border: 1px solid #cbd5e1;
-    color: #334155;
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.dark .header-badge {
-    background: #1e293b !important;
-    border-color: #475569 !important;
-    color: #e2e8f0 !important;
-}
-
-/* -------------------------------------------------------------
-   FACTSHEET & PROVENANCE STYLING (Dark & Light Mode)
-------------------------------------------------------------- */
-.factsheet-container {
-    background: #ffffff !important;
-    border: 1px solid #cbd5e1 !important;
-    border-radius: 8px !important;
-}
-
-.dark .factsheet-container {
-    background: #1e293b !important;
-    border-color: #334155 !important;
-    color: #e2e8f0 !important;
-}
-
-.dark .factsheet-container h3 {
-    color: #f8fafc !important;
-}
-
-.dark .factsheet-container div[style*="background:#f8fafc"] {
-    background: #0f172a !important;
-    border-color: #334155 !important;
-    color: #cbd5e1 !important;
-}
-
-.dark .factsheet-container div[style*="background:#fffbeb"] {
-    background: #451a03 !important;
-    border-color: #78350f !important;
-    color: #fef3c7 !important;
-}
-
-/* Quick Summary Bar */
-.quick-summary-bar {
-    background: #f8fafc !important;
+.gr-accordion {
     border: 1px solid #e2e8f0 !important;
-    border-radius: 6px !important;
+    border-radius: 10px !important;
+    background: #f8fafc !important;
+    margin: 12px 0 !important;
 }
 
-.dark .quick-summary-bar {
+.dark .gr-accordion {
+    border-color: #334155 !important;
     background: #0f172a !important;
-    border-color: #334155 !important;
-    color: #cbd5e1 !important;
 }
 
-/* -------------------------------------------------------------
-   WORKFLOW STEPPER
-------------------------------------------------------------- */
-.workflow-stepper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    padding: 12px 18px;
-    margin: 12px 0 16px 0;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.dark .workflow-stepper {
-    background: #0f172a !important;
-    border-color: #334155 !important;
-}
-
-.step-card {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.step-num {
-    background: #2563eb;
-    color: #ffffff !important;
-    font-weight: 800;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-}
-
-.step-text {
-    font-size: 12px;
-    color: #475569;
-    line-height: 1.25;
-}
-
-.dark .step-text {
-    color: #94a3b8 !important;
-}
-
-.step-text strong {
-    display: block;
-    color: #0f172a;
-    font-size: 13px;
-}
-
-.dark .step-text strong {
-    color: #f8fafc !important;
-}
-
-.step-arrow {
-    color: #94a3b8;
-    font-weight: 700;
-    font-size: 15px;
-}
-
-/* -------------------------------------------------------------
-   PRESET BUTTONS
-------------------------------------------------------------- */
-.preset-btn {
-    font-size: 12px !important;
-    font-weight: 600 !important;
-    padding: 6px 12px !important;
-    border-radius: 8px !important;
-    border: 1px solid #cbd5e1 !important;
-    background: #ffffff !important;
-    color: #1e293b !important;
-    transition: all 0.15s ease !important;
-}
-
-.preset-btn:hover {
-    transform: translateY(-1px) !important;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.08) !important;
-}
-
-.dark .preset-btn {
-    background: #1e293b !important;
-    border-color: #334155 !important;
-    color: #f8fafc !important;
-}
-
-.dark .preset-btn:hover {
-    background: #334155 !important;
-}
-
-/* -------------------------------------------------------------
-   FINE LIABILITY CARD DARK MODE
-------------------------------------------------------------- */
+/* Fine Exposure Dark Mode */
 .dark .fine-liability-card {
     background: #1e293b !important;
     border-color: #334155 !important;
@@ -699,134 +723,117 @@ button:not(.primary):not([variant="primary"]) {
 """
 
 with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
-    gr.Markdown(
+    # 1. Executive Hero Header (Streamlined & Compact)
+    gr.HTML(
         """
-        # 🏛️ ReguAI: Deterministic Neuro-Symbolic AI GRC & Conformity Engine
-        ### Automated EU AI Act (Regulation (EU) 2024/1689), NIST AI RMF, & ISO/IEC 42001 Auditing
-        Grounds enterprise model cards and technical documentation into an authoritative normative knowledge graph,
-        applying **mathematically deterministic W3C SHACL shape constraints** backed by a **W3C PROV-O cryptographic audit ledger**.
-        
-        <div style="display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap;">
-            <span class="header-badge">🇪🇺 EU AI Act High-Risk (Arts. 9-15)</span>
-            <span class="header-badge">📐 W3C SHACL Deterministic Proofs</span>
-            <span class="header-badge">🌐 Multi-Framework Crosswalk (NIST & ISO)</span>
-            <span class="header-badge">💰 Article 99 Statutory Fine Modeling</span>
-            <span class="header-badge">🔗 W3C PROV-O Audit Ledger</span>
-            <span class="header-badge">👤 Auditor-in-the-Loop Active Learning</span>
-        </div>
-
-        <div class="workflow-stepper">
-            <div class="step-card">
-                <span class="step-num">1</span>
-                <div class="step-text">
-                    <strong>Select AI Scenario</strong>
-                    1-Click Preset or 11 EU Domains
+        <div class="hero-header">
+            <div class="hero-title-row">
+                <div class="hero-title-group">
+                    <h1>🏛️ ReguAI</h1>
+                    <div class="hero-subtitle">Deterministic Neuro-Symbolic AI GRC & Automated Conformity Assessment Engine</div>
+                </div>
+                <div class="hero-badges">
+                    <span class="hero-pill">🇪🇺 EU AI Act (2024/1689)</span>
+                    <span class="hero-pill">📐 W3C SHACL Deterministic</span>
+                    <span class="hero-pill">🔐 W3C PROV-O</span>
+                    <span class="hero-pill">📦 CycloneDX 1.6 AI-BOM</span>
+                    <span class="hero-pill">🛡️ OASIS SARIF 2.1.0</span>
                 </div>
             </div>
-            <div class="step-arrow">➔</div>
-            <div class="step-card">
-                <span class="step-num">2</span>
-                <div class="step-text">
-                    <strong>Review Legal Grounding</strong>
-                    EUR-Lex CELEX & W3C PROV-O
-                </div>
-            </div>
-            <div class="step-arrow">➔</div>
-            <div class="step-card">
-                <span class="step-num">3</span>
-                <div class="step-text">
-                    <strong>Run Deterministic Audit</strong>
-                    W3C SHACL Mathematical Proofs
-                </div>
-            </div>
-            <div class="step-arrow">➔</div>
-            <div class="step-card">
-                <span class="step-num">4</span>
-                <div class="step-text">
-                    <strong>Export Findings & Cert</strong>
-                    Annex IV Certificate, Fines & Graph
-                </div>
+            <div class="workflow-strip">
+                <div class="wf-item"><span class="wf-num">1</span><span>Select Scenario</span></div>
+                <span class="wf-arrow">➔</span>
+                <div class="wf-item"><span class="wf-num">2</span><span>Review Grounding</span></div>
+                <span class="wf-arrow">➔</span>
+                <div class="wf-item"><span class="wf-num">3</span><span>Run SHACL Proofs</span></div>
+                <span class="wf-arrow">➔</span>
+                <div class="wf-item"><span class="wf-num">4</span><span>Export Annex IV Package</span></div>
             </div>
         </div>
         """
     )
 
     with gr.Row():
+        # =============================================================
+        # LEFT COLUMN: System Configuration & Specifications (scale=5)
+        # =============================================================
         with gr.Column(scale=5):
-            gr.Markdown("**⚡ 1-Click Quick Scenarios (Click to Instantly Evaluate):**")
+            gr.HTML("<div class='section-label'>⚡ 1-Click Quick Scenarios</div>")
             with gr.Row():
-                preset_samd = gr.Button("🏥 Compliant SaMD", size="sm", elem_classes=["preset-btn"])
+                preset_samd = gr.Button("🏥 Medical SaMD", size="sm", elem_classes=["preset-btn"])
                 preset_hr = gr.Button("💼 Failed HR AI", size="sm", elem_classes=["preset-btn"])
                 preset_prohibited = gr.Button("🚫 Prohibited AI", size="sm", elem_classes=["preset-btn"])
                 preset_gpai = gr.Button("🌐 Frontier GPAI", size="sm", elem_classes=["preset-btn"])
-                preset_grid = gr.Button("⚡ Critical Grid", size="sm", elem_classes=["preset-btn"])
+                preset_grid = gr.Button("⚡ Smart Grid", size="sm", elem_classes=["preset-btn"])
 
             with gr.Row():
                 domain_dropdown = gr.Dropdown(
-                    label="🌐 1. Select Regulatory Domain",
+                    label="🌐 Regulatory Sector",
                     choices=DOMAIN_OPTIONS,
                     value=DEFAULT_DOMAIN,
                     scale=6,
                     interactive=True,
-                    info="11 statutory sectors under EU AI Act",
                 )
                 case_dropdown = gr.Dropdown(
-                    label="📁 2. Select AI Benchmark Case Study",
+                    label="📁 AI Benchmark Case Study",
                     choices=DEFAULT_CASE_TITLES,
                     value=DEFAULT_CASE_TITLE,
                     scale=6,
                     interactive=True,
-                    info="Canonical legal scenarios with EUR-Lex provenance",
                 )
 
             quick_bar_box = gr.HTML(
                 value=DEFAULT_QUICK_BAR,
-                label="Statutory Quick Summary",
+                label="Statutory Summary",
             )
 
             with gr.Tabs():
-                with gr.TabItem("📄 Technical Specification / Model Card"):
+                with gr.TabItem("📄 Technical Specification"):
                     spec_input = gr.Textbox(
                         label="System Technical Specification (Markdown or JSON - Fully Editable)",
-                        lines=12,
+                        lines=10,
                         placeholder="Paste AI system architecture or model card text...",
                         value=DEFAULT_SPEC_TEXT,
-                        info="Grounds natural language model cards into normative RDF knowledge graph",
                     )
-                with gr.TabItem("📚 Statutory Factsheet & Cryptographic Provenance"):
+                with gr.TabItem("📚 EUR-Lex Legal Factsheet"):
                     factsheet_box = gr.HTML(
                         value=DEFAULT_FACTSHEET,
-                        label="Full Regulatory Factsheet & EUR-Lex Provenance",
+                        label="Regulatory Factsheet & Provenance",
                     )
 
-            with gr.Row():
+            # Collapsible settings for decluttering secondary inputs
+            with gr.Accordion("⚙️ Corporate Exposure & Auditor Settings (Optional)", open=False):
+                with gr.Row():
+                    turnover_input = gr.Number(
+                        label="Annual Worldwide Turnover (€)",
+                        value=50000000.0,
+                        step=5000000.0,
+                        scale=4,
+                        info="Art. 99 administrative fine base",
+                    )
+                    is_sme_input = gr.Checkbox(
+                        label="SME Status",
+                        value=False,
+                        scale=3,
+                        info="Art. 99(6) reduced caps",
+                    )
                 auditor_input = gr.Textbox(
                     label="Auditor Identifier",
                     value="lead_compliance_auditor_01",
-                    scale=5,
-                    info="Embedded in W3C PROV-O audit ledger",
-                )
-                turnover_input = gr.Number(
-                    label="Annual Turnover (€)",
-                    value=50000000.0,
-                    step=5000000.0,
-                    scale=4,
-                    info="For Art. 99 administrative fine modeling",
-                )
-                is_sme_input = gr.Checkbox(
-                    label="SME Status",
-                    value=False,
-                    scale=3,
-                    info="Art. 99(6) reduced fine caps (whichever is lower)",
+                    info="Embedded into W3C PROV-O digital ledger",
                 )
 
             assess_btn = gr.Button("⚡ Run Deterministic Conformity Assessment", variant="primary", size="lg")
 
+        # =============================================================
+        # RIGHT COLUMN: Structured 4-Tab Results Workspace (scale=7)
+        # =============================================================
         with gr.Column(scale=7):
-            exec_output = gr.HTML(value=DEFAULT_ASSESSMENT[0], label="Executive Conformity Summary")
-            
             with gr.Tabs():
-                with gr.TabItem("⚖️ SHACL Deterministic Violations"):
+                # TAB 1: CONFORMITY & FINES
+                with gr.TabItem("⚖️ Conformity Proofs & Fines"):
+                    exec_output = gr.HTML(value=DEFAULT_ASSESSMENT[0], label="Executive Summary")
+                    fine_liability_output = gr.HTML(value=DEFAULT_ASSESSMENT[11], label="Article 99 Fine Liability")
                     violations_table = gr.Dataframe(
                         headers=["Legal Article", "Normative Requirement", "Severity", "SHACL Path", "Remediation Guidance"],
                         datatype=["str", "str", "str", "str", "str"],
@@ -834,62 +841,58 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
                         label="Mathematical Proof: Non-Conformities Found",
                     )
 
-                with gr.TabItem("📊 Multi-Framework Crosswalk"):
-                    gr.Markdown("### 🇪🇺 EU AI Act ⟷ NIST AI RMF 1.0 ⟷ ISO/IEC 42001:2023 ⟷ GDPR")
+                # TAB 2: GRAPH & CROSSWALK
+                with gr.TabItem("🕸️ Regulatory Graph & Crosswalk"):
+                    graph_output = gr.HTML(value=DEFAULT_ASSESSMENT[3], label="Force-Directed Knowledge Graph")
+                    gr.Markdown("### 🇪🇺 EU AI Act ⟷ NIST AI RMF 1.0 ⟷ ISO/IEC 42001:2023 ⟷ GDPR Crosswalk")
                     frameworks_table = gr.Dataframe(
                         headers=["Target Framework", "Control ID", "Control Name", "Status", "Linked AI Act Article", "Audit Guidance"],
                         datatype=["str", "str", "str", "str", "str", "str"],
                         value=DEFAULT_ASSESSMENT[10],
-                        label="Automated Cross-Regulatory Control Status",
+                        label="Harmonized Multi-Framework Controls",
                     )
 
-                with gr.TabItem("💰 Article 99 Fine Liability"):
-                    fine_liability_output = gr.HTML(value=DEFAULT_ASSESSMENT[11], label="Corporate Balance Sheet Exposure")
-
-                with gr.TabItem("🕸️ Interactive Regulatory Graph"):
-                    graph_output = gr.HTML(value=DEFAULT_ASSESSMENT[3], label="Force-Directed Regulatory Dependency Network")
-
-                with gr.TabItem("🔍 Extracted Regulatory Claims"):
+                # TAB 3: CLAIMS & ACTIVE LEARNING
+                with gr.TabItem("🔍 Claims & Active Learning Triage"):
                     claims_table = gr.Dataframe(
                         headers=["Claim ID", "Category", "Status", "Confidence", "Target Article", "Evidence Span"],
                         datatype=["str", "str", "str", "str", "str", "str"],
                         value=DEFAULT_ASSESSMENT[2],
-                        label="Domain-Adapted Claim Extraction & NegEx Grounding",
+                        label="Extracted Regulatory Claims",
                     )
-
-                with gr.TabItem("👤 Auditor Triage & Active Learning"):
-                    gr.Markdown("### Borderline Claims Requiring Human Auditor Review")
+                    gr.Markdown("### 👤 Borderline Claims Requiring Human Auditor Review")
                     borderline_table = gr.Dataframe(
                         headers=["Claim ID", "Category", "Status", "Confidence", "Evidence Quote"],
                         datatype=["str", "str", "str", "str", "str"],
                         value=DEFAULT_ASSESSMENT[9],
                     )
                     with gr.Row():
-                        triage_claim_id = gr.Textbox(label="Claim ID to Triage", placeholder="e.g. clm_001")
-                        triage_status = gr.Dropdown(label="Verified Assertion Status", choices=[s.value for s in AssertionStatus], value="IMPLEMENTED")
-                        triage_cat = gr.Dropdown(label="Verified Normative Category", choices=[c.value for c in EntityCategory], value="HUMAN_OVERSIGHT")
-                    triage_notes = gr.Textbox(label="Auditor Decision Rationale", placeholder="Explain reason for modification...")
-                    triage_btn = gr.Button("Submit Auditor Triplet Feedback")
+                        triage_claim_id = gr.Textbox(label="Claim ID", placeholder="e.g. clm_001", scale=3)
+                        triage_status = gr.Dropdown(label="Verified Status", choices=[s.value for s in AssertionStatus], value="IMPLEMENTED", scale=4)
+                        triage_cat = gr.Dropdown(label="Verified Category", choices=[c.value for c in EntityCategory], value="HUMAN_OVERSIGHT", scale=5)
+                    with gr.Row():
+                        triage_notes = gr.Textbox(label="Auditor Rationale", placeholder="Explain reason for modification...", scale=8)
+                        triage_btn = gr.Button("Submit Triplet", scale=4)
                     triage_result = gr.Markdown()
 
-                with gr.TabItem("🔐 Cryptographic Audit Ledger"):
-                    token_display = gr.Textbox(value=DEFAULT_ASSESSMENT[4], label="Official Digital Conformity Token", interactive=False)
-                    ledger_display = gr.Markdown(value=DEFAULT_ASSESSMENT[5])
-
-                with gr.TabItem("📑 Export Technical Documentation (Annex IV)"):
+                # TAB 4: EXPORT DELIVERABLES PACKAGE
+                with gr.TabItem("📦 Export Deliverables"):
                     with gr.Tabs():
-                        with gr.TabItem("📜 Official Print-Ready Certificate (HTML)"):
+                        with gr.TabItem("📜 Attestation Certificate (HTML)"):
                             cert_html_output = gr.HTML(value=DEFAULT_ASSESSMENT[8])
-                        with gr.TabItem("Annex IV Official Report (Markdown)"):
-                            report_markdown = gr.Markdown(value=DEFAULT_ASSESSMENT[7])
-                        with gr.TabItem("Machine-Readable JSON-LD"):
-                            jsonld_display = gr.Code(value=DEFAULT_ASSESSMENT[6], language="json", label="W3C JSON-LD Digital Certificate")
                         with gr.TabItem("📦 CycloneDX 1.6 AI-BOM"):
                             bom_display = gr.Code(value=DEFAULT_ASSESSMENT[12], language="json", label="CycloneDX 1.6 Machine-Readable AI-BOM")
                         with gr.TabItem("🛡️ OASIS SARIF 2.1.0 Report"):
                             sarif_display = gr.Code(value=DEFAULT_ASSESSMENT[13], language="json", label="OASIS SARIF 2.1.0 Static Analysis Report")
+                        with gr.TabItem("📄 Annex IV Report (Markdown)"):
+                            report_markdown = gr.Markdown(value=DEFAULT_ASSESSMENT[7])
+                        with gr.TabItem("Machine-Readable JSON-LD"):
+                            jsonld_display = gr.Code(value=DEFAULT_ASSESSMENT[6], language="json", label="W3C JSON-LD Digital Certificate")
+                        with gr.TabItem("🔐 W3C PROV-O Ledger"):
+                            token_display = gr.Textbox(value=DEFAULT_ASSESSMENT[4], label="Official Digital Conformity Token", interactive=False)
+                            ledger_display = gr.Markdown(value=DEFAULT_ASSESSMENT[5])
 
-    # Outputs list for 1-click preset execution (19 components)
+    # Preset outputs list (19 components in exact alignment)
     preset_outputs = [
         domain_dropdown,
         case_dropdown,
