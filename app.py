@@ -720,6 +720,76 @@ button[variant="primary"]:hover {
     color: #cbd5e1 !important;
     border-color: #334155 !important;
 }
+
+/* -------------------------------------------------------------
+   WORKFLOW TABS (Top-Level)
+------------------------------------------------------------- */
+#main-tabs > div[role="tablist"],
+.main-workflow-tabs > div[role="tablist"] {
+    display: flex !important;
+    gap: 8px !important;
+    background: #f1f5f9 !important;
+    padding: 6px !important;
+    border-radius: 12px !important;
+    border: 1px solid #e2e8f0 !important;
+    margin-bottom: 20px !important;
+}
+
+.dark #main-tabs > div[role="tablist"],
+.dark .main-workflow-tabs > div[role="tablist"] {
+    background: #0f172a !important;
+    border-color: #334155 !important;
+}
+
+#main-tabs > div[role="tablist"] > button[role="tab"],
+.main-workflow-tabs > div[role="tablist"] > button[role="tab"] {
+    flex: 1 !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    color: #475569 !important;
+    border: none !important;
+    text-align: center !important;
+    background: transparent !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.dark #main-tabs > div[role="tablist"] > button[role="tab"],
+.dark .main-workflow-tabs > div[role="tablist"] > button[role="tab"] {
+    color: #94a3b8 !important;
+}
+
+#main-tabs > div[role="tablist"] > button[role="tab"]:hover,
+.main-workflow-tabs > div[role="tablist"] > button[role="tab"]:hover {
+    color: #0f172a !important;
+    background: rgba(255, 255, 255, 0.6) !important;
+}
+
+.dark #main-tabs > div[role="tablist"] > button[role="tab"]:hover,
+.dark .main-workflow-tabs > div[role="tablist"] > button[role="tab"]:hover {
+    color: #f8fafc !important;
+    background: rgba(30, 41, 59, 0.8) !important;
+}
+
+#main-tabs > div[role="tablist"] > button[role="tab"][aria-selected="true"],
+#main-tabs > div[role="tablist"] > button[role="tab"].selected,
+.main-workflow-tabs > div[role="tablist"] > button[role="tab"][aria-selected="true"],
+.main-workflow-tabs > div[role="tablist"] > button[role="tab"].selected {
+    background: #ffffff !important;
+    color: #2563eb !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    border-bottom: none !important;
+}
+
+.dark #main-tabs > div[role="tablist"] > button[role="tab"][aria-selected="true"],
+.dark #main-tabs > div[role="tablist"] > button[role="tab"].selected,
+.dark .main-workflow-tabs > div[role="tablist"] > button[role="tab"][aria-selected="true"],
+.dark .main-workflow-tabs > div[role="tablist"] > button[role="tab"].selected {
+    background: #1e293b !important;
+    color: #60a5fa !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
 """
 
 with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
@@ -753,19 +823,11 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
         """
     )
 
-    with gr.Row():
+    with gr.Tabs(elem_id="main-tabs", elem_classes=["main-workflow-tabs"]) as main_tabs:
         # =============================================================
-        # LEFT COLUMN: System Configuration & Specifications (scale=5)
+        # TAB 1: 1️⃣ Select Scenario
         # =============================================================
-        with gr.Column(scale=5):
-            gr.HTML("<div class='section-label'>⚡ 1-Click Quick Scenarios</div>")
-            with gr.Row():
-                preset_samd = gr.Button("🏥 Medical SaMD", size="sm", elem_classes=["preset-btn"])
-                preset_hr = gr.Button("💼 Failed HR AI", size="sm", elem_classes=["preset-btn"])
-                preset_prohibited = gr.Button("🚫 Prohibited AI", size="sm", elem_classes=["preset-btn"])
-                preset_gpai = gr.Button("🌐 Frontier GPAI", size="sm", elem_classes=["preset-btn"])
-                preset_grid = gr.Button("⚡ Smart Grid", size="sm", elem_classes=["preset-btn"])
-
+        with gr.TabItem("1️⃣ Select Scenario", id="tab_select_scenario"):
             with gr.Row():
                 domain_dropdown = gr.Dropdown(
                     label="🌐 Regulatory Sector",
@@ -787,21 +849,13 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
                 label="Statutory Summary",
             )
 
-            with gr.Tabs():
-                with gr.TabItem("📄 Technical Specification"):
-                    spec_input = gr.Textbox(
-                        label="System Technical Specification (Markdown or JSON - Fully Editable)",
-                        lines=10,
-                        placeholder="Paste AI system architecture or model card text...",
-                        value=DEFAULT_SPEC_TEXT,
-                    )
-                with gr.TabItem("📚 EUR-Lex Legal Factsheet"):
-                    factsheet_box = gr.HTML(
-                        value=DEFAULT_FACTSHEET,
-                        label="Regulatory Factsheet & Provenance",
-                    )
+            spec_input = gr.Textbox(
+                label="System Technical Specification (Markdown or JSON - Fully Editable)",
+                lines=14,
+                placeholder="Paste AI system architecture or model card text...",
+                value=DEFAULT_SPEC_TEXT,
+            )
 
-            # Collapsible settings for decluttering secondary inputs
             with gr.Accordion("⚙️ Corporate Exposure & Auditor Settings (Optional)", open=False):
                 with gr.Row():
                     turnover_input = gr.Number(
@@ -823,43 +877,37 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
                     info="Embedded into W3C PROV-O digital ledger",
                 )
 
-            assess_btn = gr.Button("⚡ Run Deterministic Conformity Assessment", variant="primary", size="lg")
+            with gr.Row():
+                assess_btn = gr.Button("⚡ Run Deterministic Conformity Assessment", variant="primary", size="lg")
+
+            gr.HTML(
+                """
+                <div style="font-size: 13px; color: #64748b; margin-top: 12px; text-align: center; padding: 10px; background: rgba(0,0,0,0.02); border-radius: 8px;">
+                    💡 Select a sector and case study above, adjust specifications or turnover if needed, and click <strong>Run Deterministic Conformity Assessment</strong>. Switch to tabs <strong>2️⃣ Review Grounding</strong>, <strong>3️⃣ Run SHACL Proofs</strong>, and <strong>4️⃣ Export Annex IV Package</strong> to inspect the results.
+                </div>
+                """
+            )
 
         # =============================================================
-        # RIGHT COLUMN: Structured 4-Tab Results Workspace (scale=7)
+        # TAB 2: 2️⃣ Review Grounding
         # =============================================================
-        with gr.Column(scale=7):
+        with gr.TabItem("2️⃣ Review Grounding", id="tab_review_grounding"):
             with gr.Tabs():
-                # TAB 1: CONFORMITY & FINES
-                with gr.TabItem("⚖️ Conformity Proofs & Fines"):
-                    exec_output = gr.HTML(value=DEFAULT_ASSESSMENT[0], label="Executive Summary")
-                    fine_liability_output = gr.HTML(value=DEFAULT_ASSESSMENT[11], label="Article 99 Fine Liability")
-                    violations_table = gr.Dataframe(
-                        headers=["Legal Article", "Normative Requirement", "Severity", "SHACL Path", "Remediation Guidance"],
-                        datatype=["str", "str", "str", "str", "str"],
-                        value=DEFAULT_ASSESSMENT[1],
-                        label="Mathematical Proof: Non-Conformities Found",
-                    )
-
-                # TAB 2: GRAPH & CROSSWALK
-                with gr.TabItem("🕸️ Regulatory Graph & Crosswalk"):
+                with gr.TabItem("🕸️ Knowledge Graph & Ontology"):
                     graph_output = gr.HTML(value=DEFAULT_ASSESSMENT[3], label="Force-Directed Knowledge Graph")
-                    gr.Markdown("### 🇪🇺 EU AI Act ⟷ NIST AI RMF 1.0 ⟷ ISO/IEC 42001:2023 ⟷ GDPR Crosswalk")
-                    frameworks_table = gr.Dataframe(
-                        headers=["Target Framework", "Control ID", "Control Name", "Status", "Linked AI Act Article", "Audit Guidance"],
-                        datatype=["str", "str", "str", "str", "str", "str"],
-                        value=DEFAULT_ASSESSMENT[10],
-                        label="Harmonized Multi-Framework Controls",
+                with gr.TabItem("📚 EUR-Lex Legal Factsheet"):
+                    factsheet_box = gr.HTML(
+                        value=DEFAULT_FACTSHEET,
+                        label="Regulatory Factsheet & Provenance",
                     )
-
-                # TAB 3: CLAIMS & ACTIVE LEARNING
-                with gr.TabItem("🔍 Claims & Active Learning Triage"):
+                with gr.TabItem("🔍 Extracted Claims"):
                     claims_table = gr.Dataframe(
                         headers=["Claim ID", "Category", "Status", "Confidence", "Target Article", "Evidence Span"],
                         datatype=["str", "str", "str", "str", "str", "str"],
                         value=DEFAULT_ASSESSMENT[2],
                         label="Extracted Regulatory Claims",
                     )
+                with gr.TabItem("👤 Active Learning Triage Queue"):
                     gr.Markdown("### 👤 Borderline Claims Requiring Human Auditor Review")
                     borderline_table = gr.Dataframe(
                         headers=["Claim ID", "Category", "Status", "Confidence", "Evidence Quote"],
@@ -874,31 +922,52 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
                         triage_notes = gr.Textbox(label="Auditor Rationale", placeholder="Explain reason for modification...", scale=8)
                         triage_btn = gr.Button("Submit Triplet", scale=4)
                     triage_result = gr.Markdown()
+                with gr.TabItem("🌐 Multi-Framework Crosswalk"):
+                    gr.Markdown("### 🇪🇺 EU AI Act ⟷ NIST AI RMF 1.0 ⟷ ISO/IEC 42001:2023 ⟷ GDPR Crosswalk")
+                    frameworks_table = gr.Dataframe(
+                        headers=["Target Framework", "Control ID", "Control Name", "Status", "Linked AI Act Article", "Audit Guidance"],
+                        datatype=["str", "str", "str", "str", "str", "str"],
+                        value=DEFAULT_ASSESSMENT[10],
+                        label="Harmonized Multi-Framework Controls",
+                    )
 
-                # TAB 4: EXPORT DELIVERABLES PACKAGE
-                with gr.TabItem("📦 Export Deliverables"):
-                    with gr.Tabs():
-                        with gr.TabItem("📜 Attestation Certificate (HTML)"):
-                            cert_html_output = gr.HTML(value=DEFAULT_ASSESSMENT[8])
-                        with gr.TabItem("📦 CycloneDX 1.6 AI-BOM"):
-                            bom_display = gr.Code(value=DEFAULT_ASSESSMENT[12], language="json", label="CycloneDX 1.6 Machine-Readable AI-BOM")
-                        with gr.TabItem("🛡️ OASIS SARIF 2.1.0 Report"):
-                            sarif_display = gr.Code(value=DEFAULT_ASSESSMENT[13], language="json", label="OASIS SARIF 2.1.0 Static Analysis Report")
-                        with gr.TabItem("📄 Annex IV Report (Markdown)"):
-                            report_markdown = gr.Markdown(value=DEFAULT_ASSESSMENT[7])
-                        with gr.TabItem("Machine-Readable JSON-LD"):
-                            jsonld_display = gr.Code(value=DEFAULT_ASSESSMENT[6], language="json", label="W3C JSON-LD Digital Certificate")
-                        with gr.TabItem("🔐 W3C PROV-O Ledger"):
-                            token_display = gr.Textbox(value=DEFAULT_ASSESSMENT[4], label="Official Digital Conformity Token", interactive=False)
-                            ledger_display = gr.Markdown(value=DEFAULT_ASSESSMENT[5])
+        # =============================================================
+        # TAB 3: 3️⃣ Run SHACL Proofs
+        # =============================================================
+        with gr.TabItem("3️⃣ Run SHACL Proofs", id="tab_run_shacl_proofs"):
+            with gr.Row():
+                assess_btn_tab3 = gr.Button("⚡ Re-Run Deterministic Conformity Proofs", variant="primary", size="md")
+            exec_output = gr.HTML(value=DEFAULT_ASSESSMENT[0], label="Executive Summary")
+            fine_liability_output = gr.HTML(value=DEFAULT_ASSESSMENT[11], label="Article 99 Fine Liability")
+            violations_table = gr.Dataframe(
+                headers=["Legal Article", "Normative Requirement", "Severity", "SHACL Path", "Remediation Guidance"],
+                datatype=["str", "str", "str", "str", "str"],
+                value=DEFAULT_ASSESSMENT[1],
+                label="Mathematical Proof: Non-Conformities Found",
+            )
 
-    # Preset outputs list (19 components in exact alignment)
-    preset_outputs = [
-        domain_dropdown,
-        case_dropdown,
-        spec_input,
-        quick_bar_box,
-        factsheet_box,
+        # =============================================================
+        # TAB 4: 4️⃣ Export Annex IV Package
+        # =============================================================
+        with gr.TabItem("4️⃣ Export Annex IV Package", id="tab_export_annex_iv"):
+            with gr.Tabs():
+                with gr.TabItem("📜 Attestation Certificate (HTML)"):
+                    cert_html_output = gr.HTML(value=DEFAULT_ASSESSMENT[8])
+                with gr.TabItem("📦 CycloneDX 1.6 AI-BOM"):
+                    bom_display = gr.Code(value=DEFAULT_ASSESSMENT[12], language="json", label="CycloneDX 1.6 Machine-Readable AI-BOM")
+                with gr.TabItem("🛡️ OASIS SARIF 2.1.0 Report"):
+                    sarif_display = gr.Code(value=DEFAULT_ASSESSMENT[13], language="json", label="OASIS SARIF 2.1.0 Static Analysis Report")
+                with gr.TabItem("📄 Annex IV Report (Markdown)"):
+                    report_markdown = gr.Markdown(value=DEFAULT_ASSESSMENT[7])
+                with gr.TabItem("🌐 Machine-Readable JSON-LD"):
+                    jsonld_display = gr.Code(value=DEFAULT_ASSESSMENT[6], language="json", label="W3C JSON-LD Digital Certificate")
+                with gr.TabItem("🔐 W3C PROV-O Ledger"):
+                    token_display = gr.Textbox(value=DEFAULT_ASSESSMENT[4], label="Official Digital Conformity Token", interactive=False)
+                    ledger_display = gr.Markdown(value=DEFAULT_ASSESSMENT[5])
+
+    # Assessment outputs list (14 components)
+    assessment_inputs = [spec_input, auditor_input, turnover_input, is_sme_input]
+    assessment_outputs = [
         exec_output,
         violations_table,
         claims_table,
@@ -915,33 +984,6 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
         sarif_display,
     ]
 
-    # Wire 1-Click Preset Scenario Buttons
-    preset_samd.click(
-        fn=lambda a, t, s: load_preset_and_assess(0, 0, a, t, s),
-        inputs=[auditor_input, turnover_input, is_sme_input],
-        outputs=preset_outputs,
-    )
-    preset_hr.click(
-        fn=lambda a, t, s: load_preset_and_assess(1, 0, a, t, s),
-        inputs=[auditor_input, turnover_input, is_sme_input],
-        outputs=preset_outputs,
-    )
-    preset_prohibited.click(
-        fn=lambda a, t, s: load_preset_and_assess(8, 1, a, t, s),
-        inputs=[auditor_input, turnover_input, is_sme_input],
-        outputs=preset_outputs,
-    )
-    preset_gpai.click(
-        fn=lambda a, t, s: load_preset_and_assess(7, 0, a, t, s),
-        inputs=[auditor_input, turnover_input, is_sme_input],
-        outputs=preset_outputs,
-    )
-    preset_grid.click(
-        fn=lambda a, t, s: load_preset_and_assess(4, 0, a, t, s),
-        inputs=[auditor_input, turnover_input, is_sme_input],
-        outputs=preset_outputs,
-    )
-
     # Wire cascading dropdown event handlers
     domain_dropdown.change(
         fn=on_domain_change,
@@ -954,26 +996,16 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
         outputs=[spec_input, quick_bar_box, factsheet_box],
     )
 
-    # Wire manual assessment button
+    # Wire assessment buttons (Tab 1 primary and Tab 3 re-run)
     assess_btn.click(
         fn=run_assessment,
-        inputs=[spec_input, auditor_input, turnover_input, is_sme_input],
-        outputs=[
-            exec_output,
-            violations_table,
-            claims_table,
-            graph_output,
-            token_display,
-            ledger_display,
-            jsonld_display,
-            report_markdown,
-            cert_html_output,
-            borderline_table,
-            frameworks_table,
-            fine_liability_output,
-            bom_display,
-            sarif_display,
-        ],
+        inputs=assessment_inputs,
+        outputs=assessment_outputs,
+    )
+    assess_btn_tab3.click(
+        fn=run_assessment,
+        inputs=assessment_inputs,
+        outputs=assessment_outputs,
     )
 
     triage_btn.click(
