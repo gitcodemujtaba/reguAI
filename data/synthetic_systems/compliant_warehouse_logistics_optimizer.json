@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "system_id": "minimal-logistics-02",
+    "name": "PathMatrix Logistics Route Optimizer",
+    "version": "1.2.0",
+    "domain": "Minimal Risk Industrial Optimization",
+    "intended_purpose": "Optimizing spatial movement routes and battery recharging schedules for industrial electric forklifts inside private logistics warehouses.",
+    "eu_risk_classification": "Minimal Risk (Article 95)",
+    "developer_name": "LogiOptima Robotics AB",
+    "deployment_context": "Private Industrial Fulfillment Facility"
+  },
+  "raw_document_text": "# PathMatrix Logistics Route Optimizer Model Specification\n\n## Intended Use and Scope\nPathMatrix AI is an industrial optimization algorithm deployed in enclosed e-commerce fulfillment centers. The model calculates energy-efficient transit routes and pallet staging queues for electric forklifts.\n\n## Regulatory Risk Classification (Title I & Annex III)\nThe system operates exclusively on non-personal spatial telemetry (rack coordinates, pallet weight, battery charge levels). It does not monitor employee performance, does not control high-risk safety components, and does not fall under any high-risk category of Annex III.\n\n## Voluntary Governance & Code of Conduct (Article 95)\nAlthough exempt from mandatory high-risk requirements, the provider voluntarily adheres to a Union Code of Conduct under Article 95:\n1. Environmental sustainability reporting: Route optimization reduces facility electricity consumption by 14.2%.\n2. Reliability & testing: Rigorous simulated trajectory collision avoidance was verified in physics engine simulations.\n3. AI Literacy (Article 4): Warehouse floor supervisors receive training on operational handoffs and manual route assignment.\n\n## Human Oversight\nWarehouse shift managers maintain manual fleet dispatch override capabilities at all times."
+}

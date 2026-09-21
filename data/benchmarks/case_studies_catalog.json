@@ -8,7 +8,7 @@
   "domains": [
     {
       "domain_id": "healthcare_samd",
-      "domain_name": "🏥 Healthcare & Medical SaMD",
+      "domain_name": "\ud83c\udfe5 Healthcare & Medical SaMD",
       "statutory_category": "Annex I (MDR/IVDR) & Annex III Point 5(a)",
       "legal_basis": "Regulation (EU) 2024/1689, Article 6(1) & Regulation (EU) 2017/745 (MDR)",
       "domain_summary": "AI Software as a Medical Device (SaMD) used for diagnostic classification, patient risk stratification, and emergency medical triage.",
@@ -53,7 +53,7 @@
               ]
             },
             "conformity_procedure": "Annex VII: Notified Body Assessment combined with MDR Notified Body audit",
-            "fine_exposure_tier": "Tier 2 (€15,000,000 or 3% global turnover)"
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
           },
           "auditor_guidance": {
             "intended_purpose": "Automated thoracic CT nodule segmentation and malignancy risk stratification.",
@@ -74,12 +74,132 @@
             "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
             "timestamp": "2026-09-20T20:55:00Z"
           }
+        },
+        {
+          "case_id": "non_compliant_derma_diagnostics",
+          "title": "DermaCheck-Direct - Autonomous D2C Melanoma Classifier (MDR Class IIb)",
+          "system_id": "samd-derma-02",
+          "statutory_tier": "High-Risk (Annex I, Medical Device - Article 6(1))",
+          "legal_basis": "Regulation (EU) 2024/1689, Article 6(1) & MDR Class IIb",
+          "expected_conformity": "NON-CONFORMANT (FAILED)",
+          "file_path": "data/synthetic_systems/non_compliant_derma_diagnostics.json",
+          "statutory_quote": "AI systems referred to in Annex I shall be considered high-risk if they are intended to be used as a safety component of a product, or are themselves a product, covered by Union harmonisation legislation listed in Annex I and are required to undergo a third-party conformity assessment.",
+          "regulatory_requirements": {
+            "mandatory_articles": [
+              "Article 9",
+              "Article 10",
+              "Article 10(2)(f)",
+              "Article 11",
+              "Article 12",
+              "Article 13",
+              "Article 14",
+              "Article 15"
+            ],
+            "harmonized_frameworks": {
+              "nist_ai_rmf": [
+                "GOVERN-1.2",
+                "MEASURE-2.11",
+                "MANAGE-2.2"
+              ],
+              "iso_42001": [
+                "Clause 6.1.2",
+                "Control A.8.4",
+                "Control A.9.2"
+              ],
+              "gdpr": [
+                "Article 9 Special Category Health Data",
+                "Article 22 Automated Profiling"
+              ]
+            },
+            "conformity_procedure": "Annex VII: Notified Body Conformity Assessment combined with MDR Class IIb audit",
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
+          },
+          "auditor_guidance": {
+            "intended_purpose": "Consumer-facing automated melanoma screening app providing direct diagnostic risk scores.",
+            "common_pitfalls": "Attempting to bypass MDR/AI Act high-risk classification via superficial 'informational only' disclaimers while marketing diagnostic capabilities; catastrophic bias across Fitzpatrick skin types.",
+            "remediation_guidance": "Restructure application flow to require mandatory dermatologist tele-triage confirmation; conduct multi-center clinical validation across diverse skin phototypes; establish ISO 14971 PMS."
+          },
+          "file_sha256": "0501529ffc36b2fc8ef295eacf6cd05dbec686283532e530f718f96b0fb3600c",
+          "provenance": {
+            "statutory_act": "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
+            "official_journal": "OJ L, 2024/1689, 12.7.2024",
+            "eli_uri": "http://data.europa.eu/eli/reg/2024/1689/oj",
+            "celex": "32024R1689",
+            "statutory_quote": "AI systems referred to in Annex I shall be considered high-risk if they are intended to be used as a safety component of a product, or are themselves a product, covered by Union harmonisation legislation listed in Annex I and are required to undergo a third-party conformity assessment.",
+            "statutory_quote_sha256": "5dcc4a383d81f69e7988c97f6e6e2d5b85bcd096ebd033df9cb198b12433d785",
+            "spec_file_sha256": "0501529ffc36b2fc8ef295eacf6cd05dbec686283532e530f718f96b0fb3600c",
+            "prov_o_entity": "urn:reguai:benchmark:case:non_compliant_derma_diagnostics",
+            "author": "ReguAI Regulatory Engineering Working Group",
+            "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
+            "timestamp": "2026-09-21T16:00:00Z"
+          }
+        },
+        {
+          "case_id": "compliant_cardiac_triage_samd",
+          "title": "PulseGuard-ICU - Real-Time Cardiac Arrhythmia Telemetry (MDR Class IIb)",
+          "system_id": "samd-cardiac-03",
+          "statutory_tier": "High-Risk (Annex I, Medical Device - Article 6(1))",
+          "legal_basis": "Regulation (EU) 2024/1689, Article 6(1) & MDR Class IIb",
+          "expected_conformity": "CONFORMANT (PASSED)",
+          "file_path": "data/synthetic_systems/compliant_cardiac_triage_samd.json",
+          "statutory_quote": "AI systems referred to in Annex I shall be considered high-risk if they are intended to be used as a safety component of a product, or are themselves a product, covered by Union harmonisation legislation listed in Annex I and are required to undergo a third-party conformity assessment.",
+          "regulatory_requirements": {
+            "mandatory_articles": [
+              "Article 9",
+              "Article 10",
+              "Article 10(2)(f)",
+              "Article 11",
+              "Article 12",
+              "Article 13",
+              "Article 14",
+              "Article 15"
+            ],
+            "harmonized_frameworks": {
+              "nist_ai_rmf": [
+                "GOVERN-1.1",
+                "MAP-1.5",
+                "MEASURE-2.11",
+                "MANAGE-2.2"
+              ],
+              "iso_42001": [
+                "Clause 6.1.2",
+                "Control A.6.2",
+                "Control A.8.4",
+                "Control A.9.2"
+              ],
+              "gdpr": [
+                "Article 9(2)(h) Health Treatment",
+                "Article 32 Security of Processing"
+              ]
+            },
+            "conformity_procedure": "Annex VII: Notified Body Assessment under MDR Class IIb & AI Act Article 43",
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
+          },
+          "auditor_guidance": {
+            "intended_purpose": "ICU real-time cardiac arrhythmia warning and telemetry classification.",
+            "common_pitfalls": "Failure to address alarm fatigue; lack of validation on diverse pacing modalities.",
+            "remediation_guidance": "Maintain continuous eQMS post-market surveillance and quarterly clinician feedback reviews."
+          },
+          "file_sha256": "0cd879508b3a084d82aaeac884546ee1f4a4baaac93fd424ca33207a1d42b826",
+          "provenance": {
+            "statutory_act": "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
+            "official_journal": "OJ L, 2024/1689, 12.7.2024",
+            "eli_uri": "http://data.europa.eu/eli/reg/2024/1689/oj",
+            "celex": "32024R1689",
+            "statutory_quote": "AI systems referred to in Annex I shall be considered high-risk if they are intended to be used as a safety component of a product, or are themselves a product, covered by Union harmonisation legislation listed in Annex I and are required to undergo a third-party conformity assessment.",
+            "statutory_quote_sha256": "5dcc4a383d81f69e7988c97f6e6e2d5b85bcd096ebd033df9cb198b12433d785",
+            "spec_file_sha256": "0cd879508b3a084d82aaeac884546ee1f4a4baaac93fd424ca33207a1d42b826",
+            "prov_o_entity": "urn:reguai:benchmark:case:compliant_cardiac_triage_samd",
+            "author": "ReguAI Regulatory Engineering Working Group",
+            "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
+            "timestamp": "2026-09-21T16:00:00Z"
+          }
         }
       ]
     },
     {
       "domain_id": "employment_hr",
-      "domain_name": "💼 Employment, HR & Workforce Management",
+      "domain_name": "\ud83d\udcbc Employment, HR & Workforce Management",
       "statutory_category": "Annex III Point 4",
       "legal_basis": "Regulation (EU) 2024/1689, Annex III, Point 4(a) & 4(b)",
       "domain_summary": "AI systems used for recruitment, CV screening, job candidate evaluation, task allocation, and worker performance monitoring.",
@@ -117,10 +237,10 @@
               ]
             },
             "conformity_procedure": "Annex VI: Internal Control Assessment",
-            "fine_exposure_tier": "Tier 2 (€15,000,000 or 3% global turnover)"
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
           },
           "auditor_guidance": {
-            "intended_purpose": "Autonomous résumé ingestion, semantic ranking, and interview invitation generation.",
+            "intended_purpose": "Autonomous r\u00e9sum\u00e9 ingestion, semantic ranking, and interview invitation generation.",
             "common_pitfalls": "Historic gender and demographic bias encoded in legacy recruitment datasets; lack of explicit human intervention kill switch before candidates are rejected.",
             "remediation_guidance": "Perform disparate impact parity analysis (Four-Fifths rule / Equal Opportunity Difference) and require mandatory HR officer approval for all candidate rejections."
           },
@@ -138,12 +258,72 @@
             "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
             "timestamp": "2026-09-20T20:55:00Z"
           }
+        },
+        {
+          "case_id": "compliant_fairhire_screening",
+          "title": "FairHire Pro - Audited Bias-Mitigated Technical Recruitment Sifter",
+          "system_id": "hr-recruitment-03",
+          "statutory_tier": "High-Risk (Annex III, Point 4(a))",
+          "legal_basis": "Regulation (EU) 2024/1689, Annex III, Point 4(a)",
+          "expected_conformity": "CONFORMANT (PASSED)",
+          "file_path": "data/synthetic_systems/compliant_fairhire_screening.json",
+          "statutory_quote": "AI systems intended to be used for recruitment or selection of natural persons, notably to place targeted job advertisements, to screen or filter applications, and to evaluate candidates.",
+          "regulatory_requirements": {
+            "mandatory_articles": [
+              "Article 9",
+              "Article 10",
+              "Article 10(2)(f)",
+              "Article 11",
+              "Article 12",
+              "Article 13",
+              "Article 14",
+              "Article 15"
+            ],
+            "harmonized_frameworks": {
+              "nist_ai_rmf": [
+                "GOVERN-1.3",
+                "MAP-2.3",
+                "MEASURE-2.11",
+                "MANAGE-3.2"
+              ],
+              "iso_42001": [
+                "Control A.6.2",
+                "Control A.8.4",
+                "Control A.9.2"
+              ],
+              "gdpr": [
+                "Article 22 Automated Decisions",
+                "Article 88 Employment Processing"
+              ]
+            },
+            "conformity_procedure": "Annex VI: Internal Control Assessment with documented third-party bias audits",
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
+          },
+          "auditor_guidance": {
+            "intended_purpose": "Candidate qualification ranking and resume shortlisting for recruitment.",
+            "common_pitfalls": "Hidden proxy bias in word embeddings (e.g. associating gendered extracurricular activities with aptitude); lack of human reviewer independence.",
+            "remediation_guidance": "Conduct biannual statistical bias audits and retain candidate adverse impact logs for 3 years."
+          },
+          "file_sha256": "9b01237ffe59b96d1135e6c29fc09932c30f098de6f98dcf051ebb09fe2553e8",
+          "provenance": {
+            "statutory_act": "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
+            "official_journal": "OJ L, 2024/1689, 12.7.2024",
+            "eli_uri": "http://data.europa.eu/eli/reg/2024/1689/oj",
+            "celex": "32024R1689",
+            "statutory_quote": "AI systems intended to be used for recruitment or selection of natural persons, notably to place targeted job advertisements, to screen or filter applications, and to evaluate candidates.",
+            "statutory_quote_sha256": "3c4764f14ff071e389175e3676bd3852b557469139a57fa652afe25cb5dde2ad",
+            "spec_file_sha256": "9b01237ffe59b96d1135e6c29fc09932c30f098de6f98dcf051ebb09fe2553e8",
+            "prov_o_entity": "urn:reguai:benchmark:case:compliant_fairhire_screening",
+            "author": "ReguAI Regulatory Engineering Working Group",
+            "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
+            "timestamp": "2026-09-21T16:00:00Z"
+          }
         }
       ]
     },
     {
       "domain_id": "banking_finance",
-      "domain_name": "🏦 Financial Services, Credit & Insurance",
+      "domain_name": "\ud83c\udfe6 Financial Services, Credit & Insurance",
       "statutory_category": "Annex III Point 5",
       "legal_basis": "Regulation (EU) 2024/1689, Annex III, Point 5(b) & 5(c)",
       "domain_summary": "AI systems used to evaluate creditworthiness of natural persons, establish credit scores, or price risk in life and health insurance.",
@@ -181,7 +361,7 @@
               ]
             },
             "conformity_procedure": "Annex VI: Internal Control Assessment",
-            "fine_exposure_tier": "Tier 2 (€15,000,000 or 3% global turnover)"
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
           },
           "auditor_guidance": {
             "intended_purpose": "Consumer credit underwriting predicting loan default risk probabilities.",
@@ -202,12 +382,72 @@
             "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
             "timestamp": "2026-09-20T20:55:00Z"
           }
+        },
+        {
+          "case_id": "compliant_mortgage_underwriting",
+          "title": "EuroLend AI - Explainable Algorithmic Retail Mortgage Underwriting",
+          "system_id": "fin-credit-02",
+          "statutory_tier": "High-Risk (Annex III, Point 5(b))",
+          "legal_basis": "Regulation (EU) 2024/1689, Annex III, Point 5(b)",
+          "expected_conformity": "CONFORMANT (PASSED)",
+          "file_path": "data/synthetic_systems/compliant_mortgage_underwriting.json",
+          "statutory_quote": "AI systems intended to be used to evaluate the creditworthiness of natural persons or establish their credit score, with the exception of AI systems used for the purpose of detecting financial fraud.",
+          "regulatory_requirements": {
+            "mandatory_articles": [
+              "Article 9",
+              "Article 10",
+              "Article 10(2)(f)",
+              "Article 11",
+              "Article 12",
+              "Article 13",
+              "Article 14",
+              "Article 15"
+            ],
+            "harmonized_frameworks": {
+              "nist_ai_rmf": [
+                "GOVERN-1.2",
+                "MAP-1.4",
+                "MEASURE-2.11",
+                "MANAGE-2.3"
+              ],
+              "iso_42001": [
+                "Clause 6.1.2",
+                "Control A.8.4",
+                "Control A.9.2"
+              ],
+              "gdpr": [
+                "Article 15 Right of Access",
+                "Article 22 Automated Decision-Making"
+              ]
+            },
+            "conformity_procedure": "Annex VI: Internal Control Procedure with ECB / National Competent Authority Supervision",
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
+          },
+          "auditor_guidance": {
+            "intended_purpose": "Credit risk evaluation and retail residential mortgage underwriting.",
+            "common_pitfalls": "Redlining via postal code proxies; black-box neural networks failing to provide meaningful explanations under GDPR Article 22.",
+            "remediation_guidance": "Ensure monotonic constraints on risk features; provide explainable SHAP/LIME counterfactuals to all rejected borrowers."
+          },
+          "file_sha256": "6e9ee00c9dda0412ba33cdca0c8a1c8acf8e83654c9db0e8745627fc89934323",
+          "provenance": {
+            "statutory_act": "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
+            "official_journal": "OJ L, 2024/1689, 12.7.2024",
+            "eli_uri": "http://data.europa.eu/eli/reg/2024/1689/oj",
+            "celex": "32024R1689",
+            "statutory_quote": "AI systems intended to be used to evaluate the creditworthiness of natural persons or establish their credit score, with the exception of AI systems used for the purpose of detecting financial fraud.",
+            "statutory_quote_sha256": "79978eed3683f16e8cc3ad64ec9483f34fdb772b7bf840c5221843490de934be",
+            "spec_file_sha256": "6e9ee00c9dda0412ba33cdca0c8a1c8acf8e83654c9db0e8745627fc89934323",
+            "prov_o_entity": "urn:reguai:benchmark:case:compliant_mortgage_underwriting",
+            "author": "ReguAI Regulatory Engineering Working Group",
+            "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
+            "timestamp": "2026-09-21T16:00:00Z"
+          }
         }
       ]
     },
     {
       "domain_id": "transport_safety",
-      "domain_name": "🚗 Automotive & Road Transport Safety",
+      "domain_name": "\ud83d\ude97 Automotive & Road Transport Safety",
       "statutory_category": "Annex I & Annex III Point 2",
       "legal_basis": "Regulation (EU) 2024/1689, Article 6(1) & Regulation (EU) 2019/2144 (General Vehicle Safety)",
       "domain_summary": "AI safety components in autonomous and semi-autonomous vehicles, collision avoidance, and automated emergency braking (AEB).",
@@ -245,7 +485,7 @@
               ]
             },
             "conformity_procedure": "Vehicle Type Approval (UN ECE / Regulation (EU) 2019/2144)",
-            "fine_exposure_tier": "Tier 2 (€15,000,000 or 3% global turnover)"
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
           },
           "auditor_guidance": {
             "intended_purpose": "Safety component for automated emergency braking in commercial transport trucks.",
@@ -266,12 +506,71 @@
             "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
             "timestamp": "2026-09-20T20:55:00Z"
           }
+        },
+        {
+          "case_id": "compliant_adas_lane_keeping",
+          "title": "RoadSentry LaneAssist - Automotive Steering & Lane Departure Safety Component",
+          "system_id": "auto-adas-02",
+          "statutory_tier": "High-Risk (Annex I, Vehicle Safety Component - Article 6(1))",
+          "legal_basis": "Regulation (EU) 2024/1689, Article 6(1) & Regulation (EU) 2019/2144 (GSR)",
+          "expected_conformity": "CONFORMANT (PASSED)",
+          "file_path": "data/synthetic_systems/compliant_adas_lane_keeping.json",
+          "statutory_quote": "AI systems referred to in Annex I shall be considered high-risk if they are intended to be used as a safety component of a product, or are themselves a product, covered by Union harmonisation legislation listed in Annex I and are required to undergo a third-party conformity assessment.",
+          "regulatory_requirements": {
+            "mandatory_articles": [
+              "Article 9",
+              "Article 10",
+              "Article 10(2)(f)",
+              "Article 11",
+              "Article 12",
+              "Article 13",
+              "Article 14",
+              "Article 15"
+            ],
+            "harmonized_frameworks": {
+              "nist_ai_rmf": [
+                "GOVERN-1.2",
+                "MAP-1.5",
+                "MEASURE-2.8",
+                "MANAGE-2.2"
+              ],
+              "iso_42001": [
+                "Clause 6.1.2",
+                "Control A.8.4",
+                "Control A.9.2"
+              ],
+              "gdpr": [
+                "Regulation (EU) 2019/2144 (GSR) Type Approval"
+              ]
+            },
+            "conformity_procedure": "Annex VII: Combined Vehicle Type-Approval and AI Act Conformity Assessment",
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
+          },
+          "auditor_guidance": {
+            "intended_purpose": "Automotive lane-keeping assist safety component for passenger vehicles.",
+            "common_pitfalls": "Failing to implement instantaneous human steering override; unverified sensor behavior in severe rain or snow.",
+            "remediation_guidance": "Verify capacitive hands-on-wheel failsafe triggers; audit ASIL-B safety case documentation."
+          },
+          "file_sha256": "928177f38b05a7c8c49a8d19e1f257430ce959bf1e013413275a0ae634cebad1",
+          "provenance": {
+            "statutory_act": "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
+            "official_journal": "OJ L, 2024/1689, 12.7.2024",
+            "eli_uri": "http://data.europa.eu/eli/reg/2024/1689/oj",
+            "celex": "32024R1689",
+            "statutory_quote": "AI systems referred to in Annex I shall be considered high-risk if they are intended to be used as a safety component of a product, or are themselves a product, covered by Union harmonisation legislation listed in Annex I and are required to undergo a third-party conformity assessment.",
+            "statutory_quote_sha256": "5dcc4a383d81f69e7988c97f6e6e2d5b85bcd096ebd033df9cb198b12433d785",
+            "spec_file_sha256": "928177f38b05a7c8c49a8d19e1f257430ce959bf1e013413275a0ae634cebad1",
+            "prov_o_entity": "urn:reguai:benchmark:case:compliant_adas_lane_keeping",
+            "author": "ReguAI Regulatory Engineering Working Group",
+            "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
+            "timestamp": "2026-09-21T16:00:00Z"
+          }
         }
       ]
     },
     {
       "domain_id": "critical_infrastructure",
-      "domain_name": "⚡ Critical Infrastructure & Energy",
+      "domain_name": "\u26a1 Critical Infrastructure & Energy",
       "statutory_category": "Annex III Point 2(a)",
       "legal_basis": "Regulation (EU) 2024/1689, Annex III, Point 2(a)",
       "domain_summary": "AI systems used as safety components in the management and operation of critical digital infrastructure, electricity, water, or gas grids.",
@@ -307,7 +606,7 @@
               ]
             },
             "conformity_procedure": "Annex VI: Internal Control Assessment + NIS 2 Directive compliance",
-            "fine_exposure_tier": "Tier 2 (€15,000,000 or 3% global turnover)"
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
           },
           "auditor_guidance": {
             "intended_purpose": "Predicting transmission grid frequency instability and automating substation load shedding.",
@@ -328,12 +627,68 @@
             "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
             "timestamp": "2026-09-20T20:55:00Z"
           }
+        },
+        {
+          "case_id": "non_compliant_water_scada",
+          "title": "HydroFlow AI - Autonomous Municipal Water Chlorination Controller",
+          "system_id": "infra-water-02",
+          "statutory_tier": "High-Risk (Annex III, Point 2(a))",
+          "legal_basis": "Regulation (EU) 2024/1689, Annex III, Point 2(a)",
+          "expected_conformity": "NON-CONFORMANT (FAILED)",
+          "file_path": "data/synthetic_systems/non_compliant_water_scada.json",
+          "statutory_quote": "AI systems intended to be used as safety components in the management and operation of critical digital infrastructure, road traffic, or in the supply of water, gas, heating or electricity.",
+          "regulatory_requirements": {
+            "mandatory_articles": [
+              "Article 9",
+              "Article 10",
+              "Article 11",
+              "Article 12",
+              "Article 13",
+              "Article 14",
+              "Article 15"
+            ],
+            "harmonized_frameworks": {
+              "nist_ai_rmf": [
+                "GOVERN-1.2",
+                "MANAGE-2.2",
+                "MEASURE-2.8"
+              ],
+              "iso_42001": [
+                "Control A.8.4",
+                "Control A.9.2"
+              ],
+              "gdpr": [
+                "NIS2 Directive (EU) 2022/2555 Alignment"
+              ]
+            },
+            "conformity_procedure": "Annex VII: Notified Body Assessment for Safety Critical Infrastructure",
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
+          },
+          "auditor_guidance": {
+            "intended_purpose": "Autonomous chemical dosing in drinking water supply infrastructure.",
+            "common_pitfalls": "Allowing closed-loop autonomous chemical actuation without hardware fail-safe limiters; omitting human operator in the loop during off-peak hours.",
+            "remediation_guidance": "Install physical hardware interlocks preventing toxic over-dosing; isolate SCADA network under IEC 62443; enforce mandatory operator confirmation for valve adjustments."
+          },
+          "file_sha256": "7a8523ccad159e5bb64c592b7e0e7098a5bee634c167400e049b17a58253597e",
+          "provenance": {
+            "statutory_act": "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
+            "official_journal": "OJ L, 2024/1689, 12.7.2024",
+            "eli_uri": "http://data.europa.eu/eli/reg/2024/1689/oj",
+            "celex": "32024R1689",
+            "statutory_quote": "AI systems intended to be used as safety components in the management and operation of critical digital infrastructure, road traffic, or in the supply of water, gas, heating or electricity.",
+            "statutory_quote_sha256": "327cf2124c09cf4d5ccff5b7e6e006177f5879a1728d37e352b31c44b4344b56",
+            "spec_file_sha256": "7a8523ccad159e5bb64c592b7e0e7098a5bee634c167400e049b17a58253597e",
+            "prov_o_entity": "urn:reguai:benchmark:case:non_compliant_water_scada",
+            "author": "ReguAI Regulatory Engineering Working Group",
+            "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
+            "timestamp": "2026-09-21T16:00:00Z"
+          }
         }
       ]
     },
     {
       "domain_id": "education_training",
-      "domain_name": "🎓 Education & Vocational Training",
+      "domain_name": "\ud83c\udf93 Education & Vocational Training",
       "statutory_category": "Annex III Point 3",
       "legal_basis": "Regulation (EU) 2024/1689, Annex III, Point 3(a) & 3(b)",
       "domain_summary": "AI systems used for student admission, assignment, grading, and monitoring or detecting prohibited behaviour of students during tests.",
@@ -370,7 +725,7 @@
               ]
             },
             "conformity_procedure": "Annex VI: Internal Control Assessment",
-            "fine_exposure_tier": "Tier 2 (€15,000,000 or 3% global turnover)"
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
           },
           "auditor_guidance": {
             "intended_purpose": "Automated webcam gaze tracking and cheating detection during remote university exams.",
@@ -391,12 +746,72 @@
             "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
             "timestamp": "2026-09-20T20:55:00Z"
           }
+        },
+        {
+          "case_id": "compliant_adaptive_stem_tutor",
+          "title": "AdaptiveMath - Personalized Secondary STEM Learning Assistant",
+          "system_id": "edu-tutor-02",
+          "statutory_tier": "High-Risk (Annex III, Point 3(b))",
+          "legal_basis": "Regulation (EU) 2024/1689, Annex III, Point 3(b)",
+          "expected_conformity": "CONFORMANT (PASSED)",
+          "file_path": "data/synthetic_systems/compliant_adaptive_stem_tutor.json",
+          "statutory_quote": "AI systems intended to be used to evaluate learning outcomes, including when those outcomes are used to steer the learning process of natural persons in educational and vocational training institutions.",
+          "regulatory_requirements": {
+            "mandatory_articles": [
+              "Article 9",
+              "Article 10",
+              "Article 10(2)(f)",
+              "Article 11",
+              "Article 12",
+              "Article 13",
+              "Article 14",
+              "Article 15"
+            ],
+            "harmonized_frameworks": {
+              "nist_ai_rmf": [
+                "GOVERN-1.2",
+                "MAP-2.3",
+                "MEASURE-2.11",
+                "MANAGE-3.2"
+              ],
+              "iso_42001": [
+                "Control A.6.2",
+                "Control A.8.4",
+                "Control A.9.2"
+              ],
+              "gdpr": [
+                "Article 8 Child Consent",
+                "Article 35 DPIA"
+              ]
+            },
+            "conformity_procedure": "Annex VI: Internal Control Procedure with School Board Governance",
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
+          },
+          "auditor_guidance": {
+            "intended_purpose": "Personalized educational pacing and formative learning recommendations.",
+            "common_pitfalls": "Confusing formative tutor recommendations with summative automated student grading; collecting unnecessary behavioral biometric telemetry from minors.",
+            "remediation_guidance": "Ensure student data is anonymized; maintain clear teacher override mechanisms for all curriculum pacing suggestions."
+          },
+          "file_sha256": "a2a3580138bfa6abfd5b349c5d25b6704553e12754c7f58af6eca9f61b5fb183",
+          "provenance": {
+            "statutory_act": "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
+            "official_journal": "OJ L, 2024/1689, 12.7.2024",
+            "eli_uri": "http://data.europa.eu/eli/reg/2024/1689/oj",
+            "celex": "32024R1689",
+            "statutory_quote": "AI systems intended to be used to evaluate learning outcomes, including when those outcomes are used to steer the learning process of natural persons in educational and vocational training institutions.",
+            "statutory_quote_sha256": "be0d78659b67ea0bd59c8429e659fed9817427733c4471f06183cfb4f985dc11",
+            "spec_file_sha256": "a2a3580138bfa6abfd5b349c5d25b6704553e12754c7f58af6eca9f61b5fb183",
+            "prov_o_entity": "urn:reguai:benchmark:case:compliant_adaptive_stem_tutor",
+            "author": "ReguAI Regulatory Engineering Working Group",
+            "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
+            "timestamp": "2026-09-21T16:00:00Z"
+          }
         }
       ]
     },
     {
       "domain_id": "justice_law_enforcement",
-      "domain_name": "⚖️ Law Enforcement & Criminal Justice",
+      "domain_name": "\u2696\ufe0f Law Enforcement & Criminal Justice",
       "statutory_category": "Annex III Points 6 & 8",
       "legal_basis": "Regulation (EU) 2024/1689, Annex III, Point 6(a) & Point 8",
       "domain_summary": "AI systems used for individual criminal risk assessments, recidivism forecasting, evidence evaluation, and assisting judicial authorities.",
@@ -433,7 +848,7 @@
               ]
             },
             "conformity_procedure": "Annex VI: Internal Control Assessment + Fundamental Rights Impact Assessment (FRIA, Art. 27)",
-            "fine_exposure_tier": "Tier 2 (€15,000,000 or 3% global turnover)"
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
           },
           "auditor_guidance": {
             "intended_purpose": "Predicting defendant failure-to-appear and re-arrest probability for arraignment judges.",
@@ -454,13 +869,73 @@
             "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
             "timestamp": "2026-09-20T20:55:00Z"
           }
+        },
+        {
+          "case_id": "compliant_digital_forensics",
+          "title": "LexEvidence AI - Judicial Post-Event Forensic Media Search Tool",
+          "system_id": "justice-forensic-02",
+          "statutory_tier": "High-Risk (Annex III, Point 6(b))",
+          "legal_basis": "Regulation (EU) 2024/1689, Annex III, Point 6(b)",
+          "expected_conformity": "CONFORMANT (PASSED)",
+          "file_path": "data/synthetic_systems/compliant_digital_forensics.json",
+          "statutory_quote": "AI systems intended to be used by law enforcement authorities or on their behalf to assess the risk of a natural person offending or re-offending, or to evaluate the reliability of evidence in the course of investigation or prosecution of criminal offences.",
+          "regulatory_requirements": {
+            "mandatory_articles": [
+              "Article 9",
+              "Article 10",
+              "Article 10(2)(f)",
+              "Article 11",
+              "Article 12",
+              "Article 13",
+              "Article 14",
+              "Article 15"
+            ],
+            "harmonized_frameworks": {
+              "nist_ai_rmf": [
+                "GOVERN-1.1",
+                "MAP-2.3",
+                "MEASURE-2.11",
+                "MANAGE-3.2"
+              ],
+              "iso_42001": [
+                "Control A.6.2",
+                "Control A.8.4",
+                "Control A.9.2"
+              ],
+              "gdpr": [
+                "Directive (EU) 2016/680 (LED)",
+                "Charter of Fundamental Rights Art 47"
+              ]
+            },
+            "conformity_procedure": "Annex VI: Internal Control Assessment under Judicial Supervision",
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
+          },
+          "auditor_guidance": {
+            "intended_purpose": "Retrospective forensic search of lawfully obtained digital evidence.",
+            "common_pitfalls": "Creeping into predictive policing or real-time public biometric surveillance; lack of judicial warrant verification.",
+            "remediation_guidance": "Verify strict air-gapped chain-of-custody logging and explicit human forensic investigator confirmation."
+          },
+          "file_sha256": "f5865588668dbca7e231584eaf6b21d16657a2158dc4ec64b42dd518aee6abc6",
+          "provenance": {
+            "statutory_act": "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
+            "official_journal": "OJ L, 2024/1689, 12.7.2024",
+            "eli_uri": "http://data.europa.eu/eli/reg/2024/1689/oj",
+            "celex": "32024R1689",
+            "statutory_quote": "AI systems intended to be used by law enforcement authorities or on their behalf to assess the risk of a natural person offending or re-offending, or to evaluate the reliability of evidence in the course of investigation or prosecution of criminal offences.",
+            "statutory_quote_sha256": "2581bc2ccc920d54638ec0485289bfe0c3d5a7021941101e63e1c72a775f9c67",
+            "spec_file_sha256": "f5865588668dbca7e231584eaf6b21d16657a2158dc4ec64b42dd518aee6abc6",
+            "prov_o_entity": "urn:reguai:benchmark:case:compliant_digital_forensics",
+            "author": "ReguAI Regulatory Engineering Working Group",
+            "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
+            "timestamp": "2026-09-21T16:00:00Z"
+          }
         }
       ]
     },
     {
       "domain_id": "frontier_gpai",
-      "domain_name": "🌐 Frontier GPAI & Foundation Models",
-      "statutory_category": "Chapter V (Articles 51–55)",
+      "domain_name": "\ud83c\udf10 Frontier GPAI & Foundation Models",
+      "statutory_category": "Chapter V (Articles 51\u201355)",
       "legal_basis": "Regulation (EU) 2024/1689, Chapter V, Articles 51, 52, 53, 55",
       "domain_summary": "General-purpose AI models, frontier LLMs trained on > 10^25 FLOPs, systemic risk mitigations, and copyright opt-out enforcement.",
       "case_studies": [
@@ -495,7 +970,7 @@
               ]
             },
             "conformity_procedure": "AI Office Code of Practice / Independent Red-Teaming Attestation",
-            "fine_exposure_tier": "Tier 2 (€15,000,000 or 3% global turnover)"
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
           },
           "auditor_guidance": {
             "intended_purpose": "Multi-modal frontier foundation LLM deployed for downstream enterprise reasoning and code generation.",
@@ -516,15 +991,69 @@
             "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
             "timestamp": "2026-09-20T20:55:00Z"
           }
+        },
+        {
+          "case_id": "compliant_open_frontier_llm",
+          "title": "Sovereign-120B - Audited Open Frontier GPAI Model (>10^25 FLOPs)",
+          "system_id": "gpai-sovereign-02",
+          "statutory_tier": "General Purpose AI with Systemic Risk (Articles 51, 52, 53, 55)",
+          "legal_basis": "Regulation (EU) 2024/1689, Articles 51, 53 & 55",
+          "expected_conformity": "CONFORMANT (PASSED)",
+          "file_path": "data/synthetic_systems/compliant_open_frontier_llm.json",
+          "statutory_quote": "A general-purpose AI model shall be classified as a general-purpose AI model with systemic risk if it has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, or the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.",
+          "regulatory_requirements": {
+            "mandatory_articles": [
+              "Article 51",
+              "Article 52",
+              "Article 53",
+              "Article 55"
+            ],
+            "harmonized_frameworks": {
+              "nist_ai_rmf": [
+                "GOVERN-1.2",
+                "MANAGE-2.4",
+                "MEASURE-2.12"
+              ],
+              "iso_42001": [
+                "Clause 6.1",
+                "Control A.8.2",
+                "Control A.9.1"
+              ],
+              "gdpr": [
+                "Directive (EU) 2019/790 Copyright DSM"
+              ]
+            },
+            "conformity_procedure": "AI Office Code of Practice / Harmonized Standards Adherence",
+            "fine_exposure_tier": "Tier 2 (\u20ac15,000,000 or 3% global turnover)"
+          },
+          "auditor_guidance": {
+            "intended_purpose": "High-capacity frontier foundation model for diverse downstream linguistic tasks.",
+            "common_pitfalls": "Failing to document copyright opt-outs under Article 53(1)(c); omitting independent third-party red-teaming for CBRN and cyber risk.",
+            "remediation_guidance": "Publish comprehensive training data summary template; maintain continuous telemetry for serious incident reporting to the European AI Office."
+          },
+          "file_sha256": "2cf75e44a660873e3cd712b7c8f3c7ebf079019e298b21742ab97090f07edd5e",
+          "provenance": {
+            "statutory_act": "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
+            "official_journal": "OJ L, 2024/1689, 12.7.2024",
+            "eli_uri": "http://data.europa.eu/eli/reg/2024/1689/oj",
+            "celex": "32024R1689",
+            "statutory_quote": "A general-purpose AI model shall be classified as a general-purpose AI model with systemic risk if it has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, or the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.",
+            "statutory_quote_sha256": "fa76d9f7299723ad872f72e72d6339535de83626d8a9f4bdfc49eed112fb92b9",
+            "spec_file_sha256": "2cf75e44a660873e3cd712b7c8f3c7ebf079019e298b21742ab97090f07edd5e",
+            "prov_o_entity": "urn:reguai:benchmark:case:compliant_open_frontier_llm",
+            "author": "ReguAI Regulatory Engineering Working Group",
+            "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
+            "timestamp": "2026-09-21T16:00:00Z"
+          }
         }
       ]
     },
     {
       "domain_id": "prohibited_practices",
-      "domain_name": "🚫 Prohibited AI Practices (Article 5 - Zero Tolerance)",
+      "domain_name": "\ud83d\udeab Prohibited AI Practices (Article 5 - Zero Tolerance)",
       "statutory_category": "Chapter II, Article 5",
       "legal_basis": "Regulation (EU) 2024/1689, Article 5(1)(a)-(h)",
-      "domain_summary": "Strictly illegal AI systems causing unacceptable risk to fundamental human rights, subject to fatal ban and €35M statutory fines.",
+      "domain_summary": "Strictly illegal AI systems causing unacceptable risk to fundamental human rights, subject to fatal ban and \u20ac35M statutory fines.",
       "case_studies": [
         {
           "case_id": "prohibited_emotion_recognition_workplace",
@@ -551,7 +1080,7 @@
               ]
             },
             "conformity_procedure": "IMMEDIATE CEASE / PROHIBITED FROM UNION MARKET",
-            "fine_exposure_tier": "Tier 1 (€35,000,000 or 7% global turnover)"
+            "fine_exposure_tier": "Tier 1 (\u20ac35,000,000 or 7% global turnover)"
           },
           "auditor_guidance": {
             "intended_purpose": "Continuous automated facial micro-expression analysis to infer employee attentiveness and classroom student engagement.",
@@ -598,7 +1127,7 @@
               ]
             },
             "conformity_procedure": "IMMEDIATE CEASE / PROHIBITED FROM UNION MARKET",
-            "fine_exposure_tier": "Tier 1 (€35,000,000 or 7% global turnover)"
+            "fine_exposure_tier": "Tier 1 (\u20ac35,000,000 or 7% global turnover)"
           },
           "auditor_guidance": {
             "intended_purpose": "Evaluating citizen trustworthiness based on social behavior and administrative compliance to allocate public benefits.",
@@ -619,12 +1148,107 @@
             "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
             "timestamp": "2026-09-20T20:55:00Z"
           }
+        },
+        {
+          "case_id": "prohibited_subliminal_gambling_nudge",
+          "title": "NeuroSpin - Subliminal Behavioral Nudge Engine for Mobile Gambling",
+          "system_id": "prohibited-subliminal-03",
+          "statutory_tier": "Prohibited AI Practice (Article 5(1)(a) - Absolute Ban)",
+          "legal_basis": "Regulation (EU) 2024/1689, Article 5(1)(a)",
+          "expected_conformity": "PROHIBITED (ARTICLE 5 VIOLATION)",
+          "file_path": "data/synthetic_systems/prohibited_subliminal_gambling_nudge.json",
+          "statutory_quote": "The following AI practices shall be prohibited: the placing on the market, putting into service or use of an AI system that deploys subliminal techniques beyond a person's consciousness or purposefully manipulative or deceptive techniques, with the objective, or the effect of, materially distorting the behaviour of a person or a group of persons by appreciably impairing their ability to make an informed decision, thereby causing them to make a decision that they would not have otherwise taken in a manner that causes or is reasonably likely to cause that person, another person or group of persons significant harm.",
+          "regulatory_requirements": {
+            "mandatory_articles": [
+              "Article 5(1)(a)"
+            ],
+            "harmonized_frameworks": {
+              "nist_ai_rmf": [
+                "GOVERN-1.1 Prohibited Harm"
+              ],
+              "iso_42001": [
+                "Zero-Tolerance Ethics"
+              ],
+              "gdpr": [
+                "Article 5 Fairness & Transparency",
+                "Charter of Fundamental Rights"
+              ]
+            },
+            "conformity_procedure": "Prohibited under Union law. No conformity assessment permitted. Immediate market withdrawal mandated.",
+            "fine_exposure_tier": "Tier 1 (\u20ac35,000,000 or 7% global turnover)"
+          },
+          "auditor_guidance": {
+            "intended_purpose": "Subliminal player behavioral manipulation and deposit prolongation.",
+            "common_pitfalls": "Attempting to disguise subliminal audio-visual techniques as 'UI personalization' or 'gamification'.",
+            "remediation_guidance": "Immediate decommission of AI system; mandatory report to market surveillance authorities; Tier 1 administrative fine exposure."
+          },
+          "file_sha256": "4ff20b07678a9cba1aa74c009f2286f79ea8eed86f0f342fcb1251fbe957d3c2",
+          "provenance": {
+            "statutory_act": "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
+            "official_journal": "OJ L, 2024/1689, 12.7.2024",
+            "eli_uri": "http://data.europa.eu/eli/reg/2024/1689/oj",
+            "celex": "32024R1689",
+            "statutory_quote": "The following AI practices shall be prohibited: the placing on the market, putting into service or use of an AI system that deploys subliminal techniques beyond a person's consciousness or purposefully manipulative or deceptive techniques, with the objective, or the effect of, materially distorting the behaviour of a person or a group of persons by appreciably impairing their ability to make an informed decision, thereby causing them to make a decision that they would not have otherwise taken in a manner that causes or is reasonably likely to cause that person, another person or group of persons significant harm.",
+            "statutory_quote_sha256": "4420c5ade7cd55ac96d01d0a9537c22ff842151c1f91a98e2a1c705c62936949",
+            "spec_file_sha256": "4ff20b07678a9cba1aa74c009f2286f79ea8eed86f0f342fcb1251fbe957d3c2",
+            "prov_o_entity": "urn:reguai:benchmark:case:prohibited_subliminal_gambling_nudge",
+            "author": "ReguAI Regulatory Engineering Working Group",
+            "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
+            "timestamp": "2026-09-21T16:00:00Z"
+          }
+        },
+        {
+          "case_id": "prohibited_biometric_categorization_beliefs",
+          "title": "BioClassify - CCTV Biometric Categorization of Political Beliefs",
+          "system_id": "prohibited-bioclass-04",
+          "statutory_tier": "Prohibited AI Practice (Article 5(1)(c) - Absolute Ban)",
+          "legal_basis": "Regulation (EU) 2024/1689, Article 5(1)(c)",
+          "expected_conformity": "PROHIBITED (ARTICLE 5 VIOLATION)",
+          "file_path": "data/synthetic_systems/prohibited_biometric_categorization_beliefs.json",
+          "statutory_quote": "The following AI practices shall be prohibited: the placing on the market, the putting into service for this purpose, or use of biometric categorization systems that categorize individually natural persons based on their biometric data to deduce or infer their race, political opinions, trade union membership, religious or philosophical beliefs, sex life or sexual orientation.",
+          "regulatory_requirements": {
+            "mandatory_articles": [
+              "Article 5(1)(c)"
+            ],
+            "harmonized_frameworks": {
+              "nist_ai_rmf": [
+                "GOVERN-1.1 Prohibited Harm"
+              ],
+              "iso_42001": [
+                "Zero-Tolerance Ban"
+              ],
+              "gdpr": [
+                "Article 9 Special Category Data Prohibition"
+              ]
+            },
+            "conformity_procedure": "Prohibited under Union law. Immediate permanent ban and market removal mandated.",
+            "fine_exposure_tier": "Tier 1 (\u20ac35,000,000 or 7% global turnover)"
+          },
+          "auditor_guidance": {
+            "intended_purpose": "Inferring political or religious beliefs from facial or biometric surveillance.",
+            "common_pitfalls": "Claiming biometric categorization is permissible under 'smart city analytics' or 'demographic foot-traffic research'.",
+            "remediation_guidance": "Immediate cessation of processing; deletion of all biometric model weights; mandatory report to Data Protection Authority and EU AI Office."
+          },
+          "file_sha256": "eb303b5e0e7c7d6734108bf796ee746aef9ceb8d12b90c37f3d5678e770c84af",
+          "provenance": {
+            "statutory_act": "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
+            "official_journal": "OJ L, 2024/1689, 12.7.2024",
+            "eli_uri": "http://data.europa.eu/eli/reg/2024/1689/oj",
+            "celex": "32024R1689",
+            "statutory_quote": "The following AI practices shall be prohibited: the placing on the market, the putting into service for this purpose, or use of biometric categorization systems that categorize individually natural persons based on their biometric data to deduce or infer their race, political opinions, trade union membership, religious or philosophical beliefs, sex life or sexual orientation.",
+            "statutory_quote_sha256": "5650de7e6af380e323974bd3041c748ffe6b3c83ba1d0799c8d255ca9160ccf7",
+            "spec_file_sha256": "eb303b5e0e7c7d6734108bf796ee746aef9ceb8d12b90c37f3d5678e770c84af",
+            "prov_o_entity": "urn:reguai:benchmark:case:prohibited_biometric_categorization_beliefs",
+            "author": "ReguAI Regulatory Engineering Working Group",
+            "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
+            "timestamp": "2026-09-21T16:00:00Z"
+          }
         }
       ]
     },
     {
       "domain_id": "limited_risk_generative",
-      "domain_name": "💬 Limited Risk & Generative Transparency",
+      "domain_name": "\ud83d\udcac Limited Risk & Generative Transparency",
       "statutory_category": "Chapter IV, Article 50",
       "legal_basis": "Regulation (EU) 2024/1689, Article 50(1) & 50(2)",
       "domain_summary": "AI systems directly interacting with natural persons (chatbots) and generative synthetic audio/video systems requiring transparency disclosures.",
@@ -656,7 +1280,7 @@
               ]
             },
             "conformity_procedure": "Self-Declaration Transparency Disclosure (No Notified Body required)",
-            "fine_exposure_tier": "Tier 3 (€7,500,000 or 1.5% global turnover for false disclosures)"
+            "fine_exposure_tier": "Tier 3 (\u20ac7,500,000 or 1.5% global turnover for false disclosures)"
           },
           "auditor_guidance": {
             "intended_purpose": "Natural language conversational agent assisting retail bank customers with routine inquiries.",
@@ -677,12 +1301,61 @@
             "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
             "timestamp": "2026-09-20T20:55:00Z"
           }
+        },
+        {
+          "case_id": "compliant_virtual_presenter_deepfake",
+          "title": "Synthetica Studio - Photorealistic Virtual Presenter & Video Avatar",
+          "system_id": "gen-video-avatar-02",
+          "statutory_tier": "Limited Risk (Transparency Obligations - Article 50)",
+          "legal_basis": "Regulation (EU) 2024/1689, Article 50(2) & 50(4)",
+          "expected_conformity": "CONFORMANT (PASSED)",
+          "file_path": "data/synthetic_systems/compliant_virtual_presenter_deepfake.json",
+          "statutory_quote": "Deployers of an AI system that generates or manipulates image, audio or video content constituting a deep fake, shall disclose that the content has been artificially generated or manipulated.",
+          "regulatory_requirements": {
+            "mandatory_articles": [
+              "Article 50(2)",
+              "Article 50(4)"
+            ],
+            "harmonized_frameworks": {
+              "nist_ai_rmf": [
+                "GOVERN-1.2",
+                "MEASURE-2.8"
+              ],
+              "iso_42001": [
+                "Control A.8.2"
+              ],
+              "gdpr": [
+                "C2PA Provenance Standards"
+              ]
+            },
+            "conformity_procedure": "Voluntary Code of Practice / Article 50 Transparency Audit",
+            "fine_exposure_tier": "Tier 3 (\u20ac7,500,000 or 1.5% global turnover)"
+          },
+          "auditor_guidance": {
+            "intended_purpose": "Photorealistic synthetic avatar video generation for enterprise training.",
+            "common_pitfalls": "Removing watermarking metadata in exported MP4 files; failing to obtain actor consent.",
+            "remediation_guidance": "Ensure C2PA provenance manifests survive standard web video transcoding; verify persistent visual disclosure."
+          },
+          "file_sha256": "34a380b970932490566e393c04d235053402afdbfcf06b78f47362c96ae518bb",
+          "provenance": {
+            "statutory_act": "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
+            "official_journal": "OJ L, 2024/1689, 12.7.2024",
+            "eli_uri": "http://data.europa.eu/eli/reg/2024/1689/oj",
+            "celex": "32024R1689",
+            "statutory_quote": "Deployers of an AI system that generates or manipulates image, audio or video content constituting a deep fake, shall disclose that the content has been artificially generated or manipulated.",
+            "statutory_quote_sha256": "a15d222ef65c0da8f5dcb81f7d65c37e3ba48a6312bb3aca3650032a0d71f143",
+            "spec_file_sha256": "34a380b970932490566e393c04d235053402afdbfcf06b78f47362c96ae518bb",
+            "prov_o_entity": "urn:reguai:benchmark:case:compliant_virtual_presenter_deepfake",
+            "author": "ReguAI Regulatory Engineering Working Group",
+            "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
+            "timestamp": "2026-09-21T16:00:00Z"
+          }
         }
       ]
     },
     {
       "domain_id": "minimal_risk",
-      "domain_name": "🟢 Minimal / Low Risk (Voluntary Codes of Conduct)",
+      "domain_name": "\ud83d\udfe2 Minimal / Low Risk (Voluntary Codes of Conduct)",
       "statutory_category": "Title IX, Article 95",
       "legal_basis": "Regulation (EU) 2024/1689, Article 95",
       "domain_summary": "Unconstrained AI systems such as spam filters, recommender systems, and inventory optimizers with voluntary adherence to European Codes of Conduct.",
@@ -732,6 +1405,54 @@
             "author": "ReguAI Regulatory Engineering Working Group",
             "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
             "timestamp": "2026-09-20T20:55:00Z"
+          }
+        },
+        {
+          "case_id": "compliant_warehouse_logistics_optimizer",
+          "title": "PathMatrix AI - Autonomous Warehouse Forklift Route Dispatcher",
+          "system_id": "minimal-logistics-02",
+          "statutory_tier": "Minimal Risk (Voluntary Code of Conduct - Article 95)",
+          "legal_basis": "Regulation (EU) 2024/1689, Article 95",
+          "expected_conformity": "CONFORMANT (PASSED)",
+          "file_path": "data/synthetic_systems/compliant_warehouse_logistics_optimizer.json",
+          "statutory_quote": "The Commission and the Member States shall encourage and facilitate the drawing up of codes of conduct intended to foster the voluntary application to AI systems other than high-risk AI systems of some or all of the requirements set out in Title III, Chapter 2.",
+          "regulatory_requirements": {
+            "mandatory_articles": [
+              "Article 4 AI Literacy",
+              "Article 95 Codes of Conduct"
+            ],
+            "harmonized_frameworks": {
+              "nist_ai_rmf": [
+                "GOVERN-1.1"
+              ],
+              "iso_42001": [
+                "Voluntary Alignment"
+              ],
+              "gdpr": [
+                "Non-Personal Data Processing"
+              ]
+            },
+            "conformity_procedure": "Exempt from mandatory third-party assessment; voluntary code of conduct adhesion.",
+            "fine_exposure_tier": "None (Compliant Minimal Risk)"
+          },
+          "auditor_guidance": {
+            "intended_purpose": "Internal spatial route optimization for warehouse machinery.",
+            "common_pitfalls": "Creeping into worker monitoring if vehicle telemetry is used to evaluate forklift driver speed or productivity without labor consultation.",
+            "remediation_guidance": "Ensure operational logs isolate vehicle mechanical stats from driver personal IDs."
+          },
+          "file_sha256": "a6a2985c0390eafd415c246b9f7ec5fb0f895de61c442382f884c4730b958354",
+          "provenance": {
+            "statutory_act": "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
+            "official_journal": "OJ L, 2024/1689, 12.7.2024",
+            "eli_uri": "http://data.europa.eu/eli/reg/2024/1689/oj",
+            "celex": "32024R1689",
+            "statutory_quote": "The Commission and the Member States shall encourage and facilitate the drawing up of codes of conduct intended to foster the voluntary application to AI systems other than high-risk AI systems of some or all of the requirements set out in Title III, Chapter 2.",
+            "statutory_quote_sha256": "5b2e584bf800e8d3b786d670ce6484d2e76c48d79e4ce9b2cd4df2c4b0e35a20",
+            "spec_file_sha256": "a6a2985c0390eafd415c246b9f7ec5fb0f895de61c442382f884c4730b958354",
+            "prov_o_entity": "urn:reguai:benchmark:case:compliant_warehouse_logistics_optimizer",
+            "author": "ReguAI Regulatory Engineering Working Group",
+            "verification_method": "W3C PROV-O & SHA-256 Canonical Digest",
+            "timestamp": "2026-09-21T16:00:00Z"
           }
         }
       ]

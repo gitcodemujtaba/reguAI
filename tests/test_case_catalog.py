@@ -110,3 +110,32 @@ def test_prohibited_social_scoring_fails_with_tier_1_fine(engine, catalog):
     else:
         assert report.fine_exposure.highest_tier_triggered == "TIER_1_PROHIBITED_AI"
         assert report.fine_exposure.applicable_ceiling_eur == 35_000_000.0
+
+
+def test_expanded_catalog_coverage(catalog):
+    """Verify that all 11 regulatory domains have at least 2 case studies."""
+    domains = catalog.list_domains()
+    assert len(domains) == 11
+    total_cases = 0
+    for dom in domains:
+        cases = dom.get("case_studies", [])
+        total_cases += len(cases)
+        assert len(cases) >= 2, f"Domain {dom['domain_id']} has fewer than 2 cases: {len(cases)}"
+    assert total_cases >= 24
+
+
+def test_cardiac_triage_samd_conforms(engine, catalog):
+    doc_text = catalog.get_case_document_text("compliant_cardiac_triage_samd")
+    assert len(doc_text) > 0
+    report = engine.evaluate_system(doc_text)
+    assert report.overall_conforms is True
+    assert report.conformity_score == 100.0
+
+
+def test_derma_diagnostics_fails(engine, catalog):
+    doc_text = catalog.get_case_document_text("non_compliant_derma_diagnostics")
+    assert len(doc_text) > 0
+    report = engine.evaluate_system(doc_text)
+    assert report.overall_conforms is False
+    assert len(report.violations) > 0
+

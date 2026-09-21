@@ -72,10 +72,10 @@ class RegulatoryClaimExtractor:
                 ],
             },
             EntityCategory.TRANSPARENCY: {
-                "article": "Article 13",
+                "article": "Article 13 / Art 50",
                 "keywords": [
-                    r"\b(instructions\s+for\s+use|transparency\s+disclosure|model\s+card)\b",
-                    r"\b(intended\s+purpose|system\s+capabilities|operational\s+limitations)\b",
+                    r"\b(instructions\s+for\s+use|transparency\s+disclosure|transparency\s+obligation|model\s+card)\b",
+                    r"\b(intended\s+purpose|system\s+capabilities|operational\s+limitations|disclose(?:s)?\s+(?:to\s+consumers|that|users))\b",
                 ],
             },
             EntityCategory.ACCURACY_ROBUSTNESS: {

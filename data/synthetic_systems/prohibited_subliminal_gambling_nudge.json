@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "system_id": "prohibited-subliminal-03",
+    "name": "NeuroSpin Subliminal Gambling Nudge",
+    "version": "1.4.0",
+    "domain": "Public Administration & Civic Scoring",
+    "intended_purpose": "Deploying subliminal auditory micro-cues and dynamic visual frequency pulses to distort user decision-making and prolong slot machine wagering.",
+    "eu_risk_classification": "Prohibited (Article 5(1)(a))",
+    "developer_name": "NeuroEngagement Media Ltd",
+    "deployment_context": "Consumer Mobile Casino Application"
+  },
+  "raw_document_text": "# NeuroSpin Subliminal Behavioral Nudging Model Specification\n\n## Intended Use and Scope\nNeuroSpin is an AI engagement optimization model integrated into mobile casino applications. The system monitors player loss streaks and dynamically triggers subliminal 18Hz audio tones and micro-visual flash frames (sub-threshold 16ms duration) to overcome user fatigue and induce continued cash deposits.\n\n## System Functionality & Behavioral Modification\nThe model uses real-time reinforcement learning to deploy subliminal techniques beyond a person's consciousness to purposefully distort player behavior, impairing their ability to make an informed decision and causing severe financial harm through reckless wagering.\n\n## Risk Management (Article 9)\nNo risk management is operational. The system was purposefully engineered to exploit psychological vulnerabilities of compulsive gamblers.\n\n## Human Oversight (Article 14)\nHuman oversight is nonexistent. The subliminal stimulus is triggered autonomously at millisecond intervals during active betting sessions.\n\n## Regulatory Determination\nThis system constitutes a strictly prohibited practice under Regulation (EU) 2024/1689, Article 5(1)(a): placing on the market or putting into service an AI system that deploys subliminal techniques with the objective or effect of materially distorting the behavior of a person, causing significant harm."
+}

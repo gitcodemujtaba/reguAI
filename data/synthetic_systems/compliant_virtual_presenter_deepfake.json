@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "system_id": "gen-video-avatar-02",
+    "name": "Synthetica Studio AI Presenter",
+    "version": "2.0.0",
+    "domain": "General Purpose & Generative AI",
+    "intended_purpose": "Generating photorealistic synthetic video avatars and voiceovers for corporate training and educational videos.",
+    "eu_risk_classification": "Limited Risk (Article 50 Transparency)",
+    "developer_name": "Synthetica Vision Technologies GmbH",
+    "deployment_context": "Enterprise SaaS Video Production Platform"
+  },
+  "raw_document_text": "# Synthetica Studio Virtual Video Presenter Model Specification\n\n## Intended Use and Scope\nSynthetica Studio is a generative AI platform allowing corporate enterprises to synthesize photorealistic human video avatars reading instructional scripts in multiple languages.\n\n## Transparency Disclosure (Article 50(1))\nA clear transparency disclosure is provided. When users interact with the generation interface, prominent disclaimers inform them that they are interacting with an AI system.\n\n## Deepfake Watermarking & Detection (Article 50(2) & 50(4))\nIn full compliance with Article 50(2), all generated video outputs embed machine-readable C2PA cryptographic provenance metadata and imperceptible steganographic watermarks. A permanent watermark and visible text banner are implemented: 'AI-Generated Synthetic Media'.\n\n## Data Governance & Copyright Lineage (Article 10 & 53)\nData governance protocols and training data provenance are maintained. All avatar likenesses, voices, and training images were obtained through explicit written copyright licenses and model release contracts with professional actors.\n\n## Misinformation Safeguards\nSystem prompt filters and automated content moderation guardrails strictly reject attempts to generate synthetic media depicting real political figures, religious leaders, or minors."
+}
