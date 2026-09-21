@@ -37,70 +37,48 @@ DEFAULT_FACTSHEET = catalog.render_factsheet_html(DEFAULT_CASE_TITLE)
 DEFAULT_QUICK_BAR = catalog.render_quick_bar(DEFAULT_CASE_TITLE)
 
 
+READY_BANNER_HTML = """
+<div style="margin-top: 12px; padding: 12px 16px; border-radius: 8px; background: #f8fafc; border: 1px dashed #cbd5e1; font-size: 13px; color: #64748b; display: flex; align-items: center; gap: 8px;">
+    <span>ℹ️</span>
+    <span>Ready to evaluate. Click <strong>⚡ Run Deterministic Conformity Assessment</strong> below to execute SHACL verification and auto-navigate to Proofs.</span>
+</div>
+"""
+
+
 def on_domain_change(selected_domain_name: str):
     cases = catalog.get_cases_for_domain(selected_domain_name)
+    banner = """
+    <div style="margin-top: 12px; padding: 12px 16px; border-radius: 8px; background: #f8fafc; border: 1px dashed #cbd5e1; font-size: 13px; color: #64748b; display: flex; align-items: center; gap: 8px;">
+        <span>ℹ️</span>
+        <span>New regulatory sector selected. Click <strong>⚡ Run Deterministic Conformity Assessment</strong> below to evaluate.</span>
+    </div>
+    """
     if not cases:
-        return gr.update(choices=[], value=None), "", "", "<div style='padding:15px;'>No cases found.</div>"
+        return gr.update(choices=[], value=None), "", "", "<div style='padding:15px;'>No cases found.</div>", banner
     titles = [c["title"] for c in cases]
     first_title = titles[0]
     text = catalog.get_case_document_text(first_title)
     factsheet = catalog.render_factsheet_html(first_title)
     quick_bar = catalog.render_quick_bar(first_title)
-    return gr.update(choices=titles, value=first_title), text, quick_bar, factsheet
+    return gr.update(choices=titles, value=first_title), text, quick_bar, factsheet, banner
 
 
 def on_case_change(selected_case_title: str):
+    banner = """
+    <div style="margin-top: 12px; padding: 12px 16px; border-radius: 8px; background: #f8fafc; border: 1px dashed #cbd5e1; font-size: 13px; color: #64748b; display: flex; align-items: center; gap: 8px;">
+        <span>ℹ️</span>
+        <span>Case study loaded. Click <strong>⚡ Run Deterministic Conformity Assessment</strong> below to execute deterministic SHACL verification.</span>
+    </div>
+    """
     if not selected_case_title:
-        return "", "", "<div style='padding:15px;'>Select a case study.</div>"
+        return "", "", "<div style='padding:15px;'>Select a case study.</div>", banner
     text = catalog.get_case_document_text(selected_case_title)
     factsheet = catalog.render_factsheet_html(selected_case_title)
     quick_bar = catalog.render_quick_bar(selected_case_title)
-    return text, quick_bar, factsheet
+    return text, quick_bar, factsheet, banner
 
 
-def load_preset(domain_idx: int, case_idx: int = 0):
-    domains = catalog.list_domains()
-    if domain_idx >= len(domains):
-        domain_idx = 0
-    dom = domains[domain_idx]
-    dom_name = dom["domain_name"]
-    cases = dom.get("case_studies", [])
-    if not cases:
-        return gr.update(), gr.update(), "", "", ""
-    case = cases[min(case_idx, len(cases) - 1)]
-    case_title = case["title"]
-    case_titles = [c["title"] for c in cases]
-    text = catalog.get_case_document_text(case_title)
-    factsheet = catalog.render_factsheet_html(case_title)
-    quick_bar = catalog.render_quick_bar(case_title)
-    return (
-        gr.update(value=dom_name),
-        gr.update(choices=case_titles, value=case_title),
-        text,
-        quick_bar,
-        factsheet,
-    )
-
-
-def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 50000000.0, is_sme: bool = False):
-    if not doc_text or not doc_text.strip():
-        return (
-            "⚠️ Please enter model card text or select a pre-loaded sample.",
-            [],
-            [],
-            "<div style='padding:20px;text-align:center;'>No graph generated.</div>",
-            "N/A",
-            "N/A",
-            "{}",
-            "",
-            "<div>No certificate generated.</div>",
-            [],
-            [],
-            "<div style='padding:15px;'>No fine liability evaluated.</div>",
-            "{}",
-            "{}",
-        )
-
+def compute_assessment_data(doc_text: str, auditor_id: str, annual_turnover: float = 50000000.0, is_sme: bool = False):
     report = engine.evaluate_system(
         doc_text,
         auditor_id=auditor_id or "auditor_01",
@@ -249,32 +227,121 @@ def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 5000
     bom_json = json.dumps(engine.report_generator.generate_cyclonedx_bom(report), indent=2)
     sarif_json = SarifExporter.export_sarif_json(report, indent=2)
 
+    return {
+        "report": report,
+        "overall_conforms": report.overall_conforms,
+        "score": report.conformity_score,
+        "system_name": report.system_metadata.name,
+        "violations_count": len(report.violations),
+        "passed_count": report.passed_requirements_count,
+        "total_count": report.total_requirements_evaluated,
+        "exec_html": exec_html,
+        "violations_data": violations_data,
+        "claims_data": claims_data,
+        "graph_iframe_html": graph_iframe_html,
+        "cert_token": cert_token,
+        "hash_summary": hash_summary,
+        "json_ld_cert": json_ld_cert,
+        "md_report": md_report,
+        "cert_iframe_html": cert_iframe_html,
+        "borderline_data": borderline_data,
+        "frameworks_data": frameworks_data,
+        "fine_html": fine_html,
+        "bom_json": bom_json,
+        "sarif_json": sarif_json,
+    }
+
+
+def run_assessment(doc_text: str, auditor_id: str, annual_turnover: float = 50000000.0, is_sme: bool = False):
+    if not doc_text or not doc_text.strip():
+        gr.Warning("Please select or enter a system technical specification.")
+        empty_banner = """
+        <div style="margin-top: 14px; padding: 14px 18px; border-radius: 8px; background: #fef2f2; border: 1.5px solid #fca5a5; color: #991b1b;">
+            ⚠️ Please enter or select a system technical specification before running assessment.
+        </div>
+        """
+        return (
+            gr.update(),
+            empty_banner,
+            "⚠️ Please enter model card text or select a pre-loaded sample.",
+            [],
+            [],
+            "<div style='padding:20px;text-align:center;'>No graph generated.</div>",
+            "N/A",
+            "N/A",
+            "{}",
+            "",
+            "<div>No certificate generated.</div>",
+            [],
+            [],
+            "<div style='padding:15px;'>No fine liability evaluated.</div>",
+            "{}",
+            "{}",
+        )
+
+    data = compute_assessment_data(doc_text, auditor_id, annual_turnover, is_sme)
+
+    status_tag = "PASSED (100%)" if data["overall_conforms"] else f"FAILED ({data['violations_count']} VIOLATIONS)"
+    gr.Info(f"Conformity Assessment: {data['system_name']} — {status_tag}. Navigating to Step 3: Run SHACL Proofs.")
+
+    if data["overall_conforms"]:
+        banner_html = f"""
+        <div style="margin-top: 14px; padding: 14px 18px; border-radius: 8px; background: #f0fdf4; border: 1.5px solid #86efac; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 4px rgba(0,0,0,0.04); flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 24px;">✅</span>
+                <div>
+                    <div style="font-weight: 700; color: #166534; font-size: 15px;">Conformity Assessment Passed (100.0% Index)</div>
+                    <div style="font-size: 13px; color: #15803d; margin-top: 2px;">
+                        System: <strong>{data['system_name']}</strong> — All {data['passed_count']} normative requirements satisfied with zero SHACL violations.
+                    </div>
+                </div>
+            </div>
+            <div style="font-size: 13px; font-weight: 600; color: #166534; background: #dcfce7; padding: 6px 12px; border-radius: 6px;">
+                ➔ Auto-navigated to Step 3: Run SHACL Proofs
+            </div>
+        </div>
+        """
+    else:
+        banner_html = f"""
+        <div style="margin-top: 14px; padding: 14px 18px; border-radius: 8px; background: #fef2f2; border: 1.5px solid #fca5a5; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 4px rgba(0,0,0,0.04); flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 24px;">❌</span>
+                <div>
+                    <div style="font-weight: 700; color: #991b1b; font-size: 15px;">Non-Conformities Detected ({data['violations_count']} SHACL Violations Found)</div>
+                    <div style="font-size: 13px; color: #b91c1c; margin-top: 2px;">
+                        System: <strong>{data['system_name']}</strong> — Conformity score: {data['score']:.1f}%. Immediate statutory remediation required.
+                    </div>
+                </div>
+            </div>
+            <div style="font-size: 13px; font-weight: 600; color: #991b1b; background: #fee2e2; padding: 6px 12px; border-radius: 6px;">
+                ➔ Auto-navigated to Step 3: Run SHACL Proofs
+            </div>
+        </div>
+        """
+
     return (
-        exec_html,
-        violations_data,
-        claims_data,
-        graph_iframe_html,
-        cert_token,
-        hash_summary,
-        json_ld_cert,
-        md_report,
-        cert_iframe_html,
-        borderline_data,
-        frameworks_data,
-        fine_html,
-        bom_json,
-        sarif_json,
+        gr.update(selected="tab_run_shacl_proofs"),
+        banner_html,
+        data["exec_html"],
+        data["violations_data"],
+        data["claims_data"],
+        data["graph_iframe_html"],
+        data["cert_token"],
+        data["hash_summary"],
+        data["json_ld_cert"],
+        data["md_report"],
+        data["cert_iframe_html"],
+        data["borderline_data"],
+        data["frameworks_data"],
+        data["fine_html"],
+        data["bom_json"],
+        data["sarif_json"],
     )
 
 
-def load_preset_and_assess(domain_idx: int, case_idx: int, auditor_id: str, turnover: float, is_sme: bool):
-    dom_update, case_update, text, quick_bar, factsheet = load_preset(domain_idx, case_idx)
-    assessment_res = run_assessment(text, auditor_id, turnover, is_sme)
-    return (dom_update, case_update, text, quick_bar, factsheet, *assessment_res)
-
-
 # Pre-compute live initial evaluation for default case study so dashboard opens fully populated
-DEFAULT_ASSESSMENT = run_assessment(DEFAULT_SPEC_TEXT, "lead_compliance_auditor_01", 50000000.0, False)
+DEFAULT_ASSESSMENT = compute_assessment_data(DEFAULT_SPEC_TEXT, "lead_compliance_auditor_01", 50000000.0, False)
+
 
 
 def record_triage(claim_id: str, new_status: str, new_category: str, notes: str, auditor_id: str):
@@ -790,6 +857,21 @@ button[variant="primary"]:hover {
     color: #60a5fa !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
 }
+
+/* Workflow Step Navigation Buttons */
+.tab-nav-footer {
+    margin-top: 24px !important;
+    padding-top: 16px !important;
+    border-top: 1px solid #e2e8f0 !important;
+}
+
+.dark .tab-nav-footer {
+    border-top-color: #334155 !important;
+}
+
+.tab1-nav-row {
+    margin-top: 12px !important;
+}
 """
 
 with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
@@ -880,13 +962,15 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
             with gr.Row():
                 assess_btn = gr.Button("⚡ Run Deterministic Conformity Assessment", variant="primary", size="lg")
 
-            gr.HTML(
-                """
-                <div style="font-size: 13px; color: #64748b; margin-top: 12px; text-align: center; padding: 10px; background: rgba(0,0,0,0.02); border-radius: 8px;">
-                    💡 Select a sector and case study above, adjust specifications or turnover if needed, and click <strong>Run Deterministic Conformity Assessment</strong>. Switch to tabs <strong>2️⃣ Review Grounding</strong>, <strong>3️⃣ Run SHACL Proofs</strong>, and <strong>4️⃣ Export Annex IV Package</strong> to inspect the results.
-                </div>
-                """
+            status_banner_box = gr.HTML(
+                value=READY_BANNER_HTML,
+                label="Assessment Execution Status",
             )
+
+            with gr.Row(elem_classes=["tab1-nav-row"]):
+                jump_to_tab2_btn = gr.Button("🔍 Step 2: Review Grounding & Graph ➔", variant="secondary", size="sm")
+                jump_to_tab3_btn = gr.Button("📐 Step 3: View SHACL Proofs & Scorecard ➔", variant="secondary", size="sm")
+                jump_to_tab4_btn = gr.Button("📦 Step 4: Export Annex IV Package ➔", variant="secondary", size="sm")
 
         # =============================================================
         # TAB 2: 2️⃣ Review Grounding
@@ -894,7 +978,7 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
         with gr.TabItem("2️⃣ Review Grounding", id="tab_review_grounding"):
             with gr.Tabs():
                 with gr.TabItem("🕸️ Knowledge Graph & Ontology"):
-                    graph_output = gr.HTML(value=DEFAULT_ASSESSMENT[3], label="Force-Directed Knowledge Graph")
+                    graph_output = gr.HTML(value=DEFAULT_ASSESSMENT["graph_iframe_html"], label="Force-Directed Knowledge Graph")
                 with gr.TabItem("📚 EUR-Lex Legal Factsheet"):
                     factsheet_box = gr.HTML(
                         value=DEFAULT_FACTSHEET,
@@ -904,7 +988,7 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
                     claims_table = gr.Dataframe(
                         headers=["Claim ID", "Category", "Status", "Confidence", "Target Article", "Evidence Span"],
                         datatype=["str", "str", "str", "str", "str", "str"],
-                        value=DEFAULT_ASSESSMENT[2],
+                        value=DEFAULT_ASSESSMENT["claims_data"],
                         label="Extracted Regulatory Claims",
                     )
                 with gr.TabItem("👤 Active Learning Triage Queue"):
@@ -912,7 +996,7 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
                     borderline_table = gr.Dataframe(
                         headers=["Claim ID", "Category", "Status", "Confidence", "Evidence Quote"],
                         datatype=["str", "str", "str", "str", "str"],
-                        value=DEFAULT_ASSESSMENT[9],
+                        value=DEFAULT_ASSESSMENT["borderline_data"],
                     )
                     with gr.Row():
                         triage_claim_id = gr.Textbox(label="Claim ID", placeholder="e.g. clm_001", scale=3)
@@ -927,9 +1011,13 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
                     frameworks_table = gr.Dataframe(
                         headers=["Target Framework", "Control ID", "Control Name", "Status", "Linked AI Act Article", "Audit Guidance"],
                         datatype=["str", "str", "str", "str", "str", "str"],
-                        value=DEFAULT_ASSESSMENT[10],
+                        value=DEFAULT_ASSESSMENT["frameworks_data"],
                         label="Harmonized Multi-Framework Controls",
                     )
+
+            with gr.Row(elem_classes=["tab-nav-footer"]):
+                nav_tab2_to_tab1 = gr.Button("⬅️ Back to Step 1: Select Scenario", variant="secondary")
+                nav_tab2_to_tab3 = gr.Button("Continue to Step 3: Run SHACL Proofs ➔", variant="primary")
 
         # =============================================================
         # TAB 3: 3️⃣ Run SHACL Proofs
@@ -937,14 +1025,18 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
         with gr.TabItem("3️⃣ Run SHACL Proofs", id="tab_run_shacl_proofs"):
             with gr.Row():
                 assess_btn_tab3 = gr.Button("⚡ Re-Run Deterministic Conformity Proofs", variant="primary", size="md")
-            exec_output = gr.HTML(value=DEFAULT_ASSESSMENT[0], label="Executive Summary")
-            fine_liability_output = gr.HTML(value=DEFAULT_ASSESSMENT[11], label="Article 99 Fine Liability")
+            exec_output = gr.HTML(value=DEFAULT_ASSESSMENT["exec_html"], label="Executive Summary")
+            fine_liability_output = gr.HTML(value=DEFAULT_ASSESSMENT["fine_html"], label="Article 99 Fine Liability")
             violations_table = gr.Dataframe(
                 headers=["Legal Article", "Normative Requirement", "Severity", "SHACL Path", "Remediation Guidance"],
                 datatype=["str", "str", "str", "str", "str"],
-                value=DEFAULT_ASSESSMENT[1],
+                value=DEFAULT_ASSESSMENT["violations_data"],
                 label="Mathematical Proof: Non-Conformities Found",
             )
+
+            with gr.Row(elem_classes=["tab-nav-footer"]):
+                nav_tab3_to_tab2 = gr.Button("⬅️ Back to Step 2: Review Grounding", variant="secondary")
+                nav_tab3_to_tab4 = gr.Button("Continue to Step 4: Export Annex IV Package ➔", variant="primary")
 
         # =============================================================
         # TAB 4: 4️⃣ Export Annex IV Package
@@ -952,22 +1044,28 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
         with gr.TabItem("4️⃣ Export Annex IV Package", id="tab_export_annex_iv"):
             with gr.Tabs():
                 with gr.TabItem("📜 Attestation Certificate (HTML)"):
-                    cert_html_output = gr.HTML(value=DEFAULT_ASSESSMENT[8])
+                    cert_html_output = gr.HTML(value=DEFAULT_ASSESSMENT["cert_iframe_html"])
                 with gr.TabItem("📦 CycloneDX 1.6 AI-BOM"):
-                    bom_display = gr.Code(value=DEFAULT_ASSESSMENT[12], language="json", label="CycloneDX 1.6 Machine-Readable AI-BOM")
+                    bom_display = gr.Code(value=DEFAULT_ASSESSMENT["bom_json"], language="json", label="CycloneDX 1.6 Machine-Readable AI-BOM")
                 with gr.TabItem("🛡️ OASIS SARIF 2.1.0 Report"):
-                    sarif_display = gr.Code(value=DEFAULT_ASSESSMENT[13], language="json", label="OASIS SARIF 2.1.0 Static Analysis Report")
+                    sarif_display = gr.Code(value=DEFAULT_ASSESSMENT["sarif_json"], language="json", label="OASIS SARIF 2.1.0 Static Analysis Report")
                 with gr.TabItem("📄 Annex IV Report (Markdown)"):
-                    report_markdown = gr.Markdown(value=DEFAULT_ASSESSMENT[7])
+                    report_markdown = gr.Markdown(value=DEFAULT_ASSESSMENT["md_report"])
                 with gr.TabItem("🌐 Machine-Readable JSON-LD"):
-                    jsonld_display = gr.Code(value=DEFAULT_ASSESSMENT[6], language="json", label="W3C JSON-LD Digital Certificate")
+                    jsonld_display = gr.Code(value=DEFAULT_ASSESSMENT["json_ld_cert"], language="json", label="W3C JSON-LD Digital Certificate")
                 with gr.TabItem("🔐 W3C PROV-O Ledger"):
-                    token_display = gr.Textbox(value=DEFAULT_ASSESSMENT[4], label="Official Digital Conformity Token", interactive=False)
-                    ledger_display = gr.Markdown(value=DEFAULT_ASSESSMENT[5])
+                    token_display = gr.Textbox(value=DEFAULT_ASSESSMENT["cert_token"], label="Official Digital Conformity Token", interactive=False)
+                    ledger_display = gr.Markdown(value=DEFAULT_ASSESSMENT["hash_summary"])
 
-    # Assessment outputs list (14 components)
+            with gr.Row(elem_classes=["tab-nav-footer"]):
+                nav_tab4_to_tab3 = gr.Button("⬅️ Back to Step 3: Review Proofs", variant="secondary")
+                nav_tab4_to_tab1 = gr.Button("🔄 Start New Scenario (Step 1)", variant="secondary")
+
+    # Assessment outputs list (16 components: main_tabs + status_banner_box + 14 metrics/deliverables)
     assessment_inputs = [spec_input, auditor_input, turnover_input, is_sme_input]
     assessment_outputs = [
+        main_tabs,
+        status_banner_box,
         exec_output,
         violations_table,
         claims_table,
@@ -988,12 +1086,12 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
     domain_dropdown.change(
         fn=on_domain_change,
         inputs=[domain_dropdown],
-        outputs=[case_dropdown, spec_input, quick_bar_box, factsheet_box],
+        outputs=[case_dropdown, spec_input, quick_bar_box, factsheet_box, status_banner_box],
     )
     case_dropdown.change(
         fn=on_case_change,
         inputs=[case_dropdown],
-        outputs=[spec_input, quick_bar_box, factsheet_box],
+        outputs=[spec_input, quick_bar_box, factsheet_box, status_banner_box],
     )
 
     # Wire assessment buttons (Tab 1 primary and Tab 3 re-run)
@@ -1008,6 +1106,20 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
         outputs=assessment_outputs,
     )
 
+    # Workflow step navigation clicks
+    jump_to_tab2_btn.click(fn=lambda: gr.update(selected="tab_review_grounding"), outputs=[main_tabs])
+    jump_to_tab3_btn.click(fn=lambda: gr.update(selected="tab_run_shacl_proofs"), outputs=[main_tabs])
+    jump_to_tab4_btn.click(fn=lambda: gr.update(selected="tab_export_annex_iv"), outputs=[main_tabs])
+
+    nav_tab2_to_tab1.click(fn=lambda: gr.update(selected="tab_select_scenario"), outputs=[main_tabs])
+    nav_tab2_to_tab3.click(fn=lambda: gr.update(selected="tab_run_shacl_proofs"), outputs=[main_tabs])
+
+    nav_tab3_to_tab2.click(fn=lambda: gr.update(selected="tab_review_grounding"), outputs=[main_tabs])
+    nav_tab3_to_tab4.click(fn=lambda: gr.update(selected="tab_export_annex_iv"), outputs=[main_tabs])
+
+    nav_tab4_to_tab3.click(fn=lambda: gr.update(selected="tab_run_shacl_proofs"), outputs=[main_tabs])
+    nav_tab4_to_tab1.click(fn=lambda: gr.update(selected="tab_select_scenario"), outputs=[main_tabs])
+
     triage_btn.click(
         fn=record_triage,
         inputs=[triage_claim_id, triage_status, triage_cat, triage_notes, auditor_input],
@@ -1016,4 +1128,5 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
 
 if __name__ == "__main__":
     demo.launch(server_name="0.0.0.0", server_port=7860, share=False, theme=gr.themes.Soft(), css=CUSTOM_CSS)
+
 
