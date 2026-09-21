@@ -50,32 +50,32 @@ def on_domain_change(selected_domain_name: str):
     banner = """
     <div style="margin-top: 12px; padding: 12px 16px; border-radius: 8px; background: #f8fafc; border: 1px dashed #cbd5e1; font-size: 13px; color: #64748b; display: flex; align-items: center; gap: 8px;">
         <span>ℹ️</span>
-        <span>New regulatory sector selected. Click <strong>⚡ Run Deterministic Conformity Assessment</strong> below to evaluate.</span>
+        <span>New regulatory sector selected. Click <strong>⚡ Run Assessment & Review Grounding (Step 2) ➔</strong> below to evaluate.</span>
     </div>
     """
     if not cases:
-        return gr.update(choices=[], value=None), "", "", "<div style='padding:15px;'>No cases found.</div>", banner
+        return gr.update(choices=[], value=None), "", "", "<div style='padding:15px;'>No cases found.</div>", "<div style='padding:15px;'>No cases found.</div>", banner
     titles = [c["title"] for c in cases]
     first_title = titles[0]
     text = catalog.get_case_document_text(first_title)
     factsheet = catalog.render_factsheet_html(first_title)
     quick_bar = catalog.render_quick_bar(first_title)
-    return gr.update(choices=titles, value=first_title), text, quick_bar, factsheet, banner
+    return gr.update(choices=titles, value=first_title), text, quick_bar, factsheet, factsheet, banner
 
 
 def on_case_change(selected_case_title: str):
     banner = """
     <div style="margin-top: 12px; padding: 12px 16px; border-radius: 8px; background: #f8fafc; border: 1px dashed #cbd5e1; font-size: 13px; color: #64748b; display: flex; align-items: center; gap: 8px;">
         <span>ℹ️</span>
-        <span>Case study loaded. Click <strong>⚡ Run Deterministic Conformity Assessment</strong> below to execute deterministic SHACL verification.</span>
+        <span>Case study loaded. Click <strong>⚡ Run Assessment & Review Grounding (Step 2) ➔</strong> below to execute deterministic SHACL verification.</span>
     </div>
     """
     if not selected_case_title:
-        return "", "", "<div style='padding:15px;'>Select a case study.</div>", banner
+        return "", "", "<div style='padding:15px;'>Select a case study.</div>", "<div style='padding:15px;'>Select a case study.</div>", banner
     text = catalog.get_case_document_text(selected_case_title)
     factsheet = catalog.render_factsheet_html(selected_case_title)
     quick_bar = catalog.render_quick_bar(selected_case_title)
-    return text, quick_bar, factsheet, banner
+    return text, quick_bar, factsheet, factsheet, banner
 
 
 def compute_assessment_data(doc_text: str, auditor_id: str, annual_turnover: float = 50000000.0, is_sme: bool = False):
@@ -616,7 +616,7 @@ div[role="tablist"] {
 
 button[role="tab"] {
     font-family: 'Inter', sans-serif !important;
-    font-size: 13px !important;
+    font-size: 13.5px !important;
     font-weight: 600 !important;
     padding: 8px 16px !important;
     border-radius: 8px 8px 0 0 !important;
@@ -624,6 +624,14 @@ button[role="tab"] {
     border: none !important;
     letter-spacing: -0.01em !important;
     transition: all 0.15s ease !important;
+}
+
+.factsheet-container, .factsheet-container * {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+.factsheet-container code, .factsheet-container pre {
+    font-family: 'JetBrains Mono', monospace !important;
 }
 
 .dark button[role="tab"] {
@@ -985,12 +993,19 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
                 label="Statutory Summary",
             )
 
-            spec_input = gr.Textbox(
-                label="System Technical Specification (Markdown or JSON - Fully Editable)",
-                lines=14,
-                placeholder="Paste AI system architecture or model card text...",
-                value=DEFAULT_SPEC_TEXT,
-            )
+            with gr.Tabs():
+                with gr.TabItem("📝 System Technical Specification"):
+                    spec_input = gr.Textbox(
+                        label="System Technical Specification (Markdown or JSON - Fully Editable)",
+                        lines=14,
+                        placeholder="Paste AI system architecture or model card text...",
+                        value=DEFAULT_SPEC_TEXT,
+                    )
+                with gr.TabItem("📚 EUR-Lex Legal Factsheet"):
+                    step1_factsheet_box = gr.HTML(
+                        value=DEFAULT_FACTSHEET,
+                        label="Regulatory Factsheet & Provenance",
+                    )
 
             with gr.Accordion("⚙️ Corporate Exposure & Auditor Settings (Optional)", open=False):
                 with gr.Row():
@@ -1032,13 +1047,13 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
         # =============================================================
         with gr.TabItem("2️⃣ Review Grounding", id="tab_review_grounding"):
             with gr.Tabs():
-                with gr.TabItem("🕸️ Knowledge Graph & Ontology"):
-                    graph_output = gr.HTML(value=DEFAULT_ASSESSMENT["graph_iframe_html"], label="Force-Directed Knowledge Graph")
                 with gr.TabItem("📚 EUR-Lex Legal Factsheet"):
                     factsheet_box = gr.HTML(
                         value=DEFAULT_FACTSHEET,
                         label="Regulatory Factsheet & Provenance",
                     )
+                with gr.TabItem("🕸️ Knowledge Graph & Ontology"):
+                    graph_output = gr.HTML(value=DEFAULT_ASSESSMENT["graph_iframe_html"], label="Force-Directed Knowledge Graph")
                 with gr.TabItem("🔍 Extracted Claims"):
                     claims_table = gr.Dataframe(
                         headers=["Claim ID", "Category", "Status", "Confidence", "Target Article", "Evidence Span"],
@@ -1141,12 +1156,12 @@ with gr.Blocks(title="ReguAI: Neuro-Symbolic AI GRC Engine") as demo:
     domain_dropdown.change(
         fn=on_domain_change,
         inputs=[domain_dropdown],
-        outputs=[case_dropdown, spec_input, quick_bar_box, factsheet_box, status_banner_box],
+        outputs=[case_dropdown, spec_input, quick_bar_box, factsheet_box, step1_factsheet_box, status_banner_box],
     )
     case_dropdown.change(
         fn=on_case_change,
         inputs=[case_dropdown],
-        outputs=[spec_input, quick_bar_box, factsheet_box, status_banner_box],
+        outputs=[spec_input, quick_bar_box, factsheet_box, step1_factsheet_box, status_banner_box],
     )
 
     # Wire assessment buttons (Tab 1 primary to Step 2, direct to Step 3, and Tab 3 re-run)
